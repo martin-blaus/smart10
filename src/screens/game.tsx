@@ -22,14 +22,20 @@ export function GameScreen({ state, dispatch }: Props) {
   const [confirmingPass, setConfirmingPass] = useState(false);
 
   // Whenever the active player changes during play, block the screen so the
-  // device can be handed over without the next player seeing the reveal.
+  // device can be handed over without the next player seeing the reveal. In
+  // solo mode there is no one to hand off to, so skip it.
   useEffect(() => {
-    if (state.phase === "playing") {
+    if (state.phase === "playing" && state.players.length > 1) {
       setHandoffPlayer(state.currentPlayerIndex);
     } else {
       setHandoffPlayer(null);
     }
-  }, [state.phase, state.currentPlayerIndex, state.currentCardId]);
+  }, [
+    state.phase,
+    state.currentPlayerIndex,
+    state.currentCardId,
+    state.players.length,
+  ]);
 
   if (!card) return null;
 

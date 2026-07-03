@@ -4,6 +4,10 @@ export const strings = {
   tagline: "10 respuestas por carta. ¿Cuántas te animás a acertar?",
 
   // Setup
+  setupMode: "Modo",
+  modeSolo: "Solitario",
+  modeMulti: "Multijugador",
+  setupSoloName: "Tu nombre",
   setupPlayers: "Jugadores",
   setupPlayerPlaceholder: (n: number) => `Jugador ${n}`,
   setupAddPlayer: "Agregar jugador",
@@ -45,6 +49,8 @@ export const strings = {
 
   // Results
   winnerTitle: (name: string) => `¡Ganó ${name}!`,
+  soloResultEyebrow: "Modo solitario",
+  soloResultTitle: "¡Lo lograste!",
   finalStandings: "Posiciones finales",
   playAgainSame: "Jugar de nuevo",
   playAgainNew: "Nuevos jugadores",

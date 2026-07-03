@@ -20,6 +20,7 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
     });
   }, []);
 
+  const isSolo = state.players.length === 1;
   const ranked = state.players
     .map((p, i) => ({ p, i }))
     .sort((a, b) => b.p.score - a.p.score);
@@ -31,17 +32,25 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
         <span className="text-5xl block mb-3" aria-hidden>
           🏆
         </span>
-        <span className="eyebrow text-brass block mb-1">Ganador</span>
+        <span className="eyebrow text-brass block mb-1">
+          {isSolo ? strings.soloResultEyebrow : "Ganador"}
+        </span>
         <h1 className="font-display text-4xl font-bold text-parchment">
-          {strings.winnerTitle(winnerName)}
+          {isSolo ? strings.soloResultTitle : strings.winnerTitle(winnerName)}
         </h1>
+        {isSolo && (
+          <p className="font-display text-2xl font-bold text-brass mt-3">
+            {ranked[0].p.score} {strings.points}
+          </p>
+        )}
       </div>
 
-      <div className="w-full max-w-sm">
-        <h2 className="eyebrow text-parchment-dim mb-2.5">
-          {strings.finalStandings}
-        </h2>
-        <ol className="flex flex-col gap-2">
+      {!isSolo && (
+        <div className="w-full max-w-sm">
+          <h2 className="eyebrow text-parchment-dim mb-2.5">
+            {strings.finalStandings}
+          </h2>
+          <ol className="flex flex-col gap-2">
           {ranked.map(({ p, i }, pos) => (
             <li
               key={i}
@@ -69,8 +78,9 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
               </span>
             </li>
           ))}
-        </ol>
-      </div>
+          </ol>
+        </div>
+      )}
 
       <div className="w-full max-w-sm flex flex-col gap-2.5">
         <button onClick={onPlayAgainSame} className="btn-brass text-lg">

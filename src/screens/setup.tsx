@@ -22,7 +22,10 @@ interface Props {
   onStart: (playerNames: string[], targetScore: number, datasetKey: DatasetKey) => void;
 }
 
+type Mode = "solo" | "multi";
+
 export function SetupScreen({ onStart }: Props) {
+  const [mode, setMode] = useState<Mode>("multi");
   const [names, setNames] = useState<string[]>(["", ""]);
   const [targetScore, setTargetScore] = useState(15);
   const [datasetKey, setDatasetKey] = useState<DatasetKey>("classic");
@@ -39,7 +42,15 @@ export function SetupScreen({ onStart }: Props) {
     );
 
   const trimmed = names.map((n, i) => n.trim() || strings.setupPlayerPlaceholder(i + 1));
-  const canStart = names.filter((n) => n.trim()).length >= MIN_PLAYERS || names.length >= MIN_PLAYERS;
+  const canStart = mode === "solo" || names.length >= MIN_PLAYERS;
+
+  const handleStart = () => {
+    const playerNames =
+      mode === "solo"
+        ? [names[0].trim() || strings.setupPlayerPlaceholder(1)]
+        : trimmed;
+    onStart(playerNames, targetScore, datasetKey);
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10">
@@ -54,36 +65,62 @@ export function SetupScreen({ onStart }: Props) {
       </div>
 
       <div className="w-full max-w-sm">
-        <h2 className="eyebrow text-parchment-dim mb-2.5">
-          {strings.setupPlayers}
-        </h2>
-        <div className="flex flex-col gap-2">
-          {names.map((name, i) => (
-            <div key={i} className="flex gap-2">
-              <input
-                value={name}
-                onChange={(e) => setName(i, e.target.value)}
-                placeholder={strings.setupPlayerPlaceholder(i + 1)}
-                maxLength={20}
-                className="field flex-1"
-              />
-              {names.length > MIN_PLAYERS && (
-                <button
-                  onClick={() => removePlayer(i)}
-                  className="btn-quiet px-4"
-                  aria-label={strings.setupRemovePlayer}
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+        <h2 className="eyebrow text-parchment-dim mb-2.5">{strings.setupMode}</h2>
+        <div className="flex gap-2.5">
+          {(["solo", "multi"] as Mode[]).map((m) => (
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              aria-pressed={mode === m}
+              className={segClass(mode === m, "text-base")}
+            >
+              {m === "solo" ? strings.modeSolo : strings.modeMulti}
+            </button>
           ))}
         </div>
 
-        {names.length < MAX_PLAYERS && (
-          <button onClick={addPlayer} className="btn-quiet w-full mt-2.5">
-            + {strings.setupAddPlayer}
-          </button>
+        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+          {mode === "solo" ? strings.setupSoloName : strings.setupPlayers}
+        </h2>
+        {mode === "solo" ? (
+          <input
+            value={names[0]}
+            onChange={(e) => setName(0, e.target.value)}
+            placeholder={strings.setupPlayerPlaceholder(1)}
+            maxLength={20}
+            className="field w-full"
+          />
+        ) : (
+          <>
+            <div className="flex flex-col gap-2">
+              {names.map((name, i) => (
+                <div key={i} className="flex gap-2">
+                  <input
+                    value={name}
+                    onChange={(e) => setName(i, e.target.value)}
+                    placeholder={strings.setupPlayerPlaceholder(i + 1)}
+                    maxLength={20}
+                    className="field flex-1"
+                  />
+                  {names.length > MIN_PLAYERS && (
+                    <button
+                      onClick={() => removePlayer(i)}
+                      className="btn-quiet px-4"
+                      aria-label={strings.setupRemovePlayer}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {names.length < MAX_PLAYERS && (
+              <button onClick={addPlayer} className="btn-quiet w-full mt-2.5">
+                + {strings.setupAddPlayer}
+              </button>
+            )}
+          </>
         )}
 
         <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
@@ -119,7 +156,7 @@ export function SetupScreen({ onStart }: Props) {
         </div>
 
         <button
-          onClick={() => onStart(trimmed, targetScore, datasetKey)}
+          onClick={handleStart}
           disabled={!canStart}
           className="btn-brass w-full mt-8 text-lg"
         >
