@@ -54,7 +54,7 @@ export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Pr
           disabled={disabled}
           className={
             shell +
-            " bg-[#fbf6ea] border-[color:var(--color-cream-edge)] font-semibold" +
+            " bg-cream-hi border-[color:var(--color-cream-edge)] font-semibold" +
             " shadow-[0_1px_3px_rgba(90,60,10,0.18)] transition-[filter,scale]" +
             " hover:brightness-[1.02] active:scale-[0.97] disabled:opacity-45 disabled:active:scale-100"
           }
@@ -62,7 +62,7 @@ export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Pr
           <span
             className={
               disc +
-              " bg-gradient-to-b from-[#f0c869] to-[color:var(--color-brass-deep)] text-brass-ink"
+              " bg-gradient-to-b from-brass-hi to-[color:var(--color-brass-deep)] text-brass-ink"
             }
           >
             {number}

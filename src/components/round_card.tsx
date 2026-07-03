@@ -16,10 +16,13 @@ interface Props {
 // the most, the top and bottom pegs pull in toward the poles. Together the two
 // columns form the oval of the dial. `row` is 0..4 within a column.
 const ELLIPSE_AMPLITUDE = 20; // px the middle peg bows outward
-function arcOffset(row: number, side: "left" | "right"): number {
+// The 5 bow magnitudes are fixed, so compute them once instead of per render.
+const ARC_MAGNITUDE = [0, 1, 2, 3, 4].map((row) => {
   const t = (row - 2) / 2; // -1..1
-  const magnitude = ELLIPSE_AMPLITUDE * Math.sqrt(1 - t * t);
-  return side === "left" ? -magnitude : magnitude;
+  return ELLIPSE_AMPLITUDE * Math.sqrt(1 - t * t);
+});
+function arcOffset(row: number, side: "left" | "right"): number {
+  return side === "left" ? -ARC_MAGNITUDE[row] : ARC_MAGNITUDE[row];
 }
 
 // The signature "dial": a cream, brass-rimmed card with the question in the

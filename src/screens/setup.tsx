@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { strings } from "../i18n/strings";
+import { DATASETS } from "../../data";
+import type { DatasetKey } from "../game/deck";
 
 const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 const TARGET_OPTIONS = [10, 15, 20];
 
-import type { DatasetKey } from "../game/deck";
+const DATASET_LABELS: Record<DatasetKey, string> = {
+  classic: strings.datasetGeneral,
+  movies: strings.datasetMovies,
+};
+
+// Shared styling for the segmented option toggles (target score, dataset).
+const segClass = (selected: boolean, size: string) =>
+  `flex-1 min-h-14 rounded-2xl font-display ${size} font-bold transition-transform active:scale-[0.97] ` +
+  (selected ? "btn-brass !px-0" : "panel text-parchment-dim");
 
 interface Props {
   onStart: (playerNames: string[], targetScore: number, datasetKey: DatasetKey) => void;
@@ -84,12 +94,7 @@ export function SetupScreen({ onStart }: Props) {
               key={t}
               onClick={() => setTargetScore(t)}
               aria-pressed={targetScore === t}
-              className={
-                "flex-1 min-h-14 rounded-2xl font-display text-2xl font-bold transition-transform active:scale-[0.97] " +
-                (targetScore === t
-                  ? "btn-brass !px-0"
-                  : "panel text-parchment-dim")
-              }
+              className={segClass(targetScore === t, "text-2xl")}
             >
               {t}
             </button>
@@ -100,30 +105,16 @@ export function SetupScreen({ onStart }: Props) {
           {strings.setupDataset}
         </h2>
         <div className="flex gap-2.5">
-          <button
-            onClick={() => setDatasetKey("classic")}
-            aria-pressed={datasetKey === "classic"}
-            className={
-              "flex-1 min-h-14 rounded-2xl font-display text-lg font-bold transition-transform active:scale-[0.97] " +
-              (datasetKey === "classic"
-                ? "btn-brass"
-                : "panel text-parchment-dim")
-            }
-          >
-            {strings.datasetGeneral}
-          </button>
-          <button
-            onClick={() => setDatasetKey("movies")}
-            aria-pressed={datasetKey === "movies"}
-            className={
-              "flex-1 min-h-14 rounded-2xl font-display text-lg font-bold transition-transform active:scale-[0.97] " +
-              (datasetKey === "movies"
-                ? "btn-brass"
-                : "panel text-parchment-dim")
-            }
-          >
-            {strings.datasetMovies}
-          </button>
+          {(Object.keys(DATASETS) as DatasetKey[]).map((key) => (
+            <button
+              key={key}
+              onClick={() => setDatasetKey(key)}
+              aria-pressed={datasetKey === key}
+              className={segClass(datasetKey === key, "text-lg")}
+            >
+              {DATASET_LABELS[key]}
+            </button>
+          ))}
         </div>
 
         <button

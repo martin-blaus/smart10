@@ -16,9 +16,12 @@
   --color-ink-soft: #6b5d45;
 
   /* Lamplight / brass accent */
+  --color-brass-hi: #f0c869; /* highlight stop shared by brass gradients */
   --color-brass: #e0af52;
   --color-brass-deep: #c68f30;
   --color-brass-ink: #3a2c0e;
+
+  --color-cream-hi: #fbf6ea; /* brightest cream face (inputs, unrevealed pegs) */
 
   /* Pegs */
   --color-correct: #3f8a5b;
@@ -107,7 +110,7 @@ a,
     color: var(--color-brass-ink);
     background: linear-gradient(
       180deg,
-      #f0c869 0%,
+      var(--color-brass-hi) 0%,
       var(--color-brass) 45%,
       var(--color-brass-deep) 100%
     );
@@ -189,7 +192,7 @@ a,
   .field {
     @apply w-full min-h-12 rounded-xl px-4 font-semibold;
     color: var(--color-ink);
-    background: linear-gradient(180deg, #fbf6ea, #efe6cf);
+    background: linear-gradient(180deg, var(--color-cream-hi), #efe6cf);
     border: 1px solid var(--color-cream-edge);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }

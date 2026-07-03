@@ -1,12 +1,19 @@
 export type { Card, CardOption, Dataset } from "./types";
-import type { Dataset } from "./types";
+import type { Card, Dataset } from "./types";
 
 import datasetJson from "./dataset.json";
 import moviesDatasetJson from "./movies_dataset.json";
 
-export const DATASET = datasetJson as Dataset;
-export const CARDS = DATASET.cards;
+// Registry of playable datasets keyed by id. Add a theme by adding one entry
+// here (and its label in the setup screen) — DatasetKey and the card lookup
+// derive from this automatically.
+export const DATASETS = {
+  classic: (datasetJson as Dataset).cards,
+  movies: (moviesDatasetJson as Dataset).cards,
+} satisfies Record<string, Card[]>;
 
-export const MOVIES_DATASET = moviesDatasetJson as Dataset;
-export const MOVIE_CARDS = MOVIES_DATASET.cards;
+export type DatasetKey = keyof typeof DATASETS;
 
+export const CARDS = DATASETS.classic;
+export const MOVIE_CARDS = DATASETS.movies;
+export const ALL_CARDS: Card[] = Object.values(DATASETS).flat();
