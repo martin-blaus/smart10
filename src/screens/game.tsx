@@ -6,6 +6,7 @@ import { RoundCard } from "../components/round_card";
 import { TurnBanner } from "../components/turn_banner";
 import { Scoreboard } from "../components/scoreboard";
 import { HandoffOverlay } from "../components/handoff_overlay";
+import { ConfirmDialog } from "../components/confirm_dialog";
 
 interface Props {
   state: GameState;
@@ -18,6 +19,7 @@ export function GameScreen({ state, dispatch }: Props) {
   const card = getCard(state.currentCardId);
   const [handoffPlayer, setHandoffPlayer] = useState<number | null>(null);
   const [lastResult, setLastResult] = useState<LastResult>(null);
+  const [confirmingPass, setConfirmingPass] = useState(false);
 
   // Whenever the active player changes during play, block the screen so the
   // device can be handed over without the next player seeing the reveal.
@@ -39,12 +41,18 @@ export function GameScreen({ state, dispatch }: Props) {
     dispatch({ type: "TAP_OPTION", optionIndex });
   };
 
-  const handlePass = () => {
-    if (current.pendingPoints === 0 && !confirm(strings.passNoPointsConfirm)) {
-      return;
-    }
+  const doPass = () => {
     setLastResult(null);
     dispatch({ type: "PASS" });
+  };
+
+  const handlePass = () => {
+    // Planting with points banked is unambiguous; confirm only the wasteful case.
+    if (current.pendingPoints === 0) {
+      setConfirmingPass(true);
+      return;
+    }
+    doPass();
   };
 
   const handleNextCard = () => {
@@ -130,6 +138,19 @@ export function GameScreen({ state, dispatch }: Props) {
           targetScore={state.targetScore}
         />
       </div>
+
+      {confirmingPass && (
+        <ConfirmDialog
+          message={strings.passNoPointsConfirm}
+          confirmLabel={strings.passConfirmYes}
+          cancelLabel={strings.passConfirmNo}
+          onConfirm={() => {
+            setConfirmingPass(false);
+            doPass();
+          }}
+          onCancel={() => setConfirmingPass(false)}
+        />
+      )}
 
       {handoffPlayer !== null && (
         <HandoffOverlay
