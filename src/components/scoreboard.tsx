@@ -21,6 +21,7 @@ export function Scoreboard({ players, currentPlayerIndex, targetScore }: Props) 
     <div className="panel">
       <button
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
         className="w-full flex items-center justify-between px-4 py-3 text-parchment-dim"
       >
         <span className="eyebrow">

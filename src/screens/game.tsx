@@ -57,14 +57,19 @@ export function GameScreen({ state, dispatch }: Props) {
     // player has it zeroed. Use it to show what happened this round.
     return (
       <div className="min-h-screen flex flex-col items-center px-4 py-8 gap-6 fade-in max-w-md mx-auto">
-        <h2 className="font-display text-3xl font-bold text-parchment mt-2">
+        <h1 className="font-display text-3xl font-bold text-parchment mt-2">
           {strings.roundEndTitle}
-        </h2>
+        </h1>
         <div className="w-full">
           <span className="eyebrow text-parchment-dim block mb-2 text-center">
             {strings.roundEndAnswers}
           </span>
-          <RoundCard card={card} revealed={state.revealedOptions} revealAll />
+          <RoundCard
+            card={card}
+            revealed={state.revealedOptions}
+            revealAll
+            questionAs="p"
+          />
         </div>
         <ul className="w-full flex flex-col gap-2">
           {state.players.map((p, i) => {

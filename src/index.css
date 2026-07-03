@@ -41,6 +41,9 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
+  /* Keep content clear of notches / home indicators (viewport-fit=cover). */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
   color: var(--color-parchment);
   background-color: #1b3a2c;
   /* Low amber lamp from the top, darkened corners like a lit table at night. */
@@ -89,6 +92,12 @@ h3 {
 :focus-visible {
   outline: 2px solid var(--color-brass);
   outline-offset: 2px;
+}
+
+button,
+a,
+.field {
+  touch-action: manipulation;
 }
 
 @layer components {

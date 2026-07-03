@@ -11,9 +11,14 @@ interface Props {
 // action that just happened, so the player who acted sees it before handing off.
 export function HandoffOverlay({ playerName, lastResult, onReady }: Props) {
   return (
-    <div className="fixed inset-0 z-50 bg-[#122318]/95 backdrop-blur-sm flex flex-col items-center justify-center px-6 text-center fade-in">
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 bg-[#122318]/95 backdrop-blur-sm flex flex-col items-center justify-center px-6 text-center fade-in [overscroll-behavior:contain]"
+    >
       {lastResult && (
         <span
+          aria-live="assertive"
           className={
             "eyebrow mb-5 " +
             (lastResult === "correct" ? "text-correct" : "text-wrong")

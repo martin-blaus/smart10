@@ -6,22 +6,35 @@ interface Props {
   revealed: number[];
   revealAll?: boolean;
   disabled?: boolean;
+  // Heading level for the question. The screen's main heading is elsewhere at
+  // round end, so the dial renders the question as plain text there.
+  questionAs?: "h1" | "p";
   onTap?: (optionIndex: number) => void;
 }
 
-// Outer rows sit closer to center, the middle row bulges out — makes the two
-// columns of pegs follow the oval of the dial. Row is 0..4 within a column.
+// Each column of 5 pegs traces one side of an ellipse: the middle peg bows out
+// the most, the top and bottom pegs pull in toward the poles. Together the two
+// columns form the oval of the dial. `row` is 0..4 within a column.
+const ELLIPSE_AMPLITUDE = 20; // px the middle peg bows outward
 function arcOffset(row: number, side: "left" | "right"): number {
-  const fromCenter = 2 - Math.abs(row - 2); // 0,1,2,1,0
-  const magnitude = fromCenter * 7;
+  const t = (row - 2) / 2; // -1..1
+  const magnitude = ELLIPSE_AMPLITUDE * Math.sqrt(1 - t * t);
   return side === "left" ? -magnitude : magnitude;
 }
 
-// The signature "dial": a cream, brass-rimmed card with the question at the top
-// and the 10 numbered answer pegs arranged in two arced columns around it.
-export function RoundCard({ card, revealed, revealAll, disabled, onTap }: Props) {
+// The signature "dial": a cream, brass-rimmed card with the question in the
+// center and the 10 numbered answer pegs arranged in an oval around it.
+export function RoundCard({
+  card,
+  revealed,
+  revealAll,
+  disabled,
+  questionAs = "h1",
+  onTap,
+}: Props) {
   const left = card.options.slice(0, 5);
   const right = card.options.slice(5, 10);
+  const Question = questionAs;
 
   const renderPeg = (option: Card["options"][number], index: number) => {
     const row = index % 5;
@@ -40,18 +53,18 @@ export function RoundCard({ card, revealed, revealAll, disabled, onTap }: Props)
   };
 
   return (
-    <div className="dial px-3 py-6 sm:px-6">
-      <div className="text-center px-4 mb-5">
+    <div className="dial px-6 py-8 sm:px-10">
+      <div className="text-center mb-7">
         <span className="eyebrow text-brass-deep">{card.category}</span>
-        <h1 className="font-display text-xl sm:text-2xl font-semibold text-ink mt-1 leading-snug text-balance">
+        <Question className="font-display text-2xl sm:text-3xl font-semibold text-ink mt-1 leading-snug text-balance">
           {card.question}
-        </h1>
+        </Question>
       </div>
-      <div className="grid grid-cols-2 gap-x-2 gap-y-2.5">
-        <div className="flex flex-col gap-2.5">
+      <div className="grid grid-cols-2 gap-x-1 gap-y-4 sm:gap-x-4">
+        <div className="flex flex-col gap-4">
           {left.map((o, i) => renderPeg(o, i))}
         </div>
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-4">
           {right.map((o, i) => renderPeg(o, i + 5))}
         </div>
       </div>

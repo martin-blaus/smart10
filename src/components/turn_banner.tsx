@@ -7,7 +7,10 @@ interface Props {
 
 export function TurnBanner({ player }: Props) {
   return (
-    <div className="flex items-center justify-between gap-3 panel px-4 py-3">
+    <div
+      aria-live="polite"
+      className="flex items-center justify-between gap-3 panel px-4 py-3"
+    >
       <span className="font-display text-xl font-semibold text-parchment truncate">
         {strings.turnOf(player.name)}
       </span>
