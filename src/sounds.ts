@@ -100,6 +100,18 @@ export const sounds = {
     tone(450, 40, "triangle", 15, 0.12);
     vibrate([20, 20]);
   },
+  // Bank point fly sequence of mini-tones rising in pitch
+  bankPointFly(count: number): void {
+    if (muted || count <= 0) return;
+    for (let i = 0; i < count; i++) {
+      const freq = 520 + i * 50;
+      const landingTime = i * 120 + 420;
+      tone(freq, 40, "triangle", landingTime, 0.08);
+      setTimeout(() => {
+        vibrate(10);
+      }, landingTime);
+    }
+  },
   // Round end (soft card-shuffle swish)
   roundEnd(): void {
     tone(1500, 40, "sine", 0, 0.05);

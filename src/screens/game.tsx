@@ -30,6 +30,48 @@ export function GameScreen({ state, dispatch }: Props) {
   const handoffTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tapOccurredRef = useRef<boolean>(false);
 
+  // Flying score dots state
+  interface FlyingDot {
+    id: number;
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    delay: number;
+  }
+  const [flyingDots, setFlyingDots] = useState<FlyingDot[]>([]);
+  const [animatingBanking, setAnimatingBanking] = useState(false);
+
+  const animateFlyingDots = (
+    srcId: string,
+    destId: string,
+    count: number,
+    baseDelay = 0,
+  ) => {
+    const srcEl = document.getElementById(srcId);
+    const destEl = document.getElementById(destId);
+    if (!srcEl || !destEl || count <= 0) return;
+
+    const srcRect = srcEl.getBoundingClientRect();
+    const destRect = destEl.getBoundingClientRect();
+
+    const startX = srcRect.left + srcRect.width / 2;
+    const startY = srcRect.top + srcRect.height / 2;
+    const endX = destRect.left + destRect.width / 2;
+    const endY = destRect.top + destRect.height / 2;
+
+    const newDots = Array.from({ length: count }).map((_, i) => ({
+      id: Math.random() + i,
+      startX,
+      startY,
+      endX,
+      endY,
+      delay: baseDelay + i * 120,
+    }));
+
+    setFlyingDots((prev) => [...prev, ...newDots]);
+  };
+
   // Clean up timeouts on unmount
   useEffect(() => {
     return () => {
@@ -85,6 +127,7 @@ export function GameScreen({ state, dispatch }: Props) {
   const current = state.players[state.currentPlayerIndex];
 
   const handleTap = (optionIndex: number) => {
+    if (animatingBanking) return;
     sounds.tap();
     setJustRevealedIndex(optionIndex);
     tapOccurredRef.current = true;
@@ -124,17 +167,56 @@ export function GameScreen({ state, dispatch }: Props) {
   };
 
   const handlePass = () => {
-    // Planting with points banked is unambiguous; confirm only the wasteful case.
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     if (current.pendingPoints === 0) {
       setConfirmingPass(true);
       return;
     }
-    doPass();
+
+    if (reducedMotion) {
+      doPass();
+      return;
+    }
+
+    setAnimatingBanking(true);
+    sounds.bankPointFly(current.pendingPoints);
+    animateFlyingDots("pass-btn", "scoreboard-panel", current.pendingPoints);
+
+    setTimeout(() => {
+      doPass();
+      setFlyingDots([]);
+      setAnimatingBanking(false);
+    }, current.pendingPoints * 120 + 500);
   };
 
   const handleNextCard = () => {
-    setLastResult(null);
-    dispatch({ type: "NEXT_ROUND" });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const activeBankers = state.players.filter((p) => p.roundStatus !== "failed" && p.pendingPoints > 0);
+
+    if (reducedMotion || activeBankers.length === 0) {
+      setLastResult(null);
+      dispatch({ type: "NEXT_ROUND" });
+      return;
+    }
+
+    setAnimatingBanking(true);
+    let maxCount = 0;
+
+    state.players.forEach((p, idx) => {
+      if (p.roundStatus !== "failed" && p.pendingPoints > 0) {
+        maxCount = Math.max(maxCount, p.pendingPoints);
+        sounds.bankPointFly(p.pendingPoints);
+        animateFlyingDots(`player-pending-${idx}`, `player-score-${idx}`, p.pendingPoints);
+      }
+    });
+
+    setTimeout(() => {
+      setLastResult(null);
+      dispatch({ type: "NEXT_ROUND" });
+      setFlyingDots([]);
+      setAnimatingBanking(false);
+    }, maxCount * 120 + 500);
   };
 
   if (state.phase === "roundEnd") {
@@ -173,6 +255,7 @@ export function GameScreen({ state, dispatch }: Props) {
                 </span>
                 <span className="flex items-center gap-3 shrink-0">
                   <span
+                    id={`player-pending-${i}`}
                     className={
                       "text-sm font-semibold " +
                       (failed ? "text-wrong" : "text-correct")
@@ -182,7 +265,10 @@ export function GameScreen({ state, dispatch }: Props) {
                       ? strings.statusFailed
                       : `${strings.statusPassed} +${p.pendingPoints}`}
                   </span>
-                  <span className="font-display font-bold tabular-nums text-parchment text-xl">
+                  <span
+                    id={`player-score-${i}`}
+                    className="font-display font-bold tabular-nums text-parchment text-xl"
+                  >
                     {p.score}
                   </span>
                 </span>
@@ -190,9 +276,28 @@ export function GameScreen({ state, dispatch }: Props) {
             );
           })}
         </ul>
-        <button onClick={handleNextCard} className="btn-brass text-lg px-10">
+        <button
+          id="next-round-btn"
+          onClick={handleNextCard}
+          disabled={animatingBanking}
+          className="btn-brass text-lg px-10"
+        >
           {strings.nextCard}
         </button>
+
+        {flyingDots.map((dot) => (
+          <span
+            key={dot.id}
+            className="score-dot w-3.5 h-3.5 bg-gradient-to-r from-brass-hi to-brass rounded-full shadow-[0_0_8px_rgba(240,200,105,0.85)] z-50 fixed pointer-events-none left-0 top-0"
+            style={{
+              "--start-x": `${dot.startX}px`,
+              "--start-y": `${dot.startY}px`,
+              "--end-x": `${dot.endX}px`,
+              "--end-y": `${dot.endY}px`,
+              animationDelay: `${dot.delay}ms`,
+            } as React.CSSProperties}
+          />
+        ))}
       </div>
     );
   }
@@ -214,14 +319,33 @@ export function GameScreen({ state, dispatch }: Props) {
       <RoundCard
         card={card}
         revealed={state.revealedOptions}
-        disabled={handoffPlayer !== null}
+        disabled={handoffPlayer !== null || animatingBanking}
         onTap={handleTap}
         justRevealedIndex={justRevealedIndex}
       />
 
-      <button onClick={handlePass} className="btn-token text-lg mt-1">
+      <button
+        id="pass-btn"
+        onClick={handlePass}
+        disabled={animatingBanking}
+        className="btn-token text-lg mt-1"
+      >
         {strings.pass}
       </button>
+
+      {flyingDots.map((dot) => (
+        <span
+          key={dot.id}
+          className="score-dot w-3.5 h-3.5 bg-gradient-to-r from-brass-hi to-brass rounded-full shadow-[0_0_8px_rgba(240,200,105,0.85)] z-50 fixed pointer-events-none left-0 top-0"
+          style={{
+            "--start-x": `${dot.startX}px`,
+            "--start-y": `${dot.startY}px`,
+            "--end-x": `${dot.endX}px`,
+            "--end-y": `${dot.endY}px`,
+            animationDelay: `${dot.delay}ms`,
+          } as React.CSSProperties}
+        />
+      ))}
 
       {/* Inline by default; a fixed HUD panel in the top-right on wide screens
           (xl+, where it clears the centered game column). */}

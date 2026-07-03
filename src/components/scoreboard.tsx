@@ -33,7 +33,7 @@ export function Scoreboard({ players, currentPlayerIndex, targetScore }: Props) 
   const totalSlots = targetScore + 1;
 
   return (
-    <div className="panel overflow-hidden">
+    <div id="scoreboard-panel" className="panel overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
