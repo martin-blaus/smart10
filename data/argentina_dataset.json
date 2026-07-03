@@ -1,0 +1,514 @@
+{
+  "cards": [
+    {
+      "id": "arg-001",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas personas fueron presidentes constitucionales de Argentina?",
+      "options": [
+        { "text": "Bartolomé Mitre", "correct": true, "info": "1862-1868" },
+        { "text": "Domingo F. Sarmiento", "correct": true, "info": "1868-1874" },
+        { "text": "Juan Bautista Alberdi", "correct": false, "info": "Jurista e ideólogo; nunca fue presidente" },
+        { "text": "Hipólito Yrigoyen", "correct": true, "info": "1916-1922 y 1928-1930" },
+        { "text": "Lisandro de la Torre", "correct": false, "info": "Senador y fundador del Partido Demócrata Progresista" },
+        { "text": "Marcelo T. de Alvear", "correct": true, "info": "1922-1928" },
+        { "text": "Juan Manuel de Rosas", "correct": false, "info": "Gobernador de Buenos Aires, nunca presidente" },
+        { "text": "Arturo Frondizi", "correct": true, "info": "1958-1962" },
+        { "text": "Raúl Alfonsín", "correct": true, "info": "1983-1989" },
+        { "text": "Carlos Pellegrini", "correct": true, "info": "1890-1892" }
+      ]
+    },
+    {
+      "id": "arg-002",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos integraron la Primera Junta de Gobierno del 25 de mayo de 1810?",
+      "options": [
+        { "text": "Cornelio Saavedra", "correct": true, "info": "Presidente de la Junta" },
+        { "text": "Mariano Moreno", "correct": true, "info": "Secretario" },
+        { "text": "Manuel Belgrano", "correct": true, "info": "Vocal" },
+        { "text": "Juan José Castelli", "correct": true, "info": "Vocal" },
+        { "text": "Bernardino Rivadavia", "correct": false, "info": "Primer presidente en 1826, no integró la Junta" },
+        { "text": "Manuel Alberti", "correct": true, "info": "Vocal" },
+        { "text": "Domingo Matheu", "correct": true, "info": "Vocal" },
+        { "text": "Juan Larrea", "correct": true, "info": "Vocal" },
+        { "text": "Santiago de Liniers", "correct": false, "info": "Ex virrey; fue fusilado ese año" },
+        { "text": "José de San Martín", "correct": false, "info": "Estaba en Europa; llegó en 1812" }
+      ]
+    },
+    {
+      "id": "arg-003",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas batallas fueron comandadas por José de San Martín?",
+      "options": [
+        { "text": "Batalla de Chacabuco", "correct": true, "info": "1817, Chile" },
+        { "text": "Batalla de Maipú", "correct": true, "info": "1818, Chile" },
+        { "text": "Combate de San Lorenzo", "correct": true, "info": "1813, con los Granaderos" },
+        { "text": "Batalla de Cancha Rayada", "correct": true, "info": "1818, derrota en Chile" },
+        { "text": "Batalla de Tucumán", "correct": false, "info": "Manuel Belgrano, 1812" },
+        { "text": "Batalla de Salta", "correct": false, "info": "Manuel Belgrano, 1813" },
+        { "text": "Batalla de Vilcapugio", "correct": false, "info": "Manuel Belgrano, 1813" },
+        { "text": "Batalla de Ayacucho", "correct": false, "info": "Antonio José de Sucre, 1824" },
+        { "text": "Batalla de Junín", "correct": false, "info": "Simón Bolívar, 1824" },
+        { "text": "Combate de Suipacha", "correct": false, "info": "Balcarce y Díaz Vélez, 1810" }
+      ]
+    },
+    {
+      "id": "arg-004",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos ocurrieron durante la presidencia de Domingo F. Sarmiento (1868-1874)?",
+      "options": [
+        { "text": "Fin de la Guerra de la Triple Alianza", "correct": true, "info": "1870" },
+        { "text": "Primer Censo Nacional", "correct": true, "info": "1869" },
+        { "text": "Epidemia de fiebre amarilla en Buenos Aires", "correct": true, "info": "1871" },
+        { "text": "Fundación del Colegio Militar de la Nación", "correct": true, "info": "1869" },
+        { "text": "Asesinato de Justo José de Urquiza", "correct": true, "info": "1870" },
+        { "text": "Conquista del Desierto", "correct": false, "info": "1878-1885, con Roca" },
+        { "text": "Ley 1420 de educación común", "correct": false, "info": "1884, presidencia de Roca" },
+        { "text": "Federalización de Buenos Aires", "correct": false, "info": "1880" },
+        { "text": "Batalla de Pavón", "correct": false, "info": "1861" },
+        { "text": "Revolución del Parque", "correct": false, "info": "1890" }
+      ]
+    },
+    {
+      "id": "arg-005",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas medidas corresponden a los gobiernos de Juan D. Perón (1946-1955)?",
+      "options": [
+        { "text": "Ley del voto femenino", "correct": true, "info": "Ley 13.010, 1947" },
+        { "text": "Nacionalización de los ferrocarriles", "correct": true, "info": "1948" },
+        { "text": "Creación del IAPI", "correct": true, "info": "Comercio exterior estatal" },
+        { "text": "Constitución de 1949", "correct": true },
+        { "text": "Planes Quinquenales", "correct": true },
+        { "text": "Ley Sáenz Peña del voto secreto", "correct": false, "info": "1912, Roque Sáenz Peña" },
+        { "text": "Reforma Universitaria", "correct": false, "info": "1918, Córdoba" },
+        { "text": "Creación de YPF", "correct": false, "info": "1922" },
+        { "text": "Semana Trágica", "correct": false, "info": "1919, presidencia de Yrigoyen" },
+        { "text": "Fusilamientos de José León Suárez", "correct": false, "info": "1956, tras el derrocamiento de Perón" }
+      ]
+    },
+    {
+      "id": "arg-006",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos fueron presidentes de facto durante la última dictadura (1976-1983)?",
+      "options": [
+        { "text": "Jorge Rafael Videla", "correct": true, "info": "1976-1981" },
+        { "text": "Roberto Viola", "correct": true, "info": "1981" },
+        { "text": "Leopoldo Galtieri", "correct": true, "info": "1981-1982" },
+        { "text": "Reynaldo Bignone", "correct": true, "info": "1982-1983" },
+        { "text": "Juan Carlos Onganía", "correct": false, "info": "Dictadura de 1966-1970" },
+        { "text": "Alejandro Lanusse", "correct": false, "info": "Dictadura de 1971-1973" },
+        { "text": "Pedro Eugenio Aramburu", "correct": false, "info": "Revolución Libertadora, 1955-1958" },
+        { "text": "Emilio Massera", "correct": false, "info": "Integró la Junta (Armada), no fue presidente" },
+        { "text": "Roberto Marcelo Levingston", "correct": false, "info": "Dictadura de 1970-1971" },
+        { "text": "Isaac Rojas", "correct": false, "info": "Vicepresidente de facto en 1955-1958" }
+      ]
+    },
+    {
+      "id": "arg-007",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas obras literarias fueron escritas por autores argentinos?",
+      "options": [
+        { "text": "Ficciones", "correct": true, "info": "Jorge Luis Borges" },
+        { "text": "Rayuela", "correct": true, "info": "Julio Cortázar" },
+        { "text": "Martín Fierro", "correct": true, "info": "José Hernández" },
+        { "text": "El túnel", "correct": true, "info": "Ernesto Sabato" },
+        { "text": "Facundo", "correct": true, "info": "Domingo F. Sarmiento" },
+        { "text": "Don Segundo Sombra", "correct": true, "info": "Ricardo Güiraldes" },
+        { "text": "Cien años de soledad", "correct": false, "info": "Gabriel García Márquez (Colombia)" },
+        { "text": "La ciudad y los perros", "correct": false, "info": "Mario Vargas Llosa (Perú)" },
+        { "text": "Pedro Páramo", "correct": false, "info": "Juan Rulfo (México)" },
+        { "text": "La tregua", "correct": false, "info": "Mario Benedetti (Uruguay)" }
+      ]
+    },
+    {
+      "id": "arg-008",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas personas fueron ministros de Economía de Argentina?",
+      "options": [
+        { "text": "Domingo Cavallo", "correct": true, "info": "Menem y De la Rúa" },
+        { "text": "José Ber Gelbard", "correct": true, "info": "1973-1974" },
+        { "text": "Álvaro Alsogaray", "correct": true, "info": "Frondizi y Guido" },
+        { "text": "Celestino Rodrigo", "correct": true, "info": "El \"Rodrigazo\", 1975" },
+        { "text": "Roberto Lavagna", "correct": true, "info": "Duhalde y Néstor Kirchner" },
+        { "text": "José A. Martínez de Hoz", "correct": true, "info": "1976-1981" },
+        { "text": "Arturo Frondizi", "correct": false, "info": "Fue presidente, no ministro de Economía" },
+        { "text": "Raúl Prebisch", "correct": false, "info": "Economista; dirigió el Banco Central" },
+        { "text": "Lisandro de la Torre", "correct": false, "info": "Senador" },
+        { "text": "Nicolino Locche", "correct": false, "info": "Campeón mundial de boxeo" }
+      ]
+    },
+    {
+      "id": "arg-009",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos ocurrieron en 1810?",
+      "options": [
+        { "text": "Revolución de Mayo", "correct": true },
+        { "text": "Formación de la Primera Junta", "correct": true },
+        { "text": "Combate de Suipacha", "correct": true, "info": "Noviembre de 1810" },
+        { "text": "Fusilamiento de Santiago de Liniers", "correct": true, "info": "Por la contrarrevolución de Córdoba" },
+        { "text": "Semana de Mayo", "correct": true },
+        { "text": "Creación de la bandera", "correct": false, "info": "1812, Belgrano" },
+        { "text": "Éxodo Jujeño", "correct": false, "info": "1812" },
+        { "text": "Asamblea del Año XIII", "correct": false, "info": "1813" },
+        { "text": "Declaración de la Independencia", "correct": false, "info": "1816" },
+        { "text": "Batalla de Tucumán", "correct": false, "info": "1812" }
+      ]
+    },
+    {
+      "id": "arg-010",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas provincias argentinas limitan con Chile?",
+      "options": [
+        { "text": "Mendoza", "correct": true },
+        { "text": "Neuquén", "correct": true },
+        { "text": "Salta", "correct": true },
+        { "text": "Santa Cruz", "correct": true },
+        { "text": "San Juan", "correct": true },
+        { "text": "Tierra del Fuego", "correct": true },
+        { "text": "Córdoba", "correct": false, "info": "Provincia mediterránea" },
+        { "text": "Misiones", "correct": false, "info": "Limita con Brasil y Paraguay" },
+        { "text": "La Pampa", "correct": false },
+        { "text": "Entre Ríos", "correct": false, "info": "En la Mesopotamia" }
+      ]
+    },
+    {
+      "id": "arg-011",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos presidentes gobernaron en el siglo XXI?",
+      "options": [
+        { "text": "Néstor Kirchner", "correct": true, "info": "2003-2007" },
+        { "text": "Cristina Fernández de Kirchner", "correct": true, "info": "2007-2015" },
+        { "text": "Mauricio Macri", "correct": true, "info": "2015-2019" },
+        { "text": "Alberto Fernández", "correct": true, "info": "2019-2023" },
+        { "text": "Javier Milei", "correct": true, "info": "Desde 2023" },
+        { "text": "Eduardo Duhalde", "correct": true, "info": "2002-2003" },
+        { "text": "Fernando de la Rúa", "correct": true, "info": "Gobernó hasta 2001" },
+        { "text": "Carlos Menem", "correct": false, "info": "1989-1999" },
+        { "text": "Raúl Alfonsín", "correct": false, "info": "1983-1989" },
+        { "text": "María Estela Martínez de Perón", "correct": false, "info": "1974-1976" }
+      ]
+    },
+    {
+      "id": "arg-012",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos fueron caudillos federales del siglo XIX?",
+      "options": [
+        { "text": "Facundo Quiroga", "correct": true, "info": "La Rioja" },
+        { "text": "Estanislao López", "correct": true, "info": "Santa Fe" },
+        { "text": "Francisco \"Pancho\" Ramírez", "correct": true, "info": "Entre Ríos" },
+        { "text": "Juan Manuel de Rosas", "correct": true, "info": "Buenos Aires" },
+        { "text": "Ángel Vicente \"Chacho\" Peñaloza", "correct": true, "info": "La Rioja" },
+        { "text": "Bernardino Rivadavia", "correct": false, "info": "Líder unitario" },
+        { "text": "Bartolomé Mitre", "correct": false, "info": "Liberal porteño" },
+        { "text": "Domingo F. Sarmiento", "correct": false, "info": "Unitario" },
+        { "text": "Juan Bautista Alberdi", "correct": false, "info": "Intelectual, no caudillo" },
+        { "text": "Manuel Belgrano", "correct": false, "info": "Prócer anterior, no caudillo" }
+      ]
+    },
+    {
+      "id": "arg-013",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos están relacionados con la Guerra de Malvinas (1982)?",
+      "options": [
+        { "text": "Hundimiento del ARA General Belgrano", "correct": true },
+        { "text": "Ataque al HMS Sheffield", "correct": true },
+        { "text": "Rendición argentina del 14 de junio", "correct": true },
+        { "text": "Leopoldo Galtieri en la presidencia", "correct": true },
+        { "text": "Batalla de Monte Longdon", "correct": true },
+        { "text": "Tratado de Tordesillas", "correct": false, "info": "1494" },
+        { "text": "Guerra de la Triple Alianza", "correct": false, "info": "1865-1870" },
+        { "text": "Combate del acorazado Graf Spee", "correct": false, "info": "1939, Segunda Guerra Mundial" },
+        { "text": "Vuelta de Obligado", "correct": false, "info": "1845, contra la flota anglo-francesa" },
+        { "text": "Pacto Roca-Runciman", "correct": false, "info": "1933" }
+      ]
+    },
+    {
+      "id": "arg-014",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos argentinos recibieron un Premio Nobel?",
+      "options": [
+        { "text": "Bernardo Houssay", "correct": true, "info": "Medicina, 1947" },
+        { "text": "Luis Federico Leloir", "correct": true, "info": "Química, 1970" },
+        { "text": "César Milstein", "correct": true, "info": "Medicina, 1984" },
+        { "text": "Adolfo Pérez Esquivel", "correct": true, "info": "Paz, 1980" },
+        { "text": "Carlos Saavedra Lamas", "correct": true, "info": "Paz, 1936" },
+        { "text": "Jorge Luis Borges", "correct": false, "info": "Nunca recibió el Nobel de Literatura" },
+        { "text": "René Favaloro", "correct": false, "info": "Creó el bypass coronario, sin Nobel" },
+        { "text": "Domingo Liotta", "correct": false, "info": "Pionero del corazón artificial" },
+        { "text": "Ernesto Sabato", "correct": false, "info": "Premio Cervantes, no Nobel" },
+        { "text": "Juan Manuel Fangio", "correct": false, "info": "Quíntuple campeón de Fórmula 1" }
+      ]
+    },
+    {
+      "id": "arg-015",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos ocurrieron durante la presidencia de Raúl Alfonsín (1983-1989)?",
+      "options": [
+        { "text": "Juicio a las Juntas", "correct": true, "info": "1985" },
+        { "text": "Plan Austral", "correct": true, "info": "1985" },
+        { "text": "Ley de Punto Final", "correct": true, "info": "1986" },
+        { "text": "Levantamientos carapintadas", "correct": true, "info": "1987-1988" },
+        { "text": "Hiperinflación de 1989", "correct": true },
+        { "text": "Plan de Convertibilidad", "correct": false, "info": "1991, Menem y Cavallo" },
+        { "text": "Indulto a los militares", "correct": false, "info": "1989-1990, Menem" },
+        { "text": "Privatización de YPF", "correct": false, "info": "Década de 1990, Menem" },
+        { "text": "El \"Rodrigazo\"", "correct": false, "info": "1975" },
+        { "text": "El Cordobazo", "correct": false, "info": "1969" }
+      ]
+    },
+    {
+      "id": "arg-016",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas ciudades son capital de una provincia argentina?",
+      "options": [
+        { "text": "La Plata", "correct": true, "info": "Buenos Aires" },
+        { "text": "Córdoba", "correct": true },
+        { "text": "Salta", "correct": true },
+        { "text": "Paraná", "correct": true, "info": "Entre Ríos" },
+        { "text": "San Miguel de Tucumán", "correct": true },
+        { "text": "Ushuaia", "correct": true, "info": "Tierra del Fuego" },
+        { "text": "Resistencia", "correct": true, "info": "Chaco" },
+        { "text": "Rosario", "correct": false, "info": "La capital de Santa Fe es la ciudad de Santa Fe" },
+        { "text": "Bahía Blanca", "correct": false },
+        { "text": "Mar del Plata", "correct": false }
+      ]
+    },
+    {
+      "id": "arg-017",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos corresponden a los gobiernos de Carlos Menem (1989-1999)?",
+      "options": [
+        { "text": "Plan de Convertibilidad", "correct": true, "info": "1 peso = 1 dólar" },
+        { "text": "Privatización de YPF, Aerolíneas y ENTel", "correct": true },
+        { "text": "Indulto a los militares", "correct": true, "info": "1989-1990" },
+        { "text": "Reforma constitucional de 1994", "correct": true },
+        { "text": "Atentado a la AMIA", "correct": true, "info": "1994" },
+        { "text": "El \"Rodrigazo\"", "correct": false, "info": "1975" },
+        { "text": "El \"corralito\"", "correct": false, "info": "2001, De la Rúa" },
+        { "text": "Default de la deuda de 2001", "correct": false },
+        { "text": "El Cordobazo", "correct": false, "info": "1969" },
+        { "text": "Semana Trágica", "correct": false, "info": "1919" }
+      ]
+    },
+    {
+      "id": "arg-018",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos próceres murieron fuera de Argentina?",
+      "options": [
+        { "text": "José de San Martín", "correct": true, "info": "Boulogne-sur-Mer, Francia, 1850" },
+        { "text": "Bernardino Rivadavia", "correct": true, "info": "Cádiz, España, 1845" },
+        { "text": "Juan Manuel de Rosas", "correct": true, "info": "Southampton, Inglaterra, 1877" },
+        { "text": "Carlos María de Alvear", "correct": true, "info": "Nueva York, 1852" },
+        { "text": "Mariano Moreno", "correct": true, "info": "En alta mar rumbo a Gran Bretaña, 1811" },
+        { "text": "Juan Bautista Alberdi", "correct": true, "info": "Neuilly-sur-Seine, Francia, 1884" },
+        { "text": "Domingo F. Sarmiento", "correct": true, "info": "Asunción, Paraguay, 1888" },
+        { "text": "Manuel Belgrano", "correct": false, "info": "Murió en Buenos Aires, 1820" },
+        { "text": "Manuel Dorrego", "correct": false, "info": "Fusilado en Navarro, 1828" },
+        { "text": "Cornelio Saavedra", "correct": false, "info": "Murió en Buenos Aires, 1829" }
+      ]
+    },
+    {
+      "id": "arg-019",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos ocurrieron durante los gobiernos de Hipólito Yrigoyen?",
+      "options": [
+        { "text": "Reforma Universitaria de 1918", "correct": true },
+        { "text": "Semana Trágica de 1919", "correct": true },
+        { "text": "Masacres de la Patagonia rebelde", "correct": true, "info": "1920-1921" },
+        { "text": "Creación de YPF", "correct": true, "info": "1922" },
+        { "text": "Golpe de Estado que lo derrocó", "correct": true, "info": "1930, Uriburu" },
+        { "text": "Ley Sáenz Peña", "correct": false, "info": "1912, permitió su elección" },
+        { "text": "Ley 1420 de educación", "correct": false, "info": "1884" },
+        { "text": "Ley del voto femenino", "correct": false, "info": "1947" },
+        { "text": "Plan Austral", "correct": false, "info": "1985" },
+        { "text": "Pacto Roca-Runciman", "correct": false, "info": "1933" }
+      ]
+    },
+    {
+      "id": "arg-020",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos ríos recorren o bordean territorio argentino?",
+      "options": [
+        { "text": "Río Paraná", "correct": true },
+        { "text": "Río Uruguay", "correct": true },
+        { "text": "Río Paraguay", "correct": true },
+        { "text": "Río Colorado", "correct": true },
+        { "text": "Río Salado", "correct": true },
+        { "text": "Río Bermejo", "correct": true },
+        { "text": "Río Negro", "correct": true },
+        { "text": "Río Amazonas", "correct": false, "info": "No pasa por Argentina" },
+        { "text": "Río Orinoco", "correct": false, "info": "Venezuela" },
+        { "text": "Río Magdalena", "correct": false, "info": "Colombia" }
+      ]
+    },
+    {
+      "id": "arg-021",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos golpes de Estado derrocaron a un presidente constitucional argentino?",
+      "options": [
+        { "text": "Golpe de 1930", "correct": true, "info": "Derrocó a Yrigoyen" },
+        { "text": "Golpe de 1943", "correct": true, "info": "Derrocó a Ramón Castillo" },
+        { "text": "Revolución Libertadora de 1955", "correct": true, "info": "Derrocó a Perón" },
+        { "text": "Golpe de 1962", "correct": true, "info": "Derrocó a Frondizi" },
+        { "text": "Golpe de 1966", "correct": true, "info": "Derrocó a Illia" },
+        { "text": "Golpe de 1976", "correct": true, "info": "Derrocó a Isabel Perón" },
+        { "text": "El Cordobazo", "correct": false, "info": "Pueblada de 1969, no un golpe" },
+        { "text": "Semana Trágica", "correct": false, "info": "Represión obrera de 1919" },
+        { "text": "Revolución de Mayo", "correct": false, "info": "1810, contra el virrey" },
+        { "text": "Levantamiento carapintada de 1987", "correct": false, "info": "No derrocó al gobierno" }
+      ]
+    },
+    {
+      "id": "arg-022",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos futbolistas fueron campeones del mundo con la Selección argentina?",
+      "options": [
+        { "text": "Diego Maradona", "correct": true, "info": "1986" },
+        { "text": "Lionel Messi", "correct": true, "info": "2022" },
+        { "text": "Mario Kempes", "correct": true, "info": "1978" },
+        { "text": "Daniel Passarella", "correct": true, "info": "1978 y 1986" },
+        { "text": "Ángel Di María", "correct": true, "info": "2022" },
+        { "text": "Jorge Valdano", "correct": true, "info": "1986" },
+        { "text": "Gabriel Batistuta", "correct": false, "info": "Nunca fue campeón mundial" },
+        { "text": "Juan Román Riquelme", "correct": false },
+        { "text": "Carlos Tevez", "correct": false },
+        { "text": "Javier Zanetti", "correct": false }
+      ]
+    },
+    {
+      "id": "arg-023",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas mujeres tuvieron un rol destacado en la historia argentina?",
+      "options": [
+        { "text": "Eva Perón", "correct": true },
+        { "text": "Cristina Fernández de Kirchner", "correct": true, "info": "Presidenta 2007-2015" },
+        { "text": "Juana Azurduy", "correct": true, "info": "Heroína de la independencia" },
+        { "text": "Alicia Moreau de Justo", "correct": true, "info": "Médica y dirigente socialista" },
+        { "text": "Mariquita Sánchez de Thompson", "correct": true, "info": "Figura de la Revolución de Mayo" },
+        { "text": "Cecilia Grierson", "correct": true, "info": "Primera médica argentina" },
+        { "text": "María Estela Martínez de Perón", "correct": true, "info": "Primera presidenta mujer" },
+        { "text": "Frida Kahlo", "correct": false, "info": "Pintora mexicana" },
+        { "text": "Rigoberta Menchú", "correct": false, "info": "Activista guatemalteca" },
+        { "text": "Gabriela Mistral", "correct": false, "info": "Poeta chilena" }
+      ]
+    },
+    {
+      "id": "arg-024",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas figuras son referentes del tango?",
+      "options": [
+        { "text": "Carlos Gardel", "correct": true },
+        { "text": "Astor Piazzolla", "correct": true },
+        { "text": "Aníbal Troilo", "correct": true },
+        { "text": "Osvaldo Pugliese", "correct": true },
+        { "text": "Julio Sosa", "correct": true, "info": "\"El Varón del Tango\"" },
+        { "text": "Roberto Goyeneche", "correct": true, "info": "\"El Polaco\"" },
+        { "text": "Mercedes Sosa", "correct": false, "info": "Folklore" },
+        { "text": "Atahualpa Yupanqui", "correct": false, "info": "Folklore" },
+        { "text": "Charly García", "correct": false, "info": "Rock" },
+        { "text": "Gustavo Cerati", "correct": false, "info": "Rock, Soda Stereo" }
+      ]
+    },
+    {
+      "id": "arg-025",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos ocurrieron durante la crisis de 2001?",
+      "options": [
+        { "text": "El \"corralito\"", "correct": true, "info": "Diciembre de 2001" },
+        { "text": "Renuncia de Fernando de la Rúa", "correct": true },
+        { "text": "Cinco presidentes en pocos días", "correct": true },
+        { "text": "Declaración del default de la deuda", "correct": true, "info": "Rodríguez Saá" },
+        { "text": "Cacerolazos y el \"que se vayan todos\"", "correct": true },
+        { "text": "El \"Rodrigazo\"", "correct": false, "info": "1975" },
+        { "text": "Plan Austral", "correct": false, "info": "1985" },
+        { "text": "Hiperinflación de 1989", "correct": false },
+        { "text": "El Cordobazo", "correct": false, "info": "1969" },
+        { "text": "Semana Trágica", "correct": false, "info": "1919" }
+      ]
+    },
+    {
+      "id": "arg-026",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos territorios integraron el Virreinato del Río de la Plata (1776)?",
+      "options": [
+        { "text": "Alto Perú (actual Bolivia)", "correct": true },
+        { "text": "Banda Oriental (actual Uruguay)", "correct": true },
+        { "text": "Paraguay", "correct": true },
+        { "text": "Cuyo", "correct": true, "info": "Pasó de la Capitanía de Chile" },
+        { "text": "Córdoba del Tucumán", "correct": true },
+        { "text": "Provincias del Litoral", "correct": true },
+        { "text": "Perú (Lima)", "correct": false, "info": "Virreinato del Perú" },
+        { "text": "Chile (Santiago)", "correct": false, "info": "Capitanía General de Chile" },
+        { "text": "Nueva Granada", "correct": false, "info": "Otro virreinato" },
+        { "text": "México", "correct": false, "info": "Virreinato de Nueva España" }
+      ]
+    },
+    {
+      "id": "arg-027",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas disposiciones estableció la Ley Sáenz Peña de 1912?",
+      "options": [
+        { "text": "Voto secreto", "correct": true },
+        { "text": "Voto obligatorio", "correct": true },
+        { "text": "Voto universal masculino", "correct": true, "info": "Para varones nativos" },
+        { "text": "Padrón basado en el registro militar", "correct": true },
+        { "text": "Representación de minorías por lista incompleta", "correct": true },
+        { "text": "Voto femenino", "correct": false, "info": "Recién en 1947" },
+        { "text": "Voto de los extranjeros", "correct": false },
+        { "text": "Sufragio calificado por renta", "correct": false, "info": "Es lo contrario a la ley" },
+        { "text": "Reelección presidencial indefinida", "correct": false },
+        { "text": "Voto electrónico", "correct": false, "info": "Anacronismo" }
+      ]
+    },
+    {
+      "id": "arg-028",
+      "category": "Argentina",
+      "question": "¿Cuáles de estos hechos pertenecen a las Invasiones Inglesas (1806-1807)?",
+      "options": [
+        { "text": "Reconquista de Buenos Aires", "correct": true, "info": "1806, Liniers" },
+        { "text": "Defensa de Buenos Aires", "correct": true, "info": "1807" },
+        { "text": "Rendición de William Beresford", "correct": true, "info": "1806" },
+        { "text": "Actuación de Santiago de Liniers", "correct": true },
+        { "text": "Creación del Regimiento de Patricios", "correct": true, "info": "1806" },
+        { "text": "Toma inglesa de Montevideo", "correct": true, "info": "1807" },
+        { "text": "Batalla de Maipú", "correct": false, "info": "1818, Chile" },
+        { "text": "Combate de San Lorenzo", "correct": false, "info": "1813" },
+        { "text": "Vuelta de Obligado", "correct": false, "info": "1845" },
+        { "text": "Batalla de Tucumán", "correct": false, "info": "1812" }
+      ]
+    },
+    {
+      "id": "arg-029",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas figuras participaron en la sanción de la Constitución de 1853?",
+      "options": [
+        { "text": "Juan Bautista Alberdi", "correct": true, "info": "Sus \"Bases\" la inspiraron" },
+        { "text": "Justo José de Urquiza", "correct": true, "info": "La impulsó tras Caseros" },
+        { "text": "Fray Mamerto Esquiú", "correct": true, "info": "Célebre sermón en su apoyo" },
+        { "text": "Facundo Zuviría", "correct": true, "info": "Presidió el Congreso Constituyente" },
+        { "text": "Bartolomé Mitre", "correct": false, "info": "Buenos Aires no la juró en 1853" },
+        { "text": "Domingo F. Sarmiento", "correct": false, "info": "Estaba exiliado en Chile" },
+        { "text": "José de San Martín", "correct": false, "info": "Había muerto en 1850" },
+        { "text": "Manuel Belgrano", "correct": false, "info": "Había muerto en 1820" },
+        { "text": "Facundo Quiroga", "correct": false, "info": "Asesinado en 1835" },
+        { "text": "Bernardino Rivadavia", "correct": false, "info": "Había muerto en 1845" }
+      ]
+    },
+    {
+      "id": "arg-030",
+      "category": "Argentina",
+      "question": "¿Cuáles de estas fueron batallas de la guerra de la independencia argentina?",
+      "options": [
+        { "text": "Batalla de Tucumán", "correct": true, "info": "1812" },
+        { "text": "Batalla de Salta", "correct": true, "info": "1813" },
+        { "text": "Combate de San Lorenzo", "correct": true, "info": "1813" },
+        { "text": "Combate de Suipacha", "correct": true, "info": "1810" },
+        { "text": "Batallas de Vilcapugio y Ayohuma", "correct": true, "info": "1813" },
+        { "text": "Batalla de Caseros", "correct": false, "info": "1852, guerra civil" },
+        { "text": "Batalla de Pavón", "correct": false, "info": "1861, guerra civil" },
+        { "text": "Batalla de Cepeda", "correct": false, "info": "Guerras civiles" },
+        { "text": "Vuelta de Obligado", "correct": false, "info": "1845, contra la flota anglo-francesa" },
+        { "text": "Batalla de La Tablada", "correct": false, "info": "1829, guerra civil" }
+      ]
+    }
+  ]
+}

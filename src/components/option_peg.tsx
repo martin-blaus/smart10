@@ -38,7 +38,7 @@ export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Pr
             {option.correct ? "✓" : "✗"}
           </span>
           <span className="min-w-0">
-            <span className="block text-sm font-bold text-ink leading-tight line-clamp-2">
+            <span className="block text-sm font-bold text-ink leading-tight line-clamp-3">
               {option.text}
             </span>
             {option.info && (
@@ -67,7 +67,7 @@ export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Pr
           >
             {number}
           </span>
-          <span className="min-w-0 text-sm text-ink leading-tight line-clamp-2">
+          <span className="min-w-0 text-sm text-ink leading-tight line-clamp-3">
             {option.text}
           </span>
         </button>

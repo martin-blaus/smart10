@@ -12,6 +12,7 @@ export const strings = {
   setupDataset: "Temática",
   datasetGeneral: "General",
   datasetMovies: "Cine",
+  datasetArgentina: "Argentina",
   setupStart: "Empezar",
   setupMinPlayers: "Se necesitan al menos 2 jugadores.",
 

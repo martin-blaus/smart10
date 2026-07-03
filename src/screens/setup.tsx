@@ -10,6 +10,7 @@ const TARGET_OPTIONS = [10, 15, 20];
 const DATASET_LABELS: Record<DatasetKey, string> = {
   classic: strings.datasetGeneral,
   movies: strings.datasetMovies,
+  argentina: strings.datasetArgentina,
 };
 
 // Shared styling for the segmented option toggles (target score, dataset).
@@ -110,7 +111,7 @@ export function SetupScreen({ onStart }: Props) {
               key={key}
               onClick={() => setDatasetKey(key)}
               aria-pressed={datasetKey === key}
-              className={segClass(datasetKey === key, "text-lg")}
+              className={segClass(datasetKey === key, "text-base")}
             >
               {DATASET_LABELS[key]}
             </button>

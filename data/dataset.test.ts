@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { CARDS, MOVIE_CARDS } from "./index";
+import { DATASETS } from "./index";
 import { OPTIONS_PER_CARD } from "./types";
 import type { Card } from "./types";
 
@@ -41,7 +41,8 @@ describe("dataset integrity", () => {
     });
   }
 
-  runIntegrityTests("general dataset", CARDS);
-  runIntegrityTests("movies dataset", MOVIE_CARDS);
+  // Every registered dataset is validated automatically.
+  for (const [key, cards] of Object.entries(DATASETS)) {
+    runIntegrityTests(key, cards);
+  }
 });
-
