@@ -24,6 +24,7 @@ export interface GameState {
   revealedOptions: number[]; // option indexes revealed on the current card
   targetScore: number;
   winnerIndexes: number[]; // filled when phase === "gameOver"
+  blitz: boolean;
 }
 
 export type Action =
@@ -32,8 +33,10 @@ export type Action =
       players: { name: string; token: string }[];
       targetScore: number;
       deck: string[];
+      blitz: boolean;
     }
   | { type: "TAP_OPTION"; optionIndex: number }
   | { type: "PASS" }
   | { type: "NEXT_ROUND" }
-  | { type: "RESTART" };
+  | { type: "RESTART" }
+  | { type: "TIME_OUT" };

@@ -13,19 +13,22 @@ export default function App() {
     players: { name: string; token: string }[];
     target: number;
     deckChoice: DeckChoice;
+    blitz: boolean;
   } | null>(null);
 
   const start = (
     players: { name: string; token: string }[],
     target: number,
     deckChoice: DeckChoice,
+    blitz: boolean,
   ) => {
-    lastGame.current = { players, target, deckChoice };
+    lastGame.current = { players, target, deckChoice, blitz };
     dispatch({
       type: "START_GAME",
       players,
       targetScore: target,
       deck: buildDeck(deckChoice),
+      blitz,
     });
   };
 
@@ -39,7 +42,7 @@ export default function App() {
         state={state}
         onPlayAgainSame={() => {
           const g = lastGame.current;
-          if (g) start(g.players, g.target, g.deckChoice);
+          if (g) start(g.players, g.target, g.deckChoice, g.blitz);
         }}
         onPlayAgainNew={() => dispatch({ type: "RESTART" })}
       />

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import type { Action, GameState } from "../types";
 import { getCard } from "../game/deck";
 import { strings } from "../i18n/strings";
@@ -85,6 +85,63 @@ export function GameScreen({ state, dispatch }: Props) {
       sounds.roundEnd();
     }
   }, [state.phase]);
+
+  // Blitz mode timer hooks
+  const [timeLeft, setTimeLeft] = useState(15);
+
+  const handleTimeout = useCallback(() => {
+    sounds.wrong();
+    dispatch({ type: "TIME_OUT" });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (
+      state.blitz &&
+      state.phase === "playing" &&
+      handoffPlayer === null &&
+      !confirmingPass &&
+      !animatingBanking &&
+      justRevealedIndex === null
+    ) {
+      setTimeLeft(15);
+    }
+  }, [
+    state.currentPlayerIndex,
+    state.currentCardId,
+    handoffPlayer,
+    confirmingPass,
+    animatingBanking,
+    justRevealedIndex,
+    state.blitz,
+    state.phase,
+  ]);
+
+  useEffect(() => {
+    if (!state.blitz || state.phase !== "playing") return;
+    if (handoffPlayer !== null || confirmingPass || animatingBanking || justRevealedIndex !== null) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          handleTimeout();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [
+    state.blitz,
+    state.phase,
+    handoffPlayer,
+    confirmingPass,
+    animatingBanking,
+    justRevealedIndex,
+    state.currentPlayerIndex,
+    handleTimeout,
+  ]);
 
   // Whenever the active player changes during play, block the screen so the
   // device can be handed over without the next player seeing the reveal. In
@@ -304,6 +361,34 @@ export function GameScreen({ state, dispatch }: Props) {
 
   return (
     <div className="min-h-screen px-4 py-4 max-w-2xl mx-auto flex flex-col gap-3">
+      {state.blitz && state.phase === "playing" && (
+        <div className="w-full flex flex-col gap-1.5 px-1 mb-1">
+          <div className="flex justify-between items-center text-xs eyebrow text-parchment-dim">
+            <span>Tiempo restante</span>
+            <span
+              className={
+                "font-mono font-bold transition-colors " +
+                (timeLeft <= 5 ? "text-wrong animate-pulse text-sm" : "text-brass")
+              }
+            >
+              {timeLeft}s
+            </span>
+          </div>
+          <div className="w-full bg-[#122318] h-2 rounded-full overflow-hidden border border-parchment/10 relative">
+            <div
+              className={
+                "h-full rounded-full transition-all duration-1000 ease-linear " +
+                (timeLeft <= 5 ? "bg-wrong animate-pulse" : "bg-brass")
+              }
+              style={{
+                width: `${(timeLeft / 15) * 100}%`,
+                transitionProperty: timeLeft === 15 ? "none" : "width",
+              }}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="flex gap-2 items-center w-full">
         <div className="panel px-3 py-1 flex items-center justify-center shrink-0 min-h-12">
           <span className="eyebrow text-brass text-sm tracking-wider font-semibold uppercase">

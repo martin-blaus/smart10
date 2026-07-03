@@ -27,6 +27,7 @@ interface Props {
     players: { name: string; token: string }[],
     targetScore: number,
     deckChoice: DeckChoice,
+    blitz: boolean,
   ) => void;
 }
 
@@ -38,6 +39,7 @@ export function SetupScreen({ onStart }: Props) {
   const [tokens, setTokens] = useState<string[]>(["🦊", "🦉"]);
   const [targetScore, setTargetScore] = useState(15);
   const [datasetKey, setDatasetKey] = useState<DeckChoice>("classic");
+  const [blitz, setBlitz] = useState(false);
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, j) => (j === i ? value : n)));
@@ -79,7 +81,7 @@ export function SetupScreen({ onStart }: Props) {
       name,
       token: tokens[i] || "🦊",
     }));
-    onStart(playersPayload, targetScore, datasetKey);
+    onStart(playersPayload, targetScore, datasetKey, blitz);
   };
 
   return (
@@ -200,6 +202,22 @@ export function SetupScreen({ onStart }: Props) {
               className={segClass(datasetKey === key, "text-sm sm:text-base")}
             >
               {DATASET_LABELS[key]}
+            </button>
+          ))}
+        </div>
+
+        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+          {strings.setupBlitz}
+        </h2>
+        <div className="flex gap-2.5">
+          {[false, true].map((val) => (
+            <button
+              key={val ? "yes" : "no"}
+              onClick={() => setBlitz(val)}
+              aria-pressed={blitz === val}
+              className={segClass(blitz === val, "text-base")}
+            >
+              {val ? strings.blitzActive : strings.blitzInactive}
             </button>
           ))}
         </div>

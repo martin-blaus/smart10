@@ -12,6 +12,7 @@ export const initialState: GameState = {
   revealedOptions: [],
   targetScore: 15,
   winnerIndexes: [],
+  blitz: false,
 };
 
 function makePlayer(name: string, token: string): Player {
@@ -105,6 +106,7 @@ export function reducer(state: GameState, action: Action): GameState {
         targetScore: action.targetScore,
         deck: action.deck,
         usedCardIds: [],
+        blitz: action.blitz,
       };
       return dealCard(base, 0);
     }
@@ -144,6 +146,23 @@ export function reducer(state: GameState, action: Action): GameState {
           : p,
       );
       return advanceOrEnd({ ...state, players });
+    }
+
+    case "TIME_OUT": {
+      if (state.phase !== "playing") return state;
+      const current = state.players[state.currentPlayerIndex];
+      if (current.roundStatus !== "active") return state;
+
+      const players = state.players.map((p, i) => {
+        if (i !== state.currentPlayerIndex) return p;
+        return { ...p, pendingPoints: 0, roundStatus: "failed" as const };
+      });
+
+      const next: GameState = {
+        ...state,
+        players,
+      };
+      return advanceOrEnd(next);
     }
 
     case "NEXT_ROUND": {

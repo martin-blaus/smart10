@@ -18,6 +18,9 @@ export const strings = {
   datasetMovies: "Cine",
   datasetArgentina: "Argentina",
   datasetAll: "Todas",
+  setupBlitz: "Modo Blitz",
+  blitzActive: "Activo (15s)",
+  blitzInactive: "Inactivo",
   setupStart: "Empezar",
   setupMinPlayers: "Se necesitan al menos 2 jugadores.",
 

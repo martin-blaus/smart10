@@ -36,6 +36,7 @@ describe("START_GAME", () => {
       ],
       targetScore: 20,
       deck: ["card-003", "card-001"],
+      blitz: false,
     });
     expect(s.phase).toBe("playing");
     expect(s.currentCardId).toBe("card-003");
@@ -212,6 +213,19 @@ describe("shuffle", () => {
     const b = shuffle([1, 2, 3, 4, 5], rng);
     expect(a).toEqual(b);
     expect([...a].sort()).toEqual([1, 2, 3, 4, 5]);
+  });
+});
+
+describe("TIME_OUT", () => {
+  it("fails the current player, resets pending points, and advances turn", () => {
+    const p1 = player("Ana", { pendingPoints: 3, roundStatus: "active" });
+    const p2 = player("Beto", { pendingPoints: 1, roundStatus: "active" });
+    const s = reducer(playing([p1, p2]), { type: "TIME_OUT" });
+
+    expect(s.players[0].roundStatus).toBe("failed");
+    expect(s.players[0].pendingPoints).toBe(0);
+    expect(s.currentPlayerIndex).toBe(1); // turn moves to Beto
+    expect(s.phase).toBe("playing");
   });
 });
 
