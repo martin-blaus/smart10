@@ -34,6 +34,7 @@ export const strings = {
 
   // Round end
   roundEndTitle: "Fin de la ronda",
+  roundEndAnswers: "Las respuestas",
   nextCard: "Siguiente carta",
 
   // Results

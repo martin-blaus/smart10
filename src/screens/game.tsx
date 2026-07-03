@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Action, GameState } from "../types";
 import { getCard } from "../game/deck";
 import { strings } from "../i18n/strings";
-import { OptionPeg } from "../components/option_peg";
+import { RoundCard } from "../components/round_card";
 import { TurnBanner } from "../components/turn_banner";
 import { Scoreboard } from "../components/scoreboard";
 import { HandoffOverlay } from "../components/handoff_overlay";
@@ -56,11 +56,17 @@ export function GameScreen({ state, dispatch }: Props) {
     // A passed/banked player keeps their round total in pendingPoints; a failed
     // player has it zeroed. Use it to show what happened this round.
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 gap-6 fade-in">
-        <h2 className="font-display text-3xl font-bold text-parchment">
+      <div className="min-h-screen flex flex-col items-center px-4 py-8 gap-6 fade-in max-w-md mx-auto">
+        <h2 className="font-display text-3xl font-bold text-parchment mt-2">
           {strings.roundEndTitle}
         </h2>
-        <ul className="w-full max-w-md flex flex-col gap-2">
+        <div className="w-full">
+          <span className="eyebrow text-parchment-dim block mb-2 text-center">
+            {strings.roundEndAnswers}
+          </span>
+          <RoundCard card={card} revealed={state.revealedOptions} revealAll />
+        </div>
+        <ul className="w-full flex flex-col gap-2">
           {state.players.map((p, i) => {
             const failed = p.roundStatus === "failed";
             return (
@@ -99,24 +105,12 @@ export function GameScreen({ state, dispatch }: Props) {
     <div className="min-h-screen px-4 py-4 max-w-2xl mx-auto flex flex-col gap-3">
       <TurnBanner player={current} />
 
-      <div className="card-stock rounded-2xl px-5 py-4">
-        <span className="eyebrow text-brass-deep">{card.category}</span>
-        <h1 className="font-display text-xl font-semibold text-ink mt-1 leading-snug">
-          {card.question}
-        </h1>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-        {card.options.map((option, i) => (
-          <OptionPeg
-            key={i}
-            option={option}
-            revealed={state.revealedOptions.includes(i)}
-            disabled={handoffPlayer !== null}
-            onTap={() => handleTap(i)}
-          />
-        ))}
-      </div>
+      <RoundCard
+        card={card}
+        revealed={state.revealedOptions}
+        disabled={handoffPlayer !== null}
+        onTap={handleTap}
+      />
 
       <button onClick={handlePass} className="btn-quiet text-base mt-1">
         {strings.pass}
