@@ -9,6 +9,9 @@ export const strings = {
   setupAddPlayer: "Agregar jugador",
   setupRemovePlayer: "Quitar",
   setupTargetScore: "Puntaje para ganar",
+  setupDataset: "Temática",
+  datasetGeneral: "General",
+  datasetMovies: "Cine",
   setupStart: "Empezar",
   setupMinPlayers: "Se necesitan al menos 2 jugadores.",
 

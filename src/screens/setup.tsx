@@ -5,13 +5,16 @@ const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 const TARGET_OPTIONS = [10, 15, 20];
 
+import type { DatasetKey } from "../game/deck";
+
 interface Props {
-  onStart: (playerNames: string[], targetScore: number) => void;
+  onStart: (playerNames: string[], targetScore: number, datasetKey: DatasetKey) => void;
 }
 
 export function SetupScreen({ onStart }: Props) {
   const [names, setNames] = useState<string[]>(["", ""]);
   const [targetScore, setTargetScore] = useState(15);
+  const [datasetKey, setDatasetKey] = useState<DatasetKey>("classic");
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, j) => (j === i ? value : n)));
@@ -93,8 +96,38 @@ export function SetupScreen({ onStart }: Props) {
           ))}
         </div>
 
+        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+          {strings.setupDataset}
+        </h2>
+        <div className="flex gap-2.5">
+          <button
+            onClick={() => setDatasetKey("classic")}
+            aria-pressed={datasetKey === "classic"}
+            className={
+              "flex-1 min-h-14 rounded-2xl font-display text-lg font-bold transition-transform active:scale-[0.97] " +
+              (datasetKey === "classic"
+                ? "btn-brass"
+                : "panel text-parchment-dim")
+            }
+          >
+            {strings.datasetGeneral}
+          </button>
+          <button
+            onClick={() => setDatasetKey("movies")}
+            aria-pressed={datasetKey === "movies"}
+            className={
+              "flex-1 min-h-14 rounded-2xl font-display text-lg font-bold transition-transform active:scale-[0.97] " +
+              (datasetKey === "movies"
+                ? "btn-brass"
+                : "panel text-parchment-dim")
+            }
+          >
+            {strings.datasetMovies}
+          </button>
+        </div>
+
         <button
-          onClick={() => onStart(trimmed, targetScore)}
+          onClick={() => onStart(trimmed, targetScore, datasetKey)}
           disabled={!canStart}
           className="btn-brass w-full mt-8 text-lg"
         >

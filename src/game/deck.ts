@@ -1,7 +1,8 @@
-import { CARDS } from "../../data";
+import { CARDS, MOVIE_CARDS } from "../../data";
 import type { Card } from "../../data";
 
 export type Rng = () => number;
+export type DatasetKey = "classic" | "movies";
 
 // Fisher-Yates. Pure given the rng; defaults to Math.random for real play.
 export function shuffle<T>(items: readonly T[], rng: Rng = Math.random): T[] {
@@ -14,15 +15,21 @@ export function shuffle<T>(items: readonly T[], rng: Rng = Math.random): T[] {
 }
 
 // A shuffled list of all card ids, ready to feed into START_GAME.
-export function buildDeck(rng: Rng = Math.random): string[] {
+export function buildDeck(
+  datasetKey: DatasetKey = "classic",
+  rng: Rng = Math.random,
+): string[] {
+  const cards = datasetKey === "movies" ? MOVIE_CARDS : CARDS;
   return shuffle(
-    CARDS.map((c) => c.id),
+    cards.map((c) => c.id),
     rng,
   );
 }
 
-const CARDS_BY_ID = new Map<string, Card>(CARDS.map((c) => [c.id, c]));
+const ALL_CARDS = [...CARDS, ...MOVIE_CARDS];
+const CARDS_BY_ID = new Map<string, Card>(ALL_CARDS.map((c) => [c.id, c]));
 
 export function getCard(id: string | null): Card | null {
   return id ? (CARDS_BY_ID.get(id) ?? null) : null;
 }
+

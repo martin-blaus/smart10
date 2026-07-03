@@ -1,0 +1,344 @@
+{
+  "cards": [
+    {
+      "id": "movie-001",
+      "category": "Premios Oscar",
+      "question": "¿Cuáles de estas películas ganaron el Oscar a Mejor Película?",
+      "options": [
+        { "text": "Parasite", "correct": true, "info": "Ganó en 2019" },
+        { "text": "Moonlight", "correct": true, "info": "Ganó en 2016" },
+        { "text": "El Señor de los Anillos: El Retorno del Rey", "correct": true, "info": "Ganó en 2003" },
+        { "text": "Titanic", "correct": true, "info": "Ganó en 1997" },
+        { "text": "Forrest Gump", "correct": true, "info": "Ganó en 1994" },
+        { "text": "La La Land", "correct": false, "info": "Perdió ante Moonlight" },
+        { "text": "Avatar", "correct": false, "info": "Perdió ante The Hurt Locker" },
+        { "text": "Pulp Fiction", "correct": false, "info": "Perdió ante Forrest Gump" },
+        { "text": "Bastardos sin gloria", "correct": false, "info": "Perdió ante The Hurt Locker" },
+        { "text": "El origen (Inception)", "correct": false, "info": "Perdió ante El discurso del rey" }
+      ]
+    },
+    {
+      "id": "movie-002",
+      "category": "Directores",
+      "question": "¿Cuáles de estas películas fueron dirigidas por Quentin Tarantino?",
+      "options": [
+        { "text": "Pulp Fiction", "correct": true },
+        { "text": "Django sin cadenas", "correct": true },
+        { "text": "Bastardos sin gloria", "correct": true },
+        { "text": "Perros de la calle", "correct": true },
+        { "text": "Kill Bill: Volumen 1", "correct": true },
+        { "text": "Había una vez en Hollywood", "correct": true },
+        { "text": "Perros de paja", "correct": false, "info": "Dirigida por Sam Peckinpah" },
+        { "text": "Cara cortada (Scarface)", "correct": false, "info": "Dirigida por Brian De Palma" },
+        { "text": "Buenos muchachos (Goodfellas)", "correct": false, "info": "Dirigida por Martin Scorsese" },
+        { "text": "Fuego contra fuego (Heat)", "correct": false, "info": "Dirigida por Michael Mann" }
+      ]
+    },
+    {
+      "id": "movie-003",
+      "category": "Franquicias",
+      "question": "¿Cuáles de estas películas pertenecen al Universo Cinematográfico de Marvel (MCU)?",
+      "options": [
+        { "text": "Iron Man", "correct": true },
+        { "text": "Avengers: Endgame", "correct": true },
+        { "text": "Guardianes de la Galaxia", "correct": true },
+        { "text": "Pantera Negra", "correct": true },
+        { "text": "Spider-Man: Sin camino a casa", "correct": true },
+        { "text": "El caballero de la noche", "correct": false, "info": "Es de DC Comics" },
+        { "text": "Deadpool (2016)", "correct": false, "info": "Producida por Fox originalmente" },
+        { "text": "Logan", "correct": false, "info": "Universo X-Men de Fox" },
+        { "text": "Venom", "correct": false, "info": "Es de Sony Pictures" },
+        { "text": "Guasón (Joker)", "correct": false, "info": "Es de DC Comics" }
+      ]
+    },
+    {
+      "id": "movie-004",
+      "category": "Actores",
+      "question": "¿Cuáles de estos actores interpretaron al agente James Bond en el cine oficial (Eon Productions)?",
+      "options": [
+        { "text": "Sean Connery", "correct": true },
+        { "text": "Roger Moore", "correct": true },
+        { "text": "Pierce Brosnan", "correct": true },
+        { "text": "Daniel Craig", "correct": true },
+        { "text": "Timothy Dalton", "correct": true },
+        { "text": "George Lazenby", "correct": true },
+        { "text": "Tom Cruise", "correct": false, "info": "Protagoniza Misión Imposible" },
+        { "text": "Matt Damon", "correct": false, "info": "Protagoniza la saga Bourne" },
+        { "text": "Liam Neeson", "correct": false, "info": "Protagoniza Búsqueda Implacable" },
+        { "text": "Christian Bale", "correct": false, "info": "Interpretó a Batman" }
+      ]
+    },
+    {
+      "id": "movie-005",
+      "category": "Animación",
+      "question": "¿Cuáles de estas películas fueron producidas por el estudio Pixar?",
+      "options": [
+        { "text": "Toy Story", "correct": true },
+        { "text": "Buscando a Nemo", "correct": true },
+        { "text": "Intensamente (Inside Out)", "correct": true },
+        { "text": "Monsters, Inc.", "correct": true },
+        { "text": "Coco", "correct": true },
+        { "text": "Shrek", "correct": false, "info": "Producida por DreamWorks" },
+        { "text": "Mi villano favorito", "correct": false, "info": "Producida por Illumination" },
+        { "text": "Frozen", "correct": false, "info": "Producida por Disney Animation" },
+        { "text": "Cómo entrenar a tu dragón", "correct": false, "info": "Producida por DreamWorks" },
+        { "text": "Spider-Man: Un nuevo universo", "correct": false, "info": "Producida por Sony Animation" }
+      ]
+    },
+    {
+      "id": "movie-006",
+      "category": "Star Wars",
+      "question": "¿Cuáles de estos personajes aparecen en la trilogía original de Star Wars (Episodios IV, V y VI)?",
+      "options": [
+        { "text": "Luke Skywalker", "correct": true },
+        { "text": "Han Solo", "correct": true },
+        { "text": "Princesa Leia", "correct": true },
+        { "text": "Darth Vader", "correct": true },
+        { "text": "Chewbacca", "correct": true },
+        { "text": "Jar Jar Binks", "correct": false, "info": "Aparece en Episodio I" },
+        { "text": "Kylo Ren", "correct": false, "info": "Trilogía de secuelas" },
+        { "text": "Rey", "correct": false, "info": "Trilogía de secuelas" },
+        { "text": "Ahsoka Tano", "correct": false, "info": "Series de TV/Animación" },
+        { "text": "Conde Dooku", "correct": false, "info": "Aparece en Episodio II y III" }
+      ]
+    },
+    {
+      "id": "movie-007",
+      "category": "Cine de Terror",
+      "question": "¿Cuáles de estos personajes asesinos pertenecen a la franquicia de terror 'Viernes 13' (Friday the 13th)?",
+      "options": [
+        { "text": "Jason Voorhees", "correct": true, "info": "Asesino principal de la saga" },
+        { "text": "Pamela Voorhees", "correct": true, "info": "Madre de Jason, asesina del primer film" },
+        { "text": "Roy Burns", "correct": true, "info": "Impostor de Jason en la parte 5" },
+        { "text": "Freddy Krueger", "correct": false, "info": "Pesadilla en la calle Elm" },
+        { "text": "Michael Myers", "correct": false, "info": "Halloween" },
+        { "text": "Leatherface", "correct": false, "info": "La masacre de Texas" },
+        { "text": "Ghostface", "correct": false, "info": "Scream" },
+        { "text": "Chucky", "correct": false, "info": "El muñeco diabólico" },
+        { "text": "Pennywise", "correct": false, "info": "IT" },
+        { "text": "Pinhead", "correct": false, "info": "Hellraiser" }
+      ]
+    },
+    {
+      "id": "movie-008",
+      "category": "Directores",
+      "question": "¿Cuáles de estas películas fueron dirigidas por Christopher Nolan?",
+      "options": [
+        { "text": "El origen (Inception)", "correct": true },
+        { "text": "Interestelar", "correct": true },
+        { "text": "Batman inicia", "correct": true },
+        { "text": "Memento", "correct": true },
+        { "text": "Oppenheimer", "correct": true },
+        { "text": "Tenet", "correct": true },
+        { "text": "El club de la pelea", "correct": false, "info": "Dirigida por David Fincher" },
+        { "text": "La isla siniestra (Shutter Island)", "correct": false, "info": "Dirigida por Martin Scorsese" },
+        { "text": "Perdida (Gone Girl)", "correct": false, "info": "Dirigida por David Fincher" },
+        { "text": "Avatar", "correct": false, "info": "Dirigida por James Cameron" }
+      ]
+    },
+    {
+      "id": "movie-009",
+      "category": "El Señor de los Anillos",
+      "question": "¿Cuáles de estos personajes fueron miembros de la original 'Comunidad del Anillo'?",
+      "options": [
+        { "text": "Frodo Bolsón", "correct": true },
+        { "text": "Aragorn", "correct": true },
+        { "text": "Legolas", "correct": true },
+        { "text": "Gimli", "correct": true },
+        { "text": "Samwise Gamyi", "correct": true },
+        { "text": "Gandalf", "correct": true },
+        { "text": "Boromir", "correct": true },
+        { "text": "Merry Brandigamo", "correct": true },
+        { "text": "Pippin Tuk", "correct": true },
+        { "text": "Bilbo Bolsón", "correct": false, "info": "No formó parte de la Comunidad" }
+      ]
+    },
+    {
+      "id": "movie-010",
+      "category": "Actrices",
+      "question": "¿Cuáles de estas actrices ganaron el premio Oscar a Mejor Actriz Principal?",
+      "options": [
+        { "text": "Meryl Streep", "correct": true },
+        { "text": "Emma Stone", "correct": true },
+        { "text": "Jennifer Lawrence", "correct": true },
+        { "text": "Natalie Portman", "correct": true },
+        { "text": "Frances McDormand", "correct": true },
+        { "text": "Scarlett Johansson", "correct": false, "info": "Nominada pero nunca ganó" },
+        { "text": "Amy Adams", "correct": false, "info": "6 nominaciones, 0 victorias" },
+        { "text": "Saoirse Ronan", "correct": false, "info": "4 nominaciones, 0 victorias" },
+        { "text": "Margot Robbie", "correct": false, "info": "Nominada pero nunca ganó" },
+        { "text": "Glenn Close", "correct": false, "info": "8 nominaciones, 0 victorias" }
+      ]
+    },
+    {
+      "id": "movie-011",
+      "category": "Cine de los 90s",
+      "question": "¿Cuáles de estas películas se estrenaron originalmente en la década de 1990?",
+      "options": [
+        { "text": "Matrix", "correct": true, "info": "1999" },
+        { "text": "El club de la pelea (Fight Club)", "correct": true, "info": "1999" },
+        { "text": "El show de Truman", "correct": true, "info": "1998" },
+        { "text": "Parque Jurásico (Jurassic Park)", "correct": true, "info": "1993" },
+        { "text": "Tiempos violentos (Pulp Fiction)", "correct": true, "info": "1994" },
+        { "text": "El club de los cinco (The Breakfast Club)", "correct": false, "info": "1985" },
+        { "text": "Volver al futuro", "correct": false, "info": "1985" },
+        { "text": "Blade Runner", "correct": false, "info": "1982" },
+        { "text": "Gladiador", "correct": false, "info": "2000" },
+        { "text": "El origen (Inception)", "correct": false, "info": "2010" }
+      ]
+    },
+    {
+      "id": "movie-012",
+      "category": "Harry Potter",
+      "question": "¿Cuáles de estos personajes fueron directores titulares del Colegio Hogwarts en los libros o películas?",
+      "options": [
+        { "text": "Albus Dumbledore", "correct": true },
+        { "text": "Severus Snape", "correct": true },
+        { "text": "Minerva McGonagall", "correct": true },
+        { "text": "Dolores Umbridge", "correct": true },
+        { "text": "Armando Dippet", "correct": true, "info": "Director anterior a Dumbledore" },
+        { "text": "Rubeus Hagrid", "correct": false, "info": "Guardabosques y profesor" },
+        { "text": "Remus Lupin", "correct": false, "info": "Profesor de Defensa contra las Artes Oscuras" },
+        { "text": "Gilderoy Lockhart", "correct": false, "info": "Profesor de Defensa contra las Artes Oscuras" },
+        { "text": "Alastor Moody", "correct": false, "info": "Fue suplantado por Barty Crouch Jr." },
+        { "text": "Sybill Trelawney", "correct": false, "info": "Profesora de Adivinación" }
+      ]
+    },
+    {
+      "id": "movie-013",
+      "category": "Cine de Disney",
+      "question": "¿Cuáles de estos clásicos de Disney se basan en obras literarias, cuentos tradicionales o mitos existentes?",
+      "options": [
+        { "text": "La Sirenita", "correct": true, "info": "Cuento de Hans Christian Andersen" },
+        { "text": "Aladdín", "correct": true, "info": "Cuento popular de Las mil y una noches" },
+        { "text": "Hércules", "correct": true, "info": "Basado en el mito griego" },
+        { "text": "La Bella y la Bestia", "correct": true, "info": "Cuento tradicional francés" },
+        { "text": "El rey león", "correct": false, "info": "Historia original inspirada en Hamlet" },
+        { "text": "Toy Story", "correct": false, "info": "Idea original de Pixar" },
+        { "text": "Lilo & Stitch", "correct": false, "info": "Historia original de Chris Sanders" },
+        { "text": "Monsters, Inc.", "correct": false, "info": "Idea original de Pixar" },
+        { "text": "Cars", "correct": false, "info": "Idea original de Pixar" },
+        { "text": "Buscando a Nemo", "correct": false, "info": "Idea original de Pixar" }
+      ]
+    },
+    {
+      "id": "movie-014",
+      "category": "Saga James Bond",
+      "question": "¿Cuáles de estas películas pertenecen a la etapa de Daniel Craig como James Bond?",
+      "options": [
+        { "text": "Casino Royale", "correct": true, "info": "2006" },
+        { "text": "Quantum of Solace", "correct": true, "info": "2008" },
+        { "text": "Skyfall", "correct": true, "info": "2012" },
+        { "text": "Spectre", "correct": true, "info": "2015" },
+        { "text": "Sin tiempo para morir (No Time to Die)", "correct": true, "info": "2021" },
+        { "text": "GoldenEye", "correct": false, "info": "Pierce Brosnan" },
+        { "text": "Otro día para morir", "correct": false, "info": "Pierce Brosnan" },
+        { "text": "El mundo no basta", "correct": false, "info": "Pierce Brosnan" },
+        { "text": "Alta tensión (The Living Daylights)", "correct": false, "info": "Timothy Dalton" },
+        { "text": "Licencia para matar", "correct": false, "info": "Timothy Dalton" }
+      ]
+    },
+    {
+      "id": "movie-015",
+      "category": "Actores y Personajes",
+      "question": "¿Cuáles de estos actores interpretaron al Guasón (Joker) en películas de acción real (live-action)?",
+      "options": [
+        { "text": "Jack Nicholson", "correct": true, "info": "Batman (1989)" },
+        { "text": "Heath Ledger", "correct": true, "info": "The Dark Knight (2008)" },
+        { "text": "Joaquin Phoenix", "correct": true, "info": "Joker (2019)" },
+        { "text": "Jared Leto", "correct": true, "info": "Suicide Squad (2016)" },
+        { "text": "Cesar Romero", "correct": true, "info": "Batman: La película (1966)" },
+        { "text": "Mark Hamill", "correct": false, "info": "Actor de voz en animación" },
+        { "text": "Christian Bale", "correct": false, "info": "Interpretó a Batman" },
+        { "text": "Robert Pattinson", "correct": false, "info": "Interpretó a Batman" },
+        { "text": "Ben Affleck", "correct": false, "info": "Interpretó a Batman" },
+        { "text": "Willem Dafoe", "correct": false, "info": "Interpretó al Duende Verde" }
+      ]
+    },
+    {
+      "id": "movie-016",
+      "category": "Frases de Películas",
+      "question": "¿Cuáles de estas frases célebres corresponden a la película original 'El Padrino' (1972)?",
+      "options": [
+        { "text": "\"Le haré una oferta que no podrá rechazar\"", "correct": true },
+        { "text": "\"Deja el arma, toma los cannoli\"", "correct": true },
+        { "text": "\"Un día, que quizá nunca llegue, te llamaré para que me hagas un servicio\"", "correct": true },
+        { "text": "\"Mantén cerca a tus amigos, pero más cerca a tus enemigos\"", "correct": false, "info": "Se dice en El Padrino Parte II (1974)" },
+        { "text": "\"Que la Fuerza te acompañe\"", "correct": false, "info": "Star Wars" },
+        { "text": "\"Hasta la vista, baby\"", "correct": false, "info": "Terminator 2" },
+        { "text": "\"Siempre nos quedará París\"", "correct": false, "info": "Casablanca" },
+        { "text": "\"Yo soy tu padre\"", "correct": false, "info": "Star Wars: El Imperio Contraataca" },
+        { "text": "\"Aquí está Johnny\"", "correct": false, "info": "El Resplandor" },
+        { "text": "\"Francamente, querida, me importa un bledo\"", "correct": false, "info": "Lo que el viento se llevó" }
+      ]
+    },
+    {
+      "id": "movie-017",
+      "category": "Directores",
+      "question": "¿Cuáles de estas películas de suspenso fueron dirigidas por Alfred Hitchcock?",
+      "options": [
+        { "text": "Psicosis", "correct": true },
+        { "text": "Vértigo", "correct": true },
+        { "text": "La ventana indiscreta", "correct": true },
+        { "text": "Los pájaros", "correct": true },
+        { "text": "Intriga internacional (North by Northwest)", "correct": true },
+        { "text": "El ciudadano Kane (Citizen Kane)", "correct": false, "info": "Dirigida por Orson Welles" },
+        { "text": "El resplandor", "correct": false, "info": "Dirigida por Stanley Kubrick" },
+        { "text": "El bebé de Rosemary (La semilla del diablo)", "correct": false, "info": "Dirigida por Roman Polanski" },
+        { "text": "Repulsión", "correct": false, "info": "Dirigida por Roman Polanski" },
+        { "text": "El silencio de los inocentes", "correct": false, "info": "Dirigida por Jonathan Demme" }
+      ]
+    },
+    {
+      "id": "movie-018",
+      "category": "Premios Oscar",
+      "question": "¿Cuáles de estos prestigiosos directores ganaron el Oscar a Mejor Director en competencia?",
+      "options": [
+        { "text": "Martin Scorsese", "correct": true, "info": "Ganó por Los Infiltrados (2006)" },
+        { "text": "Steven Spielberg", "correct": true, "info": "Ganó por Schindler y Ryan" },
+        { "text": "Guillermo del Toro", "correct": true, "info": "Ganó por La forma del agua (2017)" },
+        { "text": "Alfonso Cuarón", "correct": true, "info": "Ganó por Gravedad y Roma" },
+        { "text": "Alejandro González Iñárritu", "correct": true, "info": "Ganó por Birdman y El renacido" },
+        { "text": "Christopher Nolan", "correct": true, "info": "Ganó por Oppenheimer (2023)" },
+        { "text": "Alfred Hitchcock", "correct": false, "info": "Nunca ganó el Oscar competitivo, solo honorífico" },
+        { "text": "Quentin Tarantino", "correct": false, "info": "Ganó por Guión Original, pero no por Director" },
+        { "text": "Stanley Kubrick", "correct": false, "info": "Solo ganó por Efectos Visuales" },
+        { "text": "Orson Welles", "correct": false, "info": "Ganó por Guión de Citizen Kane, no por Director" }
+      ]
+    },
+    {
+      "id": "movie-019",
+      "category": "Cine de Monstruos",
+      "question": "¿Cuáles de estas películas tienen a un vampiro o a Drácula como antagonista o protagonista principal?",
+      "options": [
+        { "text": "Nosferatu", "correct": true },
+        { "text": "Drácula de Bram Stoker (1992)", "correct": true },
+        { "text": "Entrevista con el vampiro", "correct": true },
+        { "text": "Van Helsing", "correct": true },
+        { "text": "Crepúsculo (Twilight)", "correct": true },
+        { "text": "La momia (1999)", "correct": false, "info": "El antagonista es Imhotep, una momia" },
+        { "text": "Frankenstein (1994)", "correct": false, "info": "El antagonista es el monstruo" },
+        { "text": "El hombre lobo", "correct": false, "info": "El antagonista principal es un licántropo" },
+        { "text": "El exorcista", "correct": false, "info": "El antagonista es el demonio Pazuzu" },
+        { "text": "Tiburón", "correct": false, "info": "El antagonista es un tiburón blanco" }
+      ]
+    },
+    {
+      "id": "movie-020",
+      "category": "Saga Batman",
+      "question": "¿Cuáles de estos personajes o villanos aparecen en la película 'El caballero de la noche' (The Dark Knight, 2008)?",
+      "options": [
+        { "text": "Guasón (Joker)", "correct": true },
+        { "text": "Dos Caras (Harvey Dent)", "correct": true },
+        { "text": "Salvatore Maroni", "correct": true },
+        { "text": "Espantapájaros (Jonathan Crane)", "correct": true, "info": "Aparece al inicio de la película" },
+        { "text": "Bane", "correct": false, "info": "Aparece en The Dark Knight Rises" },
+        { "text": "Gatúbela (Selina Kyle)", "correct": false, "info": "Aparece en The Dark Knight Rises" },
+        { "text": "El Acertijo (Riddler)", "correct": false, "info": "No aparece en la trilogía de Nolan" },
+        { "text": "El Pingüino", "correct": false, "info": "No aparece en la trilogía de Nolan" },
+        { "text": "Hiedra Venenosa (Poison Ivy)", "correct": false, "info": "No aparece en la trilogía de Nolan" },
+        { "text": "Sr. Frío (Mr. Freeze)", "correct": false, "info": "No aparece en la trilogía de Nolan" }
+      ]
+    }
+  ]
+}
