@@ -9,6 +9,7 @@ import { HandoffOverlay } from "../components/handoff_overlay";
 import { ConfirmDialog } from "../components/confirm_dialog";
 import { sounds } from "../sounds";
 import { MuteButton } from "../components/mute_button";
+import { useWakeLock } from "../hooks/useWakeLock";
 
 interface Props {
   state: GameState;
@@ -18,6 +19,7 @@ interface Props {
 type LastResult = "correct" | "wrong" | null;
 
 export function GameScreen({ state, dispatch }: Props) {
+  useWakeLock(state.phase === "playing" || state.phase === "roundEnd");
   const card = getCard(state.currentCardId);
   const [handoffPlayer, setHandoffPlayer] = useState<number | null>(null);
   const [lastResult, setLastResult] = useState<LastResult>(null);
@@ -195,6 +197,11 @@ export function GameScreen({ state, dispatch }: Props) {
   return (
     <div className="min-h-screen px-4 py-4 max-w-2xl mx-auto flex flex-col gap-3">
       <div className="flex gap-2 items-center w-full">
+        <div className="panel px-3 py-1 flex items-center justify-center shrink-0 min-h-12">
+          <span className="eyebrow text-brass text-sm tracking-wider font-semibold uppercase">
+            Carta {state.usedCardIds.length}
+          </span>
+        </div>
         <div className="flex-grow min-w-0">
           <TurnBanner player={current} />
         </div>
