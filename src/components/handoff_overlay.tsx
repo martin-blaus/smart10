@@ -11,25 +11,26 @@ interface Props {
 // action that just happened, so the player who acted sees it before handing off.
 export function HandoffOverlay({ playerName, lastResult, onReady }: Props) {
   return (
-    <div className="fixed inset-0 z-50 bg-bg/95 backdrop-blur flex flex-col items-center justify-center px-6 text-center fade-in">
+    <div className="fixed inset-0 z-50 bg-[#122318]/95 backdrop-blur-sm flex flex-col items-center justify-center px-6 text-center fade-in">
       {lastResult && (
         <span
           className={
-            "text-xl font-black mb-4 " +
-            (lastResult === "correct" ? "text-success" : "text-danger")
+            "eyebrow mb-5 " +
+            (lastResult === "correct" ? "text-correct" : "text-wrong")
           }
         >
           {lastResult === "correct" ? strings.correctSo : strings.wrongSo}
         </span>
       )}
-      <span className="text-5xl mb-6" aria-hidden>
-        📱
-      </span>
-      <h2 className="text-2xl font-black text-text-primary mb-2">
+      {/* A card resting face-down on the table. */}
+      <div className="w-24 h-32 rounded-xl mb-7 card-stock flex items-center justify-center rotate-[-4deg]">
+        <span className="font-display text-2xl font-bold text-brass-deep">S10</span>
+      </div>
+      <h2 className="font-display text-3xl font-bold text-parchment mb-2 max-w-xs">
         {strings.handoffTitle(playerName)}
       </h2>
-      <p className="text-text-secondary mb-8">{strings.handoffSubtitle}</p>
-      <button onClick={onReady} className="btn-primary text-base px-8">
+      <p className="text-parchment-dim mb-8">{strings.handoffSubtitle}</p>
+      <button onClick={onReady} className="btn-brass text-lg px-10">
         {strings.handoffReady}
       </button>
     </div>

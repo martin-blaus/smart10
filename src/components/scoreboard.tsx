@@ -18,12 +18,12 @@ export function Scoreboard({ players, currentPlayerIndex, targetScore }: Props) 
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-xl bg-bg-card border border-border">
+    <div className="panel">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 text-text-secondary"
+        className="w-full flex items-center justify-between px-4 py-3 text-parchment-dim"
       >
-        <span className="text-sm font-semibold uppercase tracking-wide">
+        <span className="eyebrow">
           {strings.scoreboard} · {targetScore} {strings.points}
         </span>
         <span aria-hidden>{open ? "▲" : "▼"}</span>
@@ -35,17 +35,19 @@ export function Scoreboard({ players, currentPlayerIndex, targetScore }: Props) 
               key={i}
               className={
                 "flex items-center justify-between text-sm py-1 " +
-                (i === currentPlayerIndex ? "text-text-primary font-bold" : "text-text-secondary")
+                (i === currentPlayerIndex
+                  ? "text-parchment font-bold"
+                  : "text-parchment-dim")
               }
             >
               <span className="truncate flex items-center gap-2">
                 <span>{p.name}</span>
                 <span aria-hidden>{STATUS_ICON[p.roundStatus]}</span>
               </span>
-              <span className="shrink-0 tabular-nums">
+              <span className="shrink-0 tabular-nums font-semibold">
                 {p.score}
                 {p.pendingPoints > 0 && (
-                  <span className="text-gold"> (+{p.pendingPoints})</span>
+                  <span className="text-brass"> (+{p.pendingPoints})</span>
                 )}
               </span>
             </li>

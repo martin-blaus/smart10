@@ -57,7 +57,7 @@ export function GameScreen({ state, dispatch }: Props) {
     // player has it zeroed. Use it to show what happened this round.
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 gap-6 fade-in">
-        <h2 className="text-2xl font-black text-text-primary">
+        <h2 className="font-display text-3xl font-bold text-parchment">
           {strings.roundEndTitle}
         </h2>
         <ul className="w-full max-w-md flex flex-col gap-2">
@@ -66,21 +66,21 @@ export function GameScreen({ state, dispatch }: Props) {
             return (
               <li
                 key={i}
-                className="flex items-center justify-between rounded-xl bg-bg-card border border-border px-4 py-3"
+                className="flex items-center justify-between panel px-4 py-3"
               >
-                <span className="text-text-primary truncate">{p.name}</span>
+                <span className="text-parchment truncate">{p.name}</span>
                 <span className="flex items-center gap-3 shrink-0">
                   <span
                     className={
                       "text-sm font-semibold " +
-                      (failed ? "text-danger" : "text-success")
+                      (failed ? "text-wrong" : "text-correct")
                     }
                   >
                     {failed
                       ? strings.statusFailed
                       : `${strings.statusPassed} +${p.pendingPoints}`}
                   </span>
-                  <span className="font-bold tabular-nums text-text-primary">
+                  <span className="font-display font-bold tabular-nums text-parchment text-xl">
                     {p.score}
                   </span>
                 </span>
@@ -88,7 +88,7 @@ export function GameScreen({ state, dispatch }: Props) {
             );
           })}
         </ul>
-        <button onClick={handleNextCard} className="btn-primary text-base px-8">
+        <button onClick={handleNextCard} className="btn-brass text-lg px-10">
           {strings.nextCard}
         </button>
       </div>
@@ -99,11 +99,9 @@ export function GameScreen({ state, dispatch }: Props) {
     <div className="min-h-screen px-4 py-4 max-w-2xl mx-auto flex flex-col gap-3">
       <TurnBanner player={current} />
 
-      <div className="rounded-xl bg-bg-secondary border border-border p-4">
-        <span className="text-xs uppercase tracking-wide text-brand font-semibold">
-          {card.category}
-        </span>
-        <h1 className="text-lg font-bold text-text-primary mt-1 leading-snug">
+      <div className="card-stock rounded-2xl px-5 py-4">
+        <span className="eyebrow text-brass-deep">{card.category}</span>
+        <h1 className="font-display text-xl font-semibold text-ink mt-1 leading-snug">
           {card.question}
         </h1>
       </div>
@@ -120,7 +118,7 @@ export function GameScreen({ state, dispatch }: Props) {
         ))}
       </div>
 
-      <button onClick={handlePass} className="btn-secondary text-base mt-1">
+      <button onClick={handlePass} className="btn-quiet text-base mt-1">
         {strings.pass}
       </button>
 

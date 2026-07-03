@@ -13,18 +13,18 @@ export function OptionPeg({ option, revealed, disabled, onTap }: Props) {
 
   if (revealed) {
     const tone = option.correct
-      ? "border-success bg-success-bg text-text-primary"
-      : "border-danger bg-danger-bg text-text-primary";
+      ? "border-correct/50 bg-correct-soft text-ink"
+      : "border-wrong/50 bg-wrong-soft text-ink";
     return (
-      <div className={`${base} ${tone} peg-reveal`}>
-        <span className="flex items-center gap-2 font-semibold">
-          <span aria-hidden>{option.correct ? "✓" : "✗"}</span>
+      <div className={`${base} ${tone} fade-in`}>
+        <span className="flex items-center gap-2 font-bold">
+          <span className={option.correct ? "text-correct" : "text-wrong"} aria-hidden>
+            {option.correct ? "✓" : "✗"}
+          </span>
           <span>{option.text}</span>
         </span>
         {option.info && (
-          <span className="text-xs text-text-secondary mt-0.5">
-            {option.info}
-          </span>
+          <span className="text-xs text-ink-soft mt-0.5">{option.info}</span>
         )}
       </div>
     );
@@ -34,7 +34,7 @@ export function OptionPeg({ option, revealed, disabled, onTap }: Props) {
     <button
       onClick={onTap}
       disabled={disabled}
-      className={`${base} border-border bg-bg-card text-text-primary font-medium hover:border-brand active:scale-[0.98] disabled:opacity-50`}
+      className={`${base} card-stock font-semibold hover:brightness-[1.03] active:scale-[0.98] disabled:opacity-50`}
     >
       {option.text}
     </button>

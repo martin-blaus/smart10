@@ -28,16 +28,19 @@ export function SetupScreen({ onStart }: Props) {
   const canStart = names.filter((n) => n.trim()).length >= MIN_PLAYERS || names.length >= MIN_PLAYERS;
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-8">
-      <h1 className="text-4xl font-black text-text-primary mt-6 mb-1">
-        {strings.appTitle}
-      </h1>
-      <p className="text-text-secondary text-sm text-center max-w-xs mb-8">
-        {strings.tagline}
-      </p>
+    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10">
+      <div className="text-center mb-9">
+        <span className="eyebrow text-brass block mb-1">Juego de preguntas</span>
+        <h1 className="text-[clamp(2.75rem,15vw,3.75rem)] font-bold text-parchment tracking-tight leading-none">
+          {strings.appTitle}
+        </h1>
+        <p className="text-parchment-dim text-sm max-w-xs mx-auto mt-3">
+          {strings.tagline}
+        </p>
+      </div>
 
-      <div className="w-full max-w-md">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-text-tertiary mb-2">
+      <div className="w-full max-w-sm">
+        <h2 className="eyebrow text-parchment-dim mb-2.5">
           {strings.setupPlayers}
         </h2>
         <div className="flex flex-col gap-2">
@@ -48,12 +51,12 @@ export function SetupScreen({ onStart }: Props) {
                 onChange={(e) => setName(i, e.target.value)}
                 placeholder={strings.setupPlayerPlaceholder(i + 1)}
                 maxLength={20}
-                className="flex-1 min-h-11 rounded-xl border border-border bg-bg-card px-4 text-text-primary placeholder:text-text-tertiary"
+                className="field flex-1"
               />
               {names.length > MIN_PLAYERS && (
                 <button
                   onClick={() => removePlayer(i)}
-                  className="btn-secondary px-3"
+                  className="btn-quiet px-4"
                   aria-label={strings.setupRemovePlayer}
                 >
                   ✕
@@ -64,24 +67,25 @@ export function SetupScreen({ onStart }: Props) {
         </div>
 
         {names.length < MAX_PLAYERS && (
-          <button onClick={addPlayer} className="btn-secondary w-full mt-2">
+          <button onClick={addPlayer} className="btn-quiet w-full mt-2.5">
             + {strings.setupAddPlayer}
           </button>
         )}
 
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-text-tertiary mt-8 mb-2">
+        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
           {strings.setupTargetScore}
         </h2>
-        <div className="flex gap-2">
+        <div className="flex gap-2.5">
           {TARGET_OPTIONS.map((t) => (
             <button
               key={t}
               onClick={() => setTargetScore(t)}
+              aria-pressed={targetScore === t}
               className={
-                "flex-1 min-h-11 rounded-xl border font-semibold transition-colors " +
+                "flex-1 min-h-14 rounded-2xl font-display text-2xl font-bold transition-transform active:scale-[0.97] " +
                 (targetScore === t
-                  ? "border-brand bg-brand text-white"
-                  : "border-border bg-bg-card text-text-secondary")
+                  ? "btn-brass !px-0"
+                  : "panel text-parchment-dim")
               }
             >
               {t}
@@ -92,12 +96,12 @@ export function SetupScreen({ onStart }: Props) {
         <button
           onClick={() => onStart(trimmed, targetScore)}
           disabled={!canStart}
-          className="btn-primary w-full mt-8 text-base"
+          className="btn-brass w-full mt-8 text-lg"
         >
           {strings.setupStart}
         </button>
         {!canStart && (
-          <p className="text-danger text-xs text-center mt-2">
+          <p className="text-wrong text-xs text-center mt-2.5">
             {strings.setupMinPlayers}
           </p>
         )}

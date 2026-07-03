@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/fraunces": "^5.2.9",
+    "@fontsource/nunito-sans": "^5.2.7",
     "canvas-confetti": "^1.9.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

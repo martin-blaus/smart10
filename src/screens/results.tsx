@@ -21,25 +21,45 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
   const winnerName = state.players[state.winnerIndexes[0]]?.name ?? "";
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 gap-6">
-      <h1 className="text-3xl font-black text-text-primary text-center">
-        🏆 {strings.winnerTitle(winnerName)}
-      </h1>
+    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 gap-7">
+      <div className="text-center">
+        <span className="text-5xl block mb-3" aria-hidden>
+          🏆
+        </span>
+        <span className="eyebrow text-brass block mb-1">Ganador</span>
+        <h1 className="font-display text-4xl font-bold text-parchment">
+          {strings.winnerTitle(winnerName)}
+        </h1>
+      </div>
 
-      <div className="w-full max-w-md">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-text-tertiary mb-2">
+      <div className="w-full max-w-sm">
+        <h2 className="eyebrow text-parchment-dim mb-2.5">
           {strings.finalStandings}
         </h2>
-        <ol className="flex flex-col gap-1">
+        <ol className="flex flex-col gap-2">
           {ranked.map(({ p, i }, pos) => (
             <li
               key={i}
-              className="flex items-center justify-between rounded-xl bg-bg-card border border-border px-4 py-3"
+              className={
+                "flex items-center justify-between rounded-2xl px-4 py-3 " +
+                (pos === 0 ? "card-stock" : "panel")
+              }
             >
-              <span className="text-text-primary">
-                {pos + 1}. {p.name}
+              <span
+                className={
+                  "flex items-center gap-2 " +
+                  (pos === 0 ? "text-ink font-bold" : "text-parchment")
+                }
+              >
+                <span className="tabular-nums opacity-60">{pos + 1}</span>
+                {p.name}
               </span>
-              <span className="font-bold tabular-nums">
+              <span
+                className={
+                  "font-display font-bold tabular-nums text-lg " +
+                  (pos === 0 ? "text-brass-deep" : "text-parchment")
+                }
+              >
                 {p.score} {strings.points}
               </span>
             </li>
@@ -47,11 +67,11 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
         </ol>
       </div>
 
-      <div className="w-full max-w-md flex flex-col gap-2">
-        <button onClick={onPlayAgainSame} className="btn-primary text-base">
+      <div className="w-full max-w-sm flex flex-col gap-2.5">
+        <button onClick={onPlayAgainSame} className="btn-brass text-lg">
           {strings.playAgainSame}
         </button>
-        <button onClick={onPlayAgainNew} className="btn-secondary text-base">
+        <button onClick={onPlayAgainNew} className="btn-quiet text-base">
           {strings.playAgainNew}
         </button>
       </div>

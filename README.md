@@ -53,14 +53,14 @@ ids únicos. Para agregar preguntas, sumá objetos al arreglo `cards`.
 
 ## Despliegue (Firebase Hosting)
 
-1. Configurá el id del proyecto en `.firebaserc` (reemplazá
-   `REPLACE_WITH_FIREBASE_PROJECT_ID`).
-2. Autenticá si hace falta: `firebase login`.
+1. El id del proyecto está configurado en `.firebaserc` como `smart10-cb385`.
+2. Autenticá si hace falta: `npx -y firebase-tools@latest login`.
 3. Compilá y desplegá:
 
 ```bash
 npm run build
-firebase deploy --only hosting
+npx -y firebase-tools@latest deploy --only hosting
 ```
+
 
 `firebase.json` sirve `dist/` con reescritura SPA a `/index.html`.
