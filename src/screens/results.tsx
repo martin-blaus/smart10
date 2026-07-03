@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import confetti from "canvas-confetti";
 import type { GameState } from "../types";
 import { strings } from "../i18n/strings";
+import { sounds } from "../sounds";
 
 interface Props {
   state: GameState;
@@ -11,6 +12,7 @@ interface Props {
 
 export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props) {
   useEffect(() => {
+    sounds.win();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     confetti({
       particleCount: 150,

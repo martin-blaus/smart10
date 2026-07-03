@@ -7,6 +7,8 @@ import { TurnBanner } from "../components/turn_banner";
 import { Scoreboard } from "../components/scoreboard";
 import { HandoffOverlay } from "../components/handoff_overlay";
 import { ConfirmDialog } from "../components/confirm_dialog";
+import { sounds } from "../sounds";
+import { MuteButton } from "../components/mute_button";
 
 interface Props {
   state: GameState;
@@ -20,6 +22,12 @@ export function GameScreen({ state, dispatch }: Props) {
   const [handoffPlayer, setHandoffPlayer] = useState<number | null>(null);
   const [lastResult, setLastResult] = useState<LastResult>(null);
   const [confirmingPass, setConfirmingPass] = useState(false);
+
+  useEffect(() => {
+    if (state.phase === "roundEnd") {
+      sounds.roundEnd();
+    }
+  }, [state.phase]);
 
   // Whenever the active player changes during play, block the screen so the
   // device can be handed over without the next player seeing the reveal. In
@@ -42,12 +50,19 @@ export function GameScreen({ state, dispatch }: Props) {
   const current = state.players[state.currentPlayerIndex];
 
   const handleTap = (optionIndex: number) => {
+    sounds.tap();
     const correct = card.options[optionIndex]?.correct;
     setLastResult(correct ? "correct" : "wrong");
+    if (correct) {
+      sounds.correct();
+    } else {
+      sounds.wrong();
+    }
     dispatch({ type: "TAP_OPTION", optionIndex });
   };
 
   const doPass = () => {
+    sounds.bank();
     setLastResult(null);
     dispatch({ type: "PASS" });
   };
@@ -70,7 +85,10 @@ export function GameScreen({ state, dispatch }: Props) {
     // A passed/banked player keeps their round total in pendingPoints; a failed
     // player has it zeroed. Use it to show what happened this round.
     return (
-      <div className="min-h-screen flex flex-col items-center px-4 py-8 gap-6 fade-in max-w-md mx-auto">
+      <div className="min-h-screen flex flex-col items-center px-4 py-8 gap-6 fade-in max-w-md mx-auto relative">
+        <div className="absolute top-4 right-4 z-10">
+          <MuteButton />
+        </div>
         <h1 className="font-display text-3xl font-bold text-parchment mt-2">
           {strings.roundEndTitle}
         </h1>
@@ -122,7 +140,12 @@ export function GameScreen({ state, dispatch }: Props) {
 
   return (
     <div className="min-h-screen px-4 py-4 max-w-2xl mx-auto flex flex-col gap-3">
-      <TurnBanner player={current} />
+      <div className="flex gap-2 items-center w-full">
+        <div className="flex-grow min-w-0">
+          <TurnBanner player={current} />
+        </div>
+        <MuteButton />
+      </div>
 
       <RoundCard
         card={card}

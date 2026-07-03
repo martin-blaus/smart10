@@ -2,6 +2,7 @@ import { useState } from "react";
 import { strings } from "../i18n/strings";
 import { DATASETS } from "../../data";
 import type { DatasetKey } from "../game/deck";
+import { MuteButton } from "../components/mute_button";
 
 const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
@@ -53,7 +54,10 @@ export function SetupScreen({ onStart }: Props) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10">
+    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative">
+      <div className="absolute top-4 right-4 z-10">
+        <MuteButton />
+      </div>
       <div className="text-center mb-9">
         <span className="eyebrow text-brass block mb-1">Juego de preguntas</span>
         <h1 className="text-[clamp(2.25rem,11vw,3rem)] font-bold text-parchment tracking-tight leading-none">
