@@ -44,7 +44,7 @@ export function SetupScreen({ onStart }: Props) {
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10">
       <div className="text-center mb-9">
         <span className="eyebrow text-brass block mb-1">Juego de preguntas</span>
-        <h1 className="text-[clamp(2.75rem,15vw,3.75rem)] font-bold text-parchment tracking-tight leading-none">
+        <h1 className="text-[clamp(2.25rem,11vw,3rem)] font-bold text-parchment tracking-tight leading-none">
           {strings.appTitle}
         </h1>
         <p className="text-parchment-dim text-sm max-w-xs mx-auto mt-3">

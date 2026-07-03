@@ -123,6 +123,21 @@ a,
     filter: brightness(1.05);
   }
 
+  /* Raised wooden token button — stands off the felt without competing with
+     the brass primary. Used for the frequent "¡Me planto!" action. */
+  .btn-token {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-bold select-none cursor-pointer min-h-12 px-6 py-3 transition-[transform,filter] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45;
+    color: var(--color-brass-hi);
+    background: linear-gradient(180deg, #2e5744, #244735);
+    border: 1px solid rgba(224, 175, 82, 0.5);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 5px 12px rgba(0, 0, 0, 0.32);
+  }
+  .btn-token:hover:not(:disabled) {
+    filter: brightness(1.08);
+  }
+
   /* Quiet outlined button on the felt. */
   .btn-quiet {
     @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold select-none cursor-pointer min-h-12 px-5 py-3 transition-colors active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45;

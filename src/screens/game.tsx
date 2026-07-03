@@ -117,15 +117,19 @@ export function GameScreen({ state, dispatch }: Props) {
         onTap={handleTap}
       />
 
-      <button onClick={handlePass} className="btn-quiet text-base mt-1">
+      <button onClick={handlePass} className="btn-token text-lg mt-1">
         {strings.pass}
       </button>
 
-      <Scoreboard
-        players={state.players}
-        currentPlayerIndex={state.currentPlayerIndex}
-        targetScore={state.targetScore}
-      />
+      {/* Inline by default; a fixed HUD panel in the top-right on wide screens
+          (xl+, where it clears the centered game column). */}
+      <div className="xl:fixed xl:top-4 xl:right-4 xl:z-40 xl:w-72">
+        <Scoreboard
+          players={state.players}
+          currentPlayerIndex={state.currentPlayerIndex}
+          targetScore={state.targetScore}
+        />
+      </div>
 
       {handoffPlayer !== null && (
         <HandoffOverlay
