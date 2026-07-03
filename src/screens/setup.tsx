@@ -1,26 +1,27 @@
 import { useState } from "react";
 import { strings } from "../i18n/strings";
 import { DATASETS } from "../../data";
-import type { DatasetKey } from "../game/deck";
+import type { DeckChoice } from "../game/deck";
 import { MuteButton } from "../components/mute_button";
 
 const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 const TARGET_OPTIONS = [10, 15, 20];
 
-const DATASET_LABELS: Record<DatasetKey, string> = {
+const DATASET_LABELS: Record<DeckChoice, string> = {
   classic: strings.datasetGeneral,
   movies: strings.datasetMovies,
   argentina: strings.datasetArgentina,
+  all: strings.datasetAll,
 };
 
 // Shared styling for the segmented option toggles (target score, dataset).
 const segClass = (selected: boolean, size: string) =>
-  `flex-1 min-h-14 rounded-2xl font-display ${size} font-bold transition-transform active:scale-[0.97] ` +
+  `flex-grow flex-shrink basis-[calc(50%-5px)] sm:flex-1 min-h-14 rounded-2xl font-display ${size} font-bold transition-transform active:scale-[0.97] ` +
   (selected ? "btn-brass !px-0" : "panel text-parchment-dim");
 
 interface Props {
-  onStart: (playerNames: string[], targetScore: number, datasetKey: DatasetKey) => void;
+  onStart: (playerNames: string[], targetScore: number, deckChoice: DeckChoice) => void;
 }
 
 type Mode = "solo" | "multi";
@@ -29,7 +30,7 @@ export function SetupScreen({ onStart }: Props) {
   const [mode, setMode] = useState<Mode>("multi");
   const [names, setNames] = useState<string[]>(["", ""]);
   const [targetScore, setTargetScore] = useState(15);
-  const [datasetKey, setDatasetKey] = useState<DatasetKey>("classic");
+  const [datasetKey, setDatasetKey] = useState<DeckChoice>("classic");
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, j) => (j === i ? value : n)));
@@ -146,13 +147,13 @@ export function SetupScreen({ onStart }: Props) {
         <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
           {strings.setupDataset}
         </h2>
-        <div className="flex gap-2.5">
-          {(Object.keys(DATASETS) as DatasetKey[]).map((key) => (
+        <div className="flex flex-wrap sm:flex-nowrap gap-2.5">
+          {([...Object.keys(DATASETS), "all"] as DeckChoice[]).map((key) => (
             <button
               key={key}
               onClick={() => setDatasetKey(key)}
               aria-pressed={datasetKey === key}
-              className={segClass(datasetKey === key, "text-base")}
+              className={segClass(datasetKey === key, "text-sm sm:text-base")}
             >
               {DATASET_LABELS[key]}
             </button>
