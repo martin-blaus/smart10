@@ -53,18 +53,41 @@ export function GameScreen({ state, dispatch }: Props) {
   };
 
   if (state.phase === "roundEnd") {
+    // A passed/banked player keeps their round total in pendingPoints; a failed
+    // player has it zeroed. Use it to show what happened this round.
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 gap-6">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 gap-6 fade-in">
         <h2 className="text-2xl font-black text-text-primary">
           {strings.roundEndTitle}
         </h2>
-        <div className="w-full max-w-md">
-          <Scoreboard
-            players={state.players}
-            currentPlayerIndex={-1}
-            targetScore={state.targetScore}
-          />
-        </div>
+        <ul className="w-full max-w-md flex flex-col gap-2">
+          {state.players.map((p, i) => {
+            const failed = p.roundStatus === "failed";
+            return (
+              <li
+                key={i}
+                className="flex items-center justify-between rounded-xl bg-bg-card border border-border px-4 py-3"
+              >
+                <span className="text-text-primary truncate">{p.name}</span>
+                <span className="flex items-center gap-3 shrink-0">
+                  <span
+                    className={
+                      "text-sm font-semibold " +
+                      (failed ? "text-danger" : "text-success")
+                    }
+                  >
+                    {failed
+                      ? strings.statusFailed
+                      : `${strings.statusPassed} +${p.pendingPoints}`}
+                  </span>
+                  <span className="font-bold tabular-nums text-text-primary">
+                    {p.score}
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
         <button onClick={handleNextCard} className="btn-primary text-base px-8">
           {strings.nextCard}
         </button>

@@ -16,7 +16,7 @@ export function OptionPeg({ option, revealed, disabled, onTap }: Props) {
       ? "border-success bg-success-bg text-text-primary"
       : "border-danger bg-danger-bg text-text-primary";
     return (
-      <div className={`${base} ${tone}`}>
+      <div className={`${base} ${tone} peg-reveal`}>
         <span className="flex items-center gap-2 font-semibold">
           <span aria-hidden>{option.correct ? "✓" : "✗"}</span>
           <span>{option.text}</span>

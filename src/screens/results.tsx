@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 import type { GameState } from "../types";
 import { strings } from "../i18n/strings";
 
@@ -8,6 +10,11 @@ interface Props {
 }
 
 export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props) {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    confetti({ particleCount: 140, spread: 75, origin: { y: 0.6 } });
+  }, []);
+
   const ranked = state.players
     .map((p, i) => ({ p, i }))
     .sort((a, b) => b.p.score - a.p.score);

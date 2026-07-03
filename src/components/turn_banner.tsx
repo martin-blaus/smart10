@@ -12,7 +12,10 @@ export function TurnBanner({ player }: Props) {
         {strings.turnOf(player.name)}
       </span>
       {player.pendingPoints > 0 && (
-        <span className="shrink-0 rounded-full bg-gold/20 text-gold px-3 py-1 text-sm font-bold">
+        <span
+          key={player.pendingPoints}
+          className="pop shrink-0 rounded-full bg-gold/20 text-gold px-3 py-1 text-sm font-bold"
+        >
           {strings.pendingThisRound(player.pendingPoints)}
         </span>
       )}
