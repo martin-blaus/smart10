@@ -7,11 +7,12 @@ interface Props {
   disabled: boolean;
   arc: number; // horizontal nudge (px) to follow the dial's oval curve
   onTap: () => void;
+  justRevealed?: boolean;
 }
 
 // One answer on the dial: a numbered brass peg + its label. On reveal it flips
 // to green (correct) or red (wrong); the peg shows ✓ / ✗ in place of the number.
-export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Props) {
+export function OptionPeg({ option, number, revealed, disabled, arc, onTap, justRevealed }: Props) {
   const shell =
     "flex items-center gap-2.5 rounded-full pl-1.5 pr-3 py-1.5 text-left border min-h-12 w-full";
   const disc =
@@ -20,17 +21,30 @@ export function OptionPeg({ option, number, revealed, disabled, arc, onTap }: Pr
   // Arc offset lives on this wrapper so it never collides with the flip /
   // press transforms applied to the peg itself.
   return (
-    <div className="w-full" style={{ transform: `translateX(${arc}px)` }}>
+    <div className="w-full relative" style={{ transform: `translateX(${arc}px)` }}>
       {revealed ? (
         <div
           className={
             shell +
-            " peg-flip " +
+            " peg-flip relative overflow-hidden " +
             (option.correct
               ? "border-correct/40 bg-correct-soft"
               : "border-wrong/40 bg-wrong-soft")
           }
         >
+          {justRevealed && (
+            <div
+              className="absolute inset-0 bg-cream-hi border border-[color:var(--color-cream-edge)] rounded-full z-10 flex items-center gap-2.5 pl-1.5 suspense-cover pointer-events-none"
+              aria-hidden
+            >
+              <span className="grid place-items-center shrink-0 w-9 h-9 rounded-full font-display font-bold text-sm bg-gradient-to-b from-brass-hi to-[color:var(--color-brass-deep)] text-brass-ink">
+                {number}
+              </span>
+              <span className="min-w-0 text-sm text-ink leading-tight line-clamp-3">
+                {option.text}
+              </span>
+            </div>
+          )}
           <span
             className={disc + " text-white " + (option.correct ? "bg-correct" : "bg-wrong")}
             aria-hidden

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { Action, GameState } from "../types";
 import { getCard } from "../game/deck";
 import { strings } from "../i18n/strings";
@@ -23,6 +23,19 @@ export function GameScreen({ state, dispatch }: Props) {
   const [lastResult, setLastResult] = useState<LastResult>(null);
   const [confirmingPass, setConfirmingPass] = useState(false);
 
+  const [justRevealedIndex, setJustRevealedIndex] = useState<number | null>(null);
+  const tapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handoffTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tapOccurredRef = useRef<boolean>(false);
+
+  // Clean up timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (tapTimeoutRef.current) clearTimeout(tapTimeoutRef.current);
+      if (handoffTimeoutRef.current) clearTimeout(handoffTimeoutRef.current);
+    };
+  }, []);
+
   useEffect(() => {
     if (state.phase === "roundEnd") {
       sounds.roundEnd();
@@ -33,10 +46,30 @@ export function GameScreen({ state, dispatch }: Props) {
   // device can be handed over without the next player seeing the reveal. In
   // solo mode there is no one to hand off to, so skip it.
   useEffect(() => {
+    if (handoffTimeoutRef.current) clearTimeout(handoffTimeoutRef.current);
+
     if (state.phase === "playing" && state.players.length > 1) {
-      setHandoffPlayer(state.currentPlayerIndex);
+      const targetPlayerIndex = state.currentPlayerIndex;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (tapOccurredRef.current) {
+        tapOccurredRef.current = false;
+        if (reducedMotion) {
+          setHandoffPlayer(targetPlayerIndex);
+          setJustRevealedIndex(null);
+        } else {
+          handoffTimeoutRef.current = setTimeout(() => {
+            setHandoffPlayer(targetPlayerIndex);
+            setJustRevealedIndex(null); // Clear suspense flag when handoff overlays
+          }, 900);
+        }
+      } else {
+        setHandoffPlayer(targetPlayerIndex);
+        setJustRevealedIndex(null);
+      }
     } else {
       setHandoffPlayer(null);
+      setJustRevealedIndex(null);
     }
   }, [
     state.phase,
@@ -51,14 +84,35 @@ export function GameScreen({ state, dispatch }: Props) {
 
   const handleTap = (optionIndex: number) => {
     sounds.tap();
+    setJustRevealedIndex(optionIndex);
+    tapOccurredRef.current = true;
+
     const correct = card.options[optionIndex]?.correct;
     setLastResult(correct ? "correct" : "wrong");
-    if (correct) {
-      sounds.correct();
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (tapTimeoutRef.current) clearTimeout(tapTimeoutRef.current);
+
+    if (reducedMotion) {
+      if (correct) {
+        sounds.correct();
+      } else {
+        sounds.wrong();
+      }
+      dispatch({ type: "TAP_OPTION", optionIndex });
     } else {
-      sounds.wrong();
+      // Play correct/wrong sound at the end of the suspense flip (400ms)
+      tapTimeoutRef.current = setTimeout(() => {
+        if (correct) {
+          sounds.correct();
+        } else {
+          sounds.wrong();
+        }
+      }, 400);
+
+      dispatch({ type: "TAP_OPTION", optionIndex });
     }
-    dispatch({ type: "TAP_OPTION", optionIndex });
   };
 
   const doPass = () => {
@@ -152,6 +206,7 @@ export function GameScreen({ state, dispatch }: Props) {
         revealed={state.revealedOptions}
         disabled={handoffPlayer !== null}
         onTap={handleTap}
+        justRevealedIndex={justRevealedIndex}
       />
 
       <button onClick={handlePass} className="btn-token text-lg mt-1">

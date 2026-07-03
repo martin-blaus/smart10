@@ -10,6 +10,7 @@ interface Props {
   // round end, so the dial renders the question as plain text there.
   questionAs?: "h1" | "p";
   onTap?: (optionIndex: number) => void;
+  justRevealedIndex?: number | null;
 }
 
 // Each column of 5 pegs traces one side of an ellipse: the middle peg bows out
@@ -34,6 +35,7 @@ export function RoundCard({
   disabled,
   questionAs = "h1",
   onTap,
+  justRevealedIndex,
 }: Props) {
   const left = card.options.slice(0, 5);
   const right = card.options.slice(5, 10);
@@ -51,6 +53,7 @@ export function RoundCard({
         disabled={disabled ?? false}
         arc={arcOffset(row, side)}
         onTap={() => onTap?.(index)}
+        justRevealed={!revealAll && justRevealedIndex === index}
       />
     );
   };
