@@ -5,6 +5,7 @@ export type RoundStatus = "active" | "passed" | "failed";
 
 export interface Player {
   name: string;
+  token: string; // emoji
   score: number; // banked, permanent
   pendingPoints: number; // at risk during the current round
   roundStatus: RoundStatus;
@@ -28,7 +29,7 @@ export interface GameState {
 export type Action =
   | {
       type: "START_GAME";
-      playerNames: string[];
+      players: { name: string; token: string }[];
       targetScore: number;
       deck: string[];
     }

@@ -167,7 +167,10 @@ export function GameScreen({ state, dispatch }: Props) {
                 key={i}
                 className="flex items-center justify-between panel px-4 py-3"
               >
-                <span className="text-parchment truncate">{p.name}</span>
+                <span className="text-parchment truncate flex items-center gap-2">
+                  <span aria-hidden="true" className="select-none">{p.token}</span>
+                  <span>{p.name}</span>
+                </span>
                 <span className="flex items-center gap-3 shrink-0">
                   <span
                     className={
@@ -246,6 +249,7 @@ export function GameScreen({ state, dispatch }: Props) {
       {handoffPlayer !== null && (
         <HandoffOverlay
           playerName={state.players[handoffPlayer].name}
+          playerToken={state.players[handoffPlayer].token}
           lastResult={lastResult}
           onReady={() => {
             setLastResult(null);

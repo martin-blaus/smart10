@@ -26,14 +26,18 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
   const ranked = state.players
     .map((p, i) => ({ p, i }))
     .sort((a, b) => b.p.score - a.p.score);
-  const winnerName = state.players[state.winnerIndexes[0]]?.name ?? "";
+  const winner = state.players[state.winnerIndexes[0]];
+  const winnerName = winner?.name ?? "";
+  const winnerToken = winner?.token ?? "";
+  const soloToken = state.players[0]?.token ?? "";
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 gap-7">
       <div className="text-center">
-        <span className="text-5xl block mb-3" aria-hidden>
-          🏆
-        </span>
+        <div className="flex items-center justify-center gap-2.5 text-5xl mb-3" aria-hidden>
+          <span>🏆</span>
+          <span className="select-none">{isSolo ? soloToken : winnerToken}</span>
+        </div>
         <span className="eyebrow text-brass block mb-1">
           {isSolo ? strings.soloResultEyebrow : "Ganador"}
         </span>
@@ -68,6 +72,7 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
                 }
               >
                 <span className="tabular-nums opacity-60">{pos + 1}</span>
+                <span aria-hidden="true" className="select-none">{p.token}</span>
                 {p.name}
               </span>
               <span

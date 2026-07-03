@@ -9,13 +9,21 @@ import { ResultsScreen } from "./screens/results";
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   // Remember the last roster and settings so "Jugar de nuevo" can restart with same players.
-  const lastGame = useRef<{ names: string[]; target: number; deckChoice: DeckChoice } | null>(null);
+  const lastGame = useRef<{
+    players: { name: string; token: string }[];
+    target: number;
+    deckChoice: DeckChoice;
+  } | null>(null);
 
-  const start = (names: string[], target: number, deckChoice: DeckChoice) => {
-    lastGame.current = { names, target, deckChoice };
+  const start = (
+    players: { name: string; token: string }[],
+    target: number,
+    deckChoice: DeckChoice,
+  ) => {
+    lastGame.current = { players, target, deckChoice };
     dispatch({
       type: "START_GAME",
-      playerNames: names,
+      players,
       targetScore: target,
       deck: buildDeck(deckChoice),
     });
@@ -31,7 +39,7 @@ export default function App() {
         state={state}
         onPlayAgainSame={() => {
           const g = lastGame.current;
-          if (g) start(g.names, g.target, g.deckChoice);
+          if (g) start(g.players, g.target, g.deckChoice);
         }}
         onPlayAgainNew={() => dispatch({ type: "RESTART" })}
       />

@@ -8,7 +8,7 @@ const CORRECT = 0; // Chile
 const WRONG = 2; // Bolivia
 
 function player(name: string, over: Partial<Player> = {}): Player {
-  return { name, score: 0, pendingPoints: 0, roundStatus: "active", ...over };
+  return { name, token: "🦊", score: 0, pendingPoints: 0, roundStatus: "active", ...over };
 }
 
 function playing(players: Player[], over: Partial<GameState> = {}): GameState {
@@ -30,7 +30,10 @@ describe("START_GAME", () => {
   it("deals the first card and initializes players", () => {
     const s = reducer(initialState, {
       type: "START_GAME",
-      playerNames: ["Ana", "Beto"],
+      players: [
+        { name: "Ana", token: "🦊" },
+        { name: "Beto", token: "🦉" },
+      ],
       targetScore: 20,
       deck: ["card-003", "card-001"],
     });
@@ -39,6 +42,7 @@ describe("START_GAME", () => {
     expect(s.deck).toEqual(["card-001"]);
     expect(s.usedCardIds).toEqual(["card-003"]);
     expect(s.players.map((p) => p.name)).toEqual(["Ana", "Beto"]);
+    expect(s.players.map((p) => p.token)).toEqual(["🦊", "🦉"]);
     expect(s.players.every((p) => p.score === 0)).toBe(true);
     expect(s.targetScore).toBe(20);
     expect(s.currentPlayerIndex).toBe(0);

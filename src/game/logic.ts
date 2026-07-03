@@ -14,8 +14,8 @@ export const initialState: GameState = {
   winnerIndexes: [],
 };
 
-function makePlayer(name: string): Player {
-  return { name, score: 0, pendingPoints: 0, roundStatus: "active" };
+function makePlayer(name: string, token: string): Player {
+  return { name, token, score: 0, pendingPoints: 0, roundStatus: "active" };
 }
 
 // Next player (cyclic) whose round status is still "active". Returns the same
@@ -98,7 +98,7 @@ function dealCard(state: GameState, startIndex: number): GameState {
 export function reducer(state: GameState, action: Action): GameState {
   switch (action.type) {
     case "START_GAME": {
-      const players = action.playerNames.map(makePlayer);
+      const players = action.players.map((p) => makePlayer(p.name, p.token));
       const base: GameState = {
         ...initialState,
         players,

@@ -8,6 +8,8 @@ const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 const TARGET_OPTIONS = [10, 15, 20];
 
+const EMOJI_POOL = ["🦊", "🦉", "🐢", "🐺", "🦁", "🐸", "🦜", "🐙", "🦔", "🐴", "🦩", "🐳"];
+
 const DATASET_LABELS: Record<DeckChoice, string> = {
   classic: strings.datasetGeneral,
   movies: strings.datasetMovies,
@@ -21,7 +23,11 @@ const segClass = (selected: boolean, size: string) =>
   (selected ? "btn-brass !px-0" : "panel text-parchment-dim");
 
 interface Props {
-  onStart: (playerNames: string[], targetScore: number, deckChoice: DeckChoice) => void;
+  onStart: (
+    players: { name: string; token: string }[],
+    targetScore: number,
+    deckChoice: DeckChoice,
+  ) => void;
 }
 
 type Mode = "solo" | "multi";
@@ -29,19 +35,37 @@ type Mode = "solo" | "multi";
 export function SetupScreen({ onStart }: Props) {
   const [mode, setMode] = useState<Mode>("multi");
   const [names, setNames] = useState<string[]>(["", ""]);
+  const [tokens, setTokens] = useState<string[]>(["🦊", "🦉"]);
   const [targetScore, setTargetScore] = useState(15);
   const [datasetKey, setDatasetKey] = useState<DeckChoice>("classic");
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, j) => (j === i ? value : n)));
 
-  const addPlayer = () =>
-    setNames((prev) => (prev.length < MAX_PLAYERS ? [...prev, ""] : prev));
+  const addPlayer = () => {
+    if (names.length < MAX_PLAYERS) {
+      setNames((prev) => [...prev, ""]);
+      setTokens((prev) => [...prev, EMOJI_POOL[prev.length % EMOJI_POOL.length]]);
+    }
+  };
 
-  const removePlayer = (i: number) =>
-    setNames((prev) =>
-      prev.length > MIN_PLAYERS ? prev.filter((_, j) => j !== i) : prev,
+  const removePlayer = (i: number) => {
+    if (names.length > MIN_PLAYERS) {
+      setNames((prev) => prev.filter((_, j) => j !== i));
+      setTokens((prev) => prev.filter((_, j) => j !== i));
+    }
+  };
+
+  const cycleToken = (i: number) => {
+    setTokens((prev) =>
+      prev.map((tok, j) => {
+        if (j !== i) return tok;
+        const idx = EMOJI_POOL.indexOf(tok);
+        const nextIdx = (idx + 1) % EMOJI_POOL.length;
+        return EMOJI_POOL[nextIdx];
+      }),
     );
+  };
 
   const trimmed = names.map((n, i) => n.trim() || strings.setupPlayerPlaceholder(i + 1));
   const canStart = mode === "solo" || names.length >= MIN_PLAYERS;
@@ -51,7 +75,11 @@ export function SetupScreen({ onStart }: Props) {
       mode === "solo"
         ? [names[0].trim() || strings.setupPlayerPlaceholder(1)]
         : trimmed;
-    onStart(playerNames, targetScore, datasetKey);
+    const playersPayload = playerNames.map((name, i) => ({
+      name,
+      token: tokens[i] || "🦊",
+    }));
+    onStart(playersPayload, targetScore, datasetKey);
   };
 
   return (
@@ -88,29 +116,45 @@ export function SetupScreen({ onStart }: Props) {
           {mode === "solo" ? strings.setupSoloName : strings.setupPlayers}
         </h2>
         {mode === "solo" ? (
-          <input
-            value={names[0]}
-            onChange={(e) => setName(0, e.target.value)}
-            placeholder={strings.setupPlayerPlaceholder(1)}
-            maxLength={20}
-            className="field w-full"
-          />
+          <div className="flex gap-2 items-center w-full">
+            <button
+              onClick={() => cycleToken(0)}
+              className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+              aria-label="Cambiar avatar de emoji"
+            >
+              {tokens[0]}
+            </button>
+            <input
+              value={names[0]}
+              onChange={(e) => setName(0, e.target.value)}
+              placeholder={strings.setupPlayerPlaceholder(1)}
+              maxLength={20}
+              className="field flex-1 min-w-0"
+            />
+          </div>
         ) : (
           <>
             <div className="flex flex-col gap-2">
               {names.map((name, i) => (
-                <div key={i} className="flex gap-2">
+                <div key={i} className="flex gap-2 items-center w-full">
+                  <button
+                    onClick={() => cycleToken(i)}
+                    className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+                    aria-label="Cambiar avatar de emoji"
+                  >
+                    {tokens[i]}
+                  </button>
                   <input
                     value={name}
                     onChange={(e) => setName(i, e.target.value)}
                     placeholder={strings.setupPlayerPlaceholder(i + 1)}
                     maxLength={20}
-                    className="field flex-1"
+                    className="field flex-1 min-w-0"
                   />
                   {names.length > MIN_PLAYERS && (
                     <button
                       onClick={() => removePlayer(i)}
-                      className="btn-quiet px-4"
+                      className="btn-quiet w-12 h-12 !p-0 shrink-0 rounded-full flex items-center justify-center text-sm"
                       aria-label={strings.setupRemovePlayer}
                     >
                       ✕

@@ -11,8 +11,9 @@ export function TurnBanner({ player }: Props) {
       aria-live="polite"
       className="flex items-center justify-between gap-3 panel px-4 py-3"
     >
-      <span className="font-display text-xl font-semibold text-parchment truncate">
-        {strings.turnOf(player.name)}
+      <span className="font-display text-xl font-semibold text-parchment truncate flex items-center gap-2">
+        <span aria-hidden="true" className="select-none">{player.token}</span>
+        <span>{strings.turnOf(player.name)}</span>
       </span>
       {player.pendingPoints > 0 && (
         <span
