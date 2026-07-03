@@ -7,13 +7,29 @@
       "options": [
         { "text": "Chile", "correct": true },
         { "text": "Perú", "correct": true },
-        { "text": "Bolivia", "correct": false, "info": "No tiene salida al mar" },
-        { "text": "Argentina", "correct": false, "info": "Costa sobre el Atlántico" },
+        {
+          "text": "Bolivia",
+          "correct": false,
+          "info": "No tiene salida al mar"
+        },
+        {
+          "text": "Argentina",
+          "correct": false,
+          "info": "Costa sobre el Atlántico"
+        },
         { "text": "México", "correct": true },
-        { "text": "Colombia", "correct": true, "info": "Tiene costa en ambos océanos" },
+        {
+          "text": "Colombia",
+          "correct": true,
+          "info": "Tiene costa en ambos océanos"
+        },
         { "text": "Paraguay", "correct": false, "info": "País sin litoral" },
         { "text": "Ecuador", "correct": true },
-        { "text": "Brasil", "correct": false, "info": "Costa sobre el Atlántico" },
+        {
+          "text": "Brasil",
+          "correct": false,
+          "info": "Costa sobre el Atlántico"
+        },
         { "text": "Japón", "correct": true }
       ]
     },
@@ -22,16 +38,40 @@
       "category": "Historia",
       "question": "¿Cuáles de estos hechos ocurrieron durante el siglo XX?",
       "options": [
-        { "text": "Primera Guerra Mundial", "correct": true, "info": "1914-1918" },
+        {
+          "text": "Primera Guerra Mundial",
+          "correct": true,
+          "info": "1914-1918"
+        },
         { "text": "Revolución Francesa", "correct": false, "info": "1789" },
-        { "text": "Llegada del hombre a la Luna", "correct": true, "info": "1969" },
+        {
+          "text": "Llegada del hombre a la Luna",
+          "correct": true,
+          "info": "1969"
+        },
         { "text": "Caída del Muro de Berlín", "correct": true, "info": "1989" },
-        { "text": "Descubrimiento de América", "correct": false, "info": "1492" },
-        { "text": "Segunda Guerra Mundial", "correct": true, "info": "1939-1945" },
-        { "text": "Independencia de Argentina", "correct": false, "info": "1816" },
+        {
+          "text": "Descubrimiento de América",
+          "correct": false,
+          "info": "1492"
+        },
+        {
+          "text": "Segunda Guerra Mundial",
+          "correct": true,
+          "info": "1939-1945"
+        },
+        {
+          "text": "Independencia de Argentina",
+          "correct": false,
+          "info": "1816"
+        },
         { "text": "Guerra de Malvinas", "correct": true, "info": "1982" },
         { "text": "Revolución Rusa", "correct": true, "info": "1917" },
-        { "text": "Independencia de Estados Unidos", "correct": false, "info": "1776" }
+        {
+          "text": "Independencia de Estados Unidos",
+          "correct": false,
+          "info": "1776"
+        }
       ]
     },
     {
@@ -42,7 +82,11 @@
         { "text": "Argentina", "correct": true, "info": "1978, 1986, 2022" },
         { "text": "Brasil", "correct": true, "info": "5 títulos" },
         { "text": "Alemania", "correct": true, "info": "4 títulos" },
-        { "text": "Países Bajos", "correct": false, "info": "3 finales perdidas" },
+        {
+          "text": "Países Bajos",
+          "correct": false,
+          "info": "3 finales perdidas"
+        },
         { "text": "Uruguay", "correct": true, "info": "1930, 1950" },
         { "text": "España", "correct": true, "info": "2010" },
         { "text": "México", "correct": false },
@@ -60,11 +104,22 @@
         { "text": "Titanic", "correct": false, "info": "James Cameron" },
         { "text": "E.T., el extraterrestre", "correct": true },
         { "text": "La lista de Schindler", "correct": true },
-        { "text": "Pulp Fiction", "correct": false, "info": "Quentin Tarantino" },
+        {
+          "text": "Pulp Fiction",
+          "correct": false,
+          "info": "Quentin Tarantino"
+        },
         { "text": "Tiburón", "correct": true },
         { "text": "Rescatando al soldado Ryan", "correct": true },
-        { "text": "El Padrino", "correct": false, "info": "Francis Ford Coppola" },
-        { "text": "Indiana Jones y los cazadores del arca perdida", "correct": true },
+        {
+          "text": "El Padrino",
+          "correct": false,
+          "info": "Francis Ford Coppola"
+        },
+        {
+          "text": "Indiana Jones y los cazadores del arca perdida",
+          "correct": true
+        },
         { "text": "Avatar", "correct": false, "info": "James Cameron" }
       ]
     },
@@ -91,15 +146,35 @@
       "question": "¿Cuáles de estas ciudades son la capital de su país?",
       "options": [
         { "text": "Canberra (Australia)", "correct": true },
-        { "text": "Sídney (Australia)", "correct": false, "info": "La capital es Canberra" },
+        {
+          "text": "Sídney (Australia)",
+          "correct": false,
+          "info": "La capital es Canberra"
+        },
         { "text": "Madrid (España)", "correct": true },
-        { "text": "Río de Janeiro (Brasil)", "correct": false, "info": "La capital es Brasilia" },
+        {
+          "text": "Río de Janeiro (Brasil)",
+          "correct": false,
+          "info": "La capital es Brasilia"
+        },
         { "text": "Ottawa (Canadá)", "correct": true },
-        { "text": "Nueva York (EE.UU.)", "correct": false, "info": "La capital es Washington D. C." },
+        {
+          "text": "Nueva York (EE.UU.)",
+          "correct": false,
+          "info": "La capital es Washington D. C."
+        },
         { "text": "El Cairo (Egipto)", "correct": true },
-        { "text": "Estambul (Turquía)", "correct": false, "info": "La capital es Ankara" },
+        {
+          "text": "Estambul (Turquía)",
+          "correct": false,
+          "info": "La capital es Ankara"
+        },
         { "text": "Lima (Perú)", "correct": true },
-        { "text": "Zúrich (Suiza)", "correct": false, "info": "La capital es Berna" }
+        {
+          "text": "Zúrich (Suiza)",
+          "correct": false,
+          "info": "La capital es Berna"
+        }
       ]
     },
     {
@@ -125,13 +200,29 @@
       "question": "¿Cuáles de estas personas fueron presidentes de Estados Unidos?",
       "options": [
         { "text": "Abraham Lincoln", "correct": true },
-        { "text": "Benjamin Franklin", "correct": false, "info": "Nunca fue presidente" },
+        {
+          "text": "Benjamin Franklin",
+          "correct": false,
+          "info": "Nunca fue presidente"
+        },
         { "text": "John F. Kennedy", "correct": true },
-        { "text": "Winston Churchill", "correct": false, "info": "Primer ministro británico" },
+        {
+          "text": "Winston Churchill",
+          "correct": false,
+          "info": "Primer ministro británico"
+        },
         { "text": "Barack Obama", "correct": true },
-        { "text": "Nelson Mandela", "correct": false, "info": "Presidente de Sudáfrica" },
+        {
+          "text": "Nelson Mandela",
+          "correct": false,
+          "info": "Presidente de Sudáfrica"
+        },
         { "text": "Franklin D. Roosevelt", "correct": true },
-        { "text": "Alexander Hamilton", "correct": false, "info": "Secretario del Tesoro" },
+        {
+          "text": "Alexander Hamilton",
+          "correct": false,
+          "info": "Secretario del Tesoro"
+        },
         { "text": "George Washington", "correct": true },
         { "text": "Theodore Roosevelt", "correct": true }
       ]

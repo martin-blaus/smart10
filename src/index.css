@@ -126,6 +126,7 @@ h3 {
   /* The dial: the big oval-ish cream question card with a brass rim. */
   .dial {
     position: relative;
+    perspective: 900px;
     border-radius: 2rem;
     background:
       radial-gradient(
@@ -200,6 +201,22 @@ h3 {
 }
 .fade-in {
   animation: fadeIn 0.22s ease;
+}
+
+/* A peg flipping over on the table when its answer is revealed. */
+@keyframes pegFlip {
+  from {
+    transform: rotateX(-82deg);
+    opacity: 0.25;
+  }
+  to {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+.peg-flip {
+  animation: pegFlip 0.34s ease;
+  transform-origin: center;
 }
 
 @keyframes pop {

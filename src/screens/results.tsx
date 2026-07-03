@@ -12,7 +12,12 @@ interface Props {
 export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    confetti({ particleCount: 140, spread: 75, origin: { y: 0.6 } });
+    confetti({
+      particleCount: 150,
+      spread: 78,
+      origin: { y: 0.6 },
+      colors: ["#e0af52", "#f3ead3", "#3f8a5b", "#c68f30", "#b1503c"],
+    });
   }, []);
 
   const ranked = state.players
