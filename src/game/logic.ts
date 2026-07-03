@@ -31,12 +31,13 @@ function nextActiveIndex(players: Player[], from: number): number {
   return -1;
 }
 
-function allCorrectRevealed(state: GameState): boolean {
+// The round does NOT end just because every correct answer happens to be
+// revealed — players can't see that, and deciding when to stop is the whole
+// game. It ends only when nobody is active or the entire card is uncovered.
+function allOptionsRevealed(state: GameState): boolean {
   const card = getCard(state.currentCardId);
   if (!card) return false;
-  return card.options.every(
-    (opt, i) => !opt.correct || state.revealedOptions.includes(i),
-  );
+  return state.revealedOptions.length >= card.options.length;
 }
 
 // Bank the pending points of every still-active player and move to roundEnd.
@@ -50,12 +51,12 @@ function endRound(state: GameState): GameState {
 }
 
 // After a turn, either advance to the next active player or, if the round is
-// over (nobody active, or all correct options revealed), close the round.
+// over (nobody active, or the whole card is uncovered), close the round.
 function advanceOrEnd(state: GameState): GameState {
   if (state.players.every((p) => p.roundStatus !== "active")) {
     return endRound(state);
   }
-  if (allCorrectRevealed(state)) {
+  if (allOptionsRevealed(state)) {
     return endRound(state);
   }
   return {

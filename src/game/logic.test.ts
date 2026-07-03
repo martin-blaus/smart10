@@ -97,16 +97,30 @@ describe("TAP_OPTION", () => {
     expect(s.players[0].pendingPoints).toBe(1);
   });
 
-  it("ends the round and banks active players when the last correct option is revealed", () => {
-    // 5 of 6 correct already revealed; tapping the 6th exhausts the card.
+  it("does NOT end the round when the last correct option is revealed (players must still decide)", () => {
+    // All 6 correct revealed after this tap, but 4 wrong options remain hidden.
+    // The sole active player must still choose to plant or risk another pick.
     const start = playing([player("A", { pendingPoints: 4 }), player("B", { roundStatus: "failed" })], {
       revealedOptions: [0, 1, 4, 5, 7],
     });
     const s = reducer(start, { type: "TAP_OPTION", optionIndex: 9 });
+    expect(s.phase).toBe("playing");
+    expect(s.players[0].pendingPoints).toBe(5); // still pending, not banked
+    expect(s.players[0].roundStatus).toBe("active");
+  });
+
+  it("ends the round and banks active players when the whole card is uncovered", () => {
+    // 9 of 10 options revealed; tapping the last one uncovers the entire card.
+    const start = playing(
+      [player("A", { pendingPoints: 4 }), player("B", { roundStatus: "failed" })],
+      { revealedOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+    );
+    const s = reducer(start, { type: "TAP_OPTION", optionIndex: 9 });
     expect(s.phase).toBe("roundEnd");
-    expect(s.players[0].score).toBe(5); // 4 pending + the last correct, banked
     expect(s.players[0].roundStatus).toBe("passed");
-    expect(s.players[1].score).toBe(0); // failed player banks nothing
+    // index 9 (Japón) is correct → pending 4 + 1 = 5, banked.
+    expect(s.players[0].score).toBe(5);
+    expect(s.players[1].score).toBe(0);
   });
 });
 

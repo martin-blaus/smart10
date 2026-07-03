@@ -19,10 +19,13 @@ trampa. En tu turno podés:
 - **¡Me planto!**: guardás (bancás) tus puntos pendientes en tu puntaje
   permanente y quedás afuera de la ronda.
 
-La ronda termina cuando todos quedaron afuera o cuando se revelaron todas las
-respuestas correctas. Gana quien primero llega al puntaje objetivo (10, 15 o
-20; por defecto 15) al finalizar una ronda. Si hay empate en la cima, se juega
-una carta de desempate.
+La ronda termina cuando todos los jugadores quedaron afuera (se plantaron o
+fallaron) o cuando se destaparon las 10 opciones. Nadie sabe cuántas
+respuestas correctas quedan, así que la decisión de plantarse o arriesgar
+otra es parte del juego: recién al terminar la ronda se revelan todas las
+respuestas. Gana quien primero llega al puntaje objetivo (10, 15 o 20; por
+defecto 15) al finalizar una ronda. Si hay empate en la cima, se juega una
+carta de desempate.
 
 ## Desarrollo
 
