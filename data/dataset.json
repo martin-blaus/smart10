@@ -1,0 +1,174 @@
+{
+  "cards": [
+    {
+      "id": "card-001",
+      "category": "Geografía",
+      "question": "¿Cuáles de estos países tienen costa sobre el océano Pacífico?",
+      "options": [
+        { "text": "Chile", "correct": true },
+        { "text": "Perú", "correct": true },
+        { "text": "Bolivia", "correct": false, "info": "No tiene salida al mar" },
+        { "text": "Argentina", "correct": false, "info": "Costa sobre el Atlántico" },
+        { "text": "México", "correct": true },
+        { "text": "Colombia", "correct": true, "info": "Tiene costa en ambos océanos" },
+        { "text": "Paraguay", "correct": false, "info": "País sin litoral" },
+        { "text": "Ecuador", "correct": true },
+        { "text": "Brasil", "correct": false, "info": "Costa sobre el Atlántico" },
+        { "text": "Japón", "correct": true }
+      ]
+    },
+    {
+      "id": "card-002",
+      "category": "Historia",
+      "question": "¿Cuáles de estos hechos ocurrieron durante el siglo XX?",
+      "options": [
+        { "text": "Primera Guerra Mundial", "correct": true, "info": "1914-1918" },
+        { "text": "Revolución Francesa", "correct": false, "info": "1789" },
+        { "text": "Llegada del hombre a la Luna", "correct": true, "info": "1969" },
+        { "text": "Caída del Muro de Berlín", "correct": true, "info": "1989" },
+        { "text": "Descubrimiento de América", "correct": false, "info": "1492" },
+        { "text": "Segunda Guerra Mundial", "correct": true, "info": "1939-1945" },
+        { "text": "Independencia de Argentina", "correct": false, "info": "1816" },
+        { "text": "Guerra de Malvinas", "correct": true, "info": "1982" },
+        { "text": "Revolución Rusa", "correct": true, "info": "1917" },
+        { "text": "Independencia de Estados Unidos", "correct": false, "info": "1776" }
+      ]
+    },
+    {
+      "id": "card-003",
+      "category": "Deportes",
+      "question": "¿Cuáles de estas selecciones ganaron al menos una Copa del Mundo de fútbol masculino?",
+      "options": [
+        { "text": "Argentina", "correct": true, "info": "1978, 1986, 2022" },
+        { "text": "Brasil", "correct": true, "info": "5 títulos" },
+        { "text": "Alemania", "correct": true, "info": "4 títulos" },
+        { "text": "Países Bajos", "correct": false, "info": "3 finales perdidas" },
+        { "text": "Uruguay", "correct": true, "info": "1930, 1950" },
+        { "text": "España", "correct": true, "info": "2010" },
+        { "text": "México", "correct": false },
+        { "text": "Francia", "correct": true, "info": "1998, 2018" },
+        { "text": "Inglaterra", "correct": true, "info": "1966" },
+        { "text": "Portugal", "correct": false }
+      ]
+    },
+    {
+      "id": "card-004",
+      "category": "Cine",
+      "question": "¿Cuáles de estas películas fueron dirigidas por Steven Spielberg?",
+      "options": [
+        { "text": "Jurassic Park", "correct": true },
+        { "text": "Titanic", "correct": false, "info": "James Cameron" },
+        { "text": "E.T., el extraterrestre", "correct": true },
+        { "text": "La lista de Schindler", "correct": true },
+        { "text": "Pulp Fiction", "correct": false, "info": "Quentin Tarantino" },
+        { "text": "Tiburón", "correct": true },
+        { "text": "Rescatando al soldado Ryan", "correct": true },
+        { "text": "El Padrino", "correct": false, "info": "Francis Ford Coppola" },
+        { "text": "Indiana Jones y los cazadores del arca perdida", "correct": true },
+        { "text": "Avatar", "correct": false, "info": "James Cameron" }
+      ]
+    },
+    {
+      "id": "card-005",
+      "category": "Ciencia",
+      "question": "¿Cuáles de estos elementos son gases en condiciones normales (25 °C y 1 atm)?",
+      "options": [
+        { "text": "Oxígeno", "correct": true },
+        { "text": "Hierro", "correct": false, "info": "Sólido" },
+        { "text": "Helio", "correct": true },
+        { "text": "Mercurio", "correct": false, "info": "Líquido" },
+        { "text": "Nitrógeno", "correct": true },
+        { "text": "Oro", "correct": false, "info": "Sólido" },
+        { "text": "Hidrógeno", "correct": true },
+        { "text": "Cloro", "correct": true },
+        { "text": "Sodio", "correct": false, "info": "Sólido" },
+        { "text": "Neón", "correct": true }
+      ]
+    },
+    {
+      "id": "card-006",
+      "category": "Geografía",
+      "question": "¿Cuáles de estas ciudades son la capital de su país?",
+      "options": [
+        { "text": "Canberra (Australia)", "correct": true },
+        { "text": "Sídney (Australia)", "correct": false, "info": "La capital es Canberra" },
+        { "text": "Madrid (España)", "correct": true },
+        { "text": "Río de Janeiro (Brasil)", "correct": false, "info": "La capital es Brasilia" },
+        { "text": "Ottawa (Canadá)", "correct": true },
+        { "text": "Nueva York (EE.UU.)", "correct": false, "info": "La capital es Washington D. C." },
+        { "text": "El Cairo (Egipto)", "correct": true },
+        { "text": "Estambul (Turquía)", "correct": false, "info": "La capital es Ankara" },
+        { "text": "Lima (Perú)", "correct": true },
+        { "text": "Zúrich (Suiza)", "correct": false, "info": "La capital es Berna" }
+      ]
+    },
+    {
+      "id": "card-007",
+      "category": "Música",
+      "question": "¿Cuáles de estos instrumentos son de viento?",
+      "options": [
+        { "text": "Flauta", "correct": true },
+        { "text": "Violín", "correct": false, "info": "Cuerda" },
+        { "text": "Trompeta", "correct": true },
+        { "text": "Piano", "correct": false, "info": "Percusión/cuerda" },
+        { "text": "Saxofón", "correct": true },
+        { "text": "Guitarra", "correct": false, "info": "Cuerda" },
+        { "text": "Clarinete", "correct": true },
+        { "text": "Batería", "correct": false, "info": "Percusión" },
+        { "text": "Oboe", "correct": true },
+        { "text": "Trombón", "correct": true }
+      ]
+    },
+    {
+      "id": "card-008",
+      "category": "Historia",
+      "question": "¿Cuáles de estas personas fueron presidentes de Estados Unidos?",
+      "options": [
+        { "text": "Abraham Lincoln", "correct": true },
+        { "text": "Benjamin Franklin", "correct": false, "info": "Nunca fue presidente" },
+        { "text": "John F. Kennedy", "correct": true },
+        { "text": "Winston Churchill", "correct": false, "info": "Primer ministro británico" },
+        { "text": "Barack Obama", "correct": true },
+        { "text": "Nelson Mandela", "correct": false, "info": "Presidente de Sudáfrica" },
+        { "text": "Franklin D. Roosevelt", "correct": true },
+        { "text": "Alexander Hamilton", "correct": false, "info": "Secretario del Tesoro" },
+        { "text": "George Washington", "correct": true },
+        { "text": "Theodore Roosevelt", "correct": true }
+      ]
+    },
+    {
+      "id": "card-009",
+      "category": "Naturaleza",
+      "question": "¿Cuáles de estos animales son mamíferos?",
+      "options": [
+        { "text": "Delfín", "correct": true },
+        { "text": "Tiburón", "correct": false, "info": "Es un pez" },
+        { "text": "Murciélago", "correct": true },
+        { "text": "Cocodrilo", "correct": false, "info": "Es un reptil" },
+        { "text": "Ballena", "correct": true },
+        { "text": "Pingüino", "correct": false, "info": "Es un ave" },
+        { "text": "Elefante", "correct": true },
+        { "text": "Rana", "correct": false, "info": "Es un anfibio" },
+        { "text": "Canguro", "correct": true },
+        { "text": "Perro", "correct": true }
+      ]
+    },
+    {
+      "id": "card-010",
+      "category": "Geografía",
+      "question": "¿Cuáles de estos países pertenecen al continente africano?",
+      "options": [
+        { "text": "Egipto", "correct": true },
+        { "text": "Kenia", "correct": true },
+        { "text": "Nigeria", "correct": true },
+        { "text": "Perú", "correct": false, "info": "América del Sur" },
+        { "text": "Marruecos", "correct": true },
+        { "text": "Tailandia", "correct": false, "info": "Asia" },
+        { "text": "Sudáfrica", "correct": true },
+        { "text": "Portugal", "correct": false, "info": "Europa" },
+        { "text": "Etiopía", "correct": true },
+        { "text": "India", "correct": false, "info": "Asia" }
+      ]
+    }
+  ]
+}
