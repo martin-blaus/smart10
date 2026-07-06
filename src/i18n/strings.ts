@@ -41,16 +41,16 @@ export const strings = {
   judgeAnswerWas: "La respuesta era:",
   judgeCorrect: "Sí, ¡acertó!",
   judgeWrong: "No, falló",
+  judgeSwipeRight: "Acertó",
+  judgeSwipeLeft: "Falló",
 
   // Round status labels
   statusActive: "Jugando",
   statusPassed: "Se plantó",
   statusFailed: "Falló",
 
-  // Handoff
-  handoffTitle: (name: string) => `Pasale el dispositivo a ${name}`,
-  handoffSubtitle: "Cuando lo tenga, tocá continuar.",
-  handoffReady: "¡Listo!",
+  // Turn transition
+  turnNext: "Ahora juega:",
 
   // Round end
   roundEndTitle: "Fin de la ronda",

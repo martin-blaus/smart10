@@ -6,7 +6,7 @@ import { strings } from "../i18n/strings";
 import { RoundCard } from "../components/round_card";
 import { TurnBanner } from "../components/turn_banner";
 import { Scoreboard } from "../components/scoreboard";
-import { HandoffOverlay } from "../components/handoff_overlay";
+import { TurnTransition } from "../components/turn_transition";
 import { JudgePanel } from "../components/judge_panel";
 import { ConfirmDialog } from "../components/confirm_dialog";
 import { sounds } from "../sounds";
@@ -167,8 +167,8 @@ export function GameScreen({ state, dispatch }: Props) {
         } else {
           handoffTimeoutRef.current = setTimeout(() => {
             setHandoffPlayer(targetPlayerIndex);
-            setJustRevealedIndex(null); // Clear suspense flag when handoff overlays
-          }, 900);
+            setJustRevealedIndex(null); // Clear suspense flag when the flash covers
+          }, 650);
         }
       } else {
         setHandoffPlayer(targetPlayerIndex);
@@ -193,8 +193,8 @@ export function GameScreen({ state, dispatch }: Props) {
     state.judgingOptionIndex !== null
       ? card.options[state.judgingOptionIndex]
       : null;
-  const judgingAnswer =
-    judgingOption && isAnswerCardOption(judgingOption) ? judgingOption.answer : null;
+  const judgingAnswerOption =
+    judgingOption && isAnswerCardOption(judgingOption) ? judgingOption : null;
 
   const handleTap = (optionIndex: number) => {
     if (animatingBanking) return;
@@ -496,16 +496,16 @@ export function GameScreen({ state, dispatch }: Props) {
         />
       )}
 
-      {judgingAnswer !== null && (
-        <JudgePanel answer={judgingAnswer} onVerdict={handleVerdict} />
+      {judgingAnswerOption !== null && (
+        <JudgePanel option={judgingAnswerOption} onVerdict={handleVerdict} />
       )}
 
       {handoffPlayer !== null && (
-        <HandoffOverlay
+        <TurnTransition
           playerName={state.players[handoffPlayer].name}
           playerToken={state.players[handoffPlayer].token}
           lastResult={lastResult}
-          onReady={() => {
+          onDone={() => {
             setLastResult(null);
             setHandoffPlayer(null);
           }}
