@@ -509,6 +509,24 @@
         { "text": "Vuelta de Obligado", "correct": false, "info": "1845, contra la flota anglo-francesa" },
         { "text": "Batalla de La Tablada", "correct": false, "info": "1829, guerra civil" }
       ]
+    },
+    {
+      "id": "arg-031",
+      "type": "answer",
+      "category": "Argentina",
+      "question": "¿En qué provincia argentina se encuentra cada uno de estos lugares? (decilo en voz alta)",
+      "options": [
+        { "text": "Cataratas del Iguazú", "answer": "Misiones" },
+        { "text": "Glaciar Perito Moreno", "answer": "Santa Cruz" },
+        { "text": "Cerro Aconcagua", "answer": "Mendoza" },
+        { "text": "Quebrada de Humahuaca", "answer": "Jujuy" },
+        { "text": "Bariloche", "answer": "Río Negro" },
+        { "text": "Salinas Grandes", "answer": "Jujuy y Salta" },
+        { "text": "Península Valdés", "answer": "Chubut" },
+        { "text": "Villa Carlos Paz", "answer": "Córdoba" },
+        { "text": "Talampaya", "answer": "La Rioja" },
+        { "text": "Esteros del Iberá", "answer": "Corrientes" }
+      ]
     }
   ]
 }

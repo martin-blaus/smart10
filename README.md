@@ -39,10 +39,18 @@ npm run build    # type-check + build de producción a dist/
 
 ## Datos
 
-Las cartas están en `data/dataset.json` (contenido en español). El esquema y
-los tipos están en `data/types.ts`; `data/dataset.test.ts` valida que cada
-carta tenga exactamente 10 opciones, al menos una correcta y una incorrecta, e
-ids únicos. Para agregar preguntas, sumá objetos al arreglo `cards`.
+Las cartas están en `data/*.json` (contenido en español). El esquema y los
+tipos están en `data/types.ts`; `data/dataset.test.ts` valida cada dataset
+registrado automáticamente. Hay dos tipos de carta:
+
+- **boolean** (por defecto): 10 opciones, cada una correcta o incorrecta; el
+  juego valida el toque. Requiere al menos una correcta y una incorrecta.
+- **answer** (`"type": "answer"`): opciones con una respuesta oculta que el
+  jugador dice en voz alta; la mesa decide si acertó (auto-evaluación).
+
+Para agregar preguntas, sumá objetos al arreglo `cards`. Para authoring guiado
+(tipos, reglas, y cómo registrar un dataset nuevo) usá la skill
+`.claude/skills/create-cards`.
 
 ## Arquitectura
 

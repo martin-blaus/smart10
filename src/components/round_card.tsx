@@ -11,6 +11,8 @@ interface Props {
   questionAs?: "h1" | "p";
   onTap?: (optionIndex: number) => void;
   justRevealedIndex?: number | null;
+  // Answer-card verdicts (option index → judged correct), used to color pegs.
+  verdicts?: Record<number, boolean>;
 }
 
 // Each column of 5 pegs traces one side of an ellipse: the middle peg bows out
@@ -36,6 +38,7 @@ export function RoundCard({
   questionAs = "h1",
   onTap,
   justRevealedIndex,
+  verdicts,
 }: Props) {
   const left = card.options.slice(0, 5);
   const right = card.options.slice(5, 10);
@@ -54,6 +57,7 @@ export function RoundCard({
         arc={arcOffset(row, side)}
         onTap={() => onTap?.(index)}
         justRevealed={!revealAll && justRevealedIndex === index}
+        verdict={verdicts?.[index]}
       />
     );
   };

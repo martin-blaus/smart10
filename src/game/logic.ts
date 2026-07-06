@@ -1,5 +1,6 @@
 import type { Action, GameState, Player } from "../types";
 import { getCard } from "./deck";
+import { isAnswerCard } from "../../data";
 
 export const initialState: GameState = {
   phase: "setup",
@@ -10,6 +11,8 @@ export const initialState: GameState = {
   usedCardIds: [],
   currentCardId: null,
   revealedOptions: [],
+  judgingOptionIndex: null,
+  optionVerdicts: {},
   targetScore: 15,
   winnerIndexes: [],
   blitz: false,
@@ -93,7 +96,22 @@ function dealCard(state: GameState, startIndex: number): GameState {
     usedCardIds: [...usedCardIds, nextCardId],
     currentCardId: nextCardId,
     revealedOptions: [],
+    judgingOptionIndex: null,
+    optionVerdicts: {},
   };
+}
+
+// Apply the Smart10 consequence of a right/wrong answer to the current player,
+// then advance the turn or close the round. Shared by boolean taps and the
+// self-judged verdict on answer cards.
+function applyVerdict(state: GameState, correct: boolean): GameState {
+  const players = state.players.map((p, i) => {
+    if (i !== state.currentPlayerIndex) return p;
+    return correct
+      ? { ...p, pendingPoints: p.pendingPoints + 1 }
+      : { ...p, pendingPoints: 0, roundStatus: "failed" as const };
+  });
+  return advanceOrEnd({ ...state, players });
 }
 
 export function reducer(state: GameState, action: Action): GameState {
@@ -113,6 +131,7 @@ export function reducer(state: GameState, action: Action): GameState {
 
     case "TAP_OPTION": {
       if (state.phase !== "playing") return state;
+      if (state.judgingOptionIndex !== null) return state;
       if (state.revealedOptions.includes(action.optionIndex)) return state;
       const card = getCard(state.currentCardId);
       if (!card) return state;
@@ -121,23 +140,39 @@ export function reducer(state: GameState, action: Action): GameState {
       const current = state.players[state.currentPlayerIndex];
       if (current.roundStatus !== "active") return state;
 
-      const players = state.players.map((p, i) => {
-        if (i !== state.currentPlayerIndex) return p;
-        return option.correct
-          ? { ...p, pendingPoints: p.pendingPoints + 1 }
-          : { ...p, pendingPoints: 0, roundStatus: "failed" as const };
-      });
-
-      const next: GameState = {
+      const revealed: GameState = {
         ...state,
-        players,
         revealedOptions: [...state.revealedOptions, action.optionIndex],
       };
-      return advanceOrEnd(next);
+
+      // Answer cards: reveal the true answer and wait for the table's verdict.
+      // No scoring or turn change happens until JUDGE_ANSWER.
+      if (isAnswerCard(card)) {
+        return { ...revealed, judgingOptionIndex: action.optionIndex };
+      }
+
+      // Boolean cards auto-validate on the tap. (card is narrowed to
+      // BooleanCard here, so the option carries a `correct` flag.)
+      return applyVerdict(revealed, card.options[action.optionIndex].correct);
+    }
+
+    case "JUDGE_ANSWER": {
+      if (state.phase !== "playing") return state;
+      if (state.judgingOptionIndex === null) return state;
+      const judged: GameState = {
+        ...state,
+        judgingOptionIndex: null,
+        optionVerdicts: {
+          ...state.optionVerdicts,
+          [state.judgingOptionIndex]: action.correct,
+        },
+      };
+      return applyVerdict(judged, action.correct);
     }
 
     case "PASS": {
       if (state.phase !== "playing") return state;
+      if (state.judgingOptionIndex !== null) return state;
       const current = state.players[state.currentPlayerIndex];
       if (current.roundStatus !== "active") return state;
       const players = state.players.map((p, i) =>
@@ -150,19 +185,11 @@ export function reducer(state: GameState, action: Action): GameState {
 
     case "TIME_OUT": {
       if (state.phase !== "playing") return state;
+      if (state.judgingOptionIndex !== null) return state;
       const current = state.players[state.currentPlayerIndex];
       if (current.roundStatus !== "active") return state;
-
-      const players = state.players.map((p, i) => {
-        if (i !== state.currentPlayerIndex) return p;
-        return { ...p, pendingPoints: 0, roundStatus: "failed" as const };
-      });
-
-      const next: GameState = {
-        ...state,
-        players,
-      };
-      return advanceOrEnd(next);
+      // Running out of time is the same consequence as a wrong answer.
+      return applyVerdict(state, false);
     }
 
     case "NEXT_ROUND": {

@@ -339,6 +339,24 @@
         { "text": "Hiedra Venenosa (Poison Ivy)", "correct": false, "info": "No aparece en la trilogía de Nolan" },
         { "text": "Sr. Frío (Mr. Freeze)", "correct": false, "info": "No aparece en la trilogía de Nolan" }
       ]
+    },
+    {
+      "id": "movie-021",
+      "type": "answer",
+      "category": "Cine",
+      "question": "¿En qué década se estrenó cada una de estas películas? (decilo en voz alta)",
+      "options": [
+        { "text": "El Padrino", "answer": "Años 70", "info": "1972" },
+        { "text": "Titanic", "answer": "Años 90", "info": "1997" },
+        { "text": "Pulp Fiction", "answer": "Años 90", "info": "1994" },
+        { "text": "Volver al futuro", "answer": "Años 80", "info": "1985" },
+        { "text": "El Rey León", "answer": "Años 90", "info": "1994" },
+        { "text": "Parasite", "answer": "Años 2010", "info": "2019" },
+        { "text": "Matrix", "answer": "Años 90", "info": "1999" },
+        { "text": "Gladiador", "answer": "Años 2000", "info": "2000" },
+        { "text": "Psicosis", "answer": "Años 60", "info": "1960" },
+        { "text": "Avatar", "answer": "Años 2000", "info": "2009" }
+      ]
     }
   ]
 }

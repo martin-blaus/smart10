@@ -229,6 +229,92 @@ describe("TIME_OUT", () => {
   });
 });
 
+describe("answer cards (self-judged)", () => {
+  // card-011 is an answer-type card (10 answer options, no correct flags).
+  const answering = (players: Player[], over: Partial<GameState> = {}): GameState =>
+    playing(players, { currentCardId: "card-011", ...over });
+
+  it("TAP_OPTION reveals the answer and waits for a verdict without scoring", () => {
+    const s = reducer(answering([player("A"), player("B")]), {
+      type: "TAP_OPTION",
+      optionIndex: 3,
+    });
+    expect(s.revealedOptions).toEqual([3]);
+    expect(s.judgingOptionIndex).toBe(3);
+    expect(s.players[0].pendingPoints).toBe(0);
+    expect(s.players[0].roundStatus).toBe("active");
+    expect(s.currentPlayerIndex).toBe(0); // turn has not advanced
+    expect(s.phase).toBe("playing");
+  });
+
+  it("blocks TAP_OPTION, PASS and TIME_OUT while a verdict is pending", () => {
+    const start = answering([player("A"), player("B")], {
+      revealedOptions: [3],
+      judgingOptionIndex: 3,
+    });
+    expect(reducer(start, { type: "TAP_OPTION", optionIndex: 5 })).toBe(start);
+    expect(reducer(start, { type: "PASS" })).toBe(start);
+    expect(reducer(start, { type: "TIME_OUT" })).toBe(start);
+  });
+
+  it("JUDGE_ANSWER correct adds a pending point, records the verdict, advances", () => {
+    const start = answering([player("A"), player("B")], {
+      revealedOptions: [3],
+      judgingOptionIndex: 3,
+    });
+    const s = reducer(start, { type: "JUDGE_ANSWER", correct: true });
+    expect(s.players[0].pendingPoints).toBe(1);
+    expect(s.players[0].roundStatus).toBe("active");
+    expect(s.judgingOptionIndex).toBeNull();
+    expect(s.optionVerdicts).toEqual({ 3: true });
+    expect(s.currentPlayerIndex).toBe(1);
+  });
+
+  it("JUDGE_ANSWER wrong clears pending points and fails the player", () => {
+    const start = answering([player("A", { pendingPoints: 3, score: 5 }), player("B")], {
+      revealedOptions: [3],
+      judgingOptionIndex: 3,
+    });
+    const s = reducer(start, { type: "JUDGE_ANSWER", correct: false });
+    expect(s.players[0].roundStatus).toBe("failed");
+    expect(s.players[0].pendingPoints).toBe(0);
+    expect(s.players[0].score).toBe(5); // banked score untouched
+    expect(s.optionVerdicts).toEqual({ 3: false });
+    expect(s.currentPlayerIndex).toBe(1);
+  });
+
+  it("JUDGE_ANSWER is a no-op when no verdict is pending", () => {
+    const start = answering([player("A"), player("B")]);
+    expect(reducer(start, { type: "JUDGE_ANSWER", correct: true })).toBe(start);
+  });
+
+  it("ends the round and banks when the last option is judged", () => {
+    const start = answering(
+      [player("A", { pendingPoints: 4 }), player("B", { roundStatus: "failed" })],
+      { revealedOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], judgingOptionIndex: 9 },
+    );
+    const s = reducer(start, { type: "JUDGE_ANSWER", correct: true });
+    expect(s.phase).toBe("roundEnd");
+    expect(s.players[0].roundStatus).toBe("passed");
+    expect(s.players[0].score).toBe(5); // pending 4 + 1, banked
+  });
+
+  it("START_GAME and NEXT_ROUND reset the judging state", () => {
+    const s = reducer(initialState, {
+      type: "START_GAME",
+      players: [
+        { name: "Ana", token: "🦊" },
+        { name: "Beto", token: "🦉" },
+      ],
+      targetScore: 15,
+      deck: ["card-011", "card-002"],
+      blitz: false,
+    });
+    expect(s.judgingOptionIndex).toBeNull();
+    expect(s.optionVerdicts).toEqual({});
+  });
+});
+
 // Type-only touch so RoundStatus stays referenced if tests are trimmed.
 const _status: RoundStatus = "active";
 void _status;

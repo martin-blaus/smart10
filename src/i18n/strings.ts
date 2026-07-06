@@ -36,6 +36,12 @@ export const strings = {
   correctSo: "¡Correcto!",
   wrongSo: "¡Fallaste!",
 
+  // Self-judged (answer) cards
+  judgePrompt: "¿La acertó?",
+  judgeAnswerWas: "La respuesta era:",
+  judgeCorrect: "Sí, ¡acertó!",
+  judgeWrong: "No, falló",
+
   // Round status labels
   statusActive: "Jugando",
   statusPassed: "Se plantó",

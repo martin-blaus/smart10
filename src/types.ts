@@ -22,6 +22,12 @@ export interface GameState {
   usedCardIds: string[]; // cards already played this game
   currentCardId: string | null;
   revealedOptions: number[]; // option indexes revealed on the current card
+  // Answer-card option that is revealed and awaiting the group's verdict, or
+  // null when no judgment is pending.
+  judgingOptionIndex: number | null;
+  // Verdicts delivered on answer-card options this card (index → judged
+  // correct). Used for rendering the peg green/red; cleared each new card.
+  optionVerdicts: Record<number, boolean>;
   targetScore: number;
   winnerIndexes: number[]; // filled when phase === "gameOver"
   blitz: boolean;
@@ -36,6 +42,7 @@ export type Action =
       blitz: boolean;
     }
   | { type: "TAP_OPTION"; optionIndex: number }
+  | { type: "JUDGE_ANSWER"; correct: boolean }
   | { type: "PASS" }
   | { type: "NEXT_ROUND" }
   | { type: "RESTART" }

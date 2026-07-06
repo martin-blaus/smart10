@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import type { Action, GameState } from "../types";
 import { getCard } from "../game/deck";
+import { isAnswerCard, isAnswerCardOption } from "../../data";
 import { strings } from "../i18n/strings";
 import { RoundCard } from "../components/round_card";
 import { TurnBanner } from "../components/turn_banner";
 import { Scoreboard } from "../components/scoreboard";
 import { HandoffOverlay } from "../components/handoff_overlay";
+import { JudgePanel } from "../components/judge_panel";
 import { ConfirmDialog } from "../components/confirm_dialog";
 import { sounds } from "../sounds";
 import { MuteButton } from "../components/mute_button";
@@ -101,7 +103,8 @@ export function GameScreen({ state, dispatch }: Props) {
       handoffPlayer === null &&
       !confirmingPass &&
       !animatingBanking &&
-      justRevealedIndex === null
+      justRevealedIndex === null &&
+      state.judgingOptionIndex === null
     ) {
       setTimeLeft(15);
     }
@@ -112,6 +115,7 @@ export function GameScreen({ state, dispatch }: Props) {
     confirmingPass,
     animatingBanking,
     justRevealedIndex,
+    state.judgingOptionIndex,
     state.blitz,
     state.phase,
   ]);
@@ -119,6 +123,7 @@ export function GameScreen({ state, dispatch }: Props) {
   useEffect(() => {
     if (!state.blitz || state.phase !== "playing") return;
     if (handoffPlayer !== null || confirmingPass || animatingBanking || justRevealedIndex !== null) return;
+    if (state.judgingOptionIndex !== null) return;
 
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
@@ -139,6 +144,7 @@ export function GameScreen({ state, dispatch }: Props) {
     confirmingPass,
     animatingBanking,
     justRevealedIndex,
+    state.judgingOptionIndex,
     state.currentPlayerIndex,
     handleTimeout,
   ]);
@@ -183,10 +189,25 @@ export function GameScreen({ state, dispatch }: Props) {
 
   const current = state.players[state.currentPlayerIndex];
 
+  const judgingOption =
+    state.judgingOptionIndex !== null
+      ? card.options[state.judgingOptionIndex]
+      : null;
+  const judgingAnswer =
+    judgingOption && isAnswerCardOption(judgingOption) ? judgingOption.answer : null;
+
   const handleTap = (optionIndex: number) => {
     if (animatingBanking) return;
     sounds.tap();
     setJustRevealedIndex(optionIndex);
+
+    // Answer cards: reveal the true answer and wait for the table's verdict.
+    // Scoring, the result flash, and the handoff all happen on JUDGE_ANSWER.
+    if (isAnswerCard(card)) {
+      dispatch({ type: "TAP_OPTION", optionIndex });
+      return;
+    }
+
     tapOccurredRef.current = true;
 
     const correct = card.options[optionIndex]?.correct;
@@ -215,6 +236,20 @@ export function GameScreen({ state, dispatch }: Props) {
 
       dispatch({ type: "TAP_OPTION", optionIndex });
     }
+  };
+
+  // The table's decision on a spoken answer. Mirrors a boolean tap's aftermath:
+  // flash the result and hand off to the next player on the resulting turn.
+  const handleVerdict = (correct: boolean) => {
+    setJustRevealedIndex(null);
+    setLastResult(correct ? "correct" : "wrong");
+    tapOccurredRef.current = true;
+    if (correct) {
+      sounds.correct();
+    } else {
+      sounds.wrong();
+    }
+    dispatch({ type: "JUDGE_ANSWER", correct });
   };
 
   const doPass = () => {
@@ -296,6 +331,7 @@ export function GameScreen({ state, dispatch }: Props) {
             revealed={state.revealedOptions}
             revealAll
             questionAs="p"
+            verdicts={state.optionVerdicts}
           />
         </div>
         <ul className="w-full flex flex-col gap-2">
@@ -404,15 +440,20 @@ export function GameScreen({ state, dispatch }: Props) {
       <RoundCard
         card={card}
         revealed={state.revealedOptions}
-        disabled={handoffPlayer !== null || animatingBanking}
+        disabled={
+          handoffPlayer !== null ||
+          animatingBanking ||
+          state.judgingOptionIndex !== null
+        }
         onTap={handleTap}
         justRevealedIndex={justRevealedIndex}
+        verdicts={state.optionVerdicts}
       />
 
       <button
         id="pass-btn"
         onClick={handlePass}
-        disabled={animatingBanking}
+        disabled={animatingBanking || state.judgingOptionIndex !== null}
         className="btn-token text-lg mt-1"
       >
         {strings.pass}
@@ -453,6 +494,10 @@ export function GameScreen({ state, dispatch }: Props) {
           }}
           onCancel={() => setConfirmingPass(false)}
         />
+      )}
+
+      {judgingAnswer !== null && (
+        <JudgePanel answer={judgingAnswer} onVerdict={handleVerdict} />
       )}
 
       {handoffPlayer !== null && (

@@ -260,6 +260,42 @@
         { "text": "Etiopía", "correct": true },
         { "text": "India", "correct": false, "info": "Asia" }
       ]
+    },
+    {
+      "id": "card-011",
+      "type": "answer",
+      "category": "Historia",
+      "question": "¿En qué siglo nació cada uno de estos personajes? (decilo en voz alta)",
+      "options": [
+        { "text": "Frida Kahlo", "answer": "Siglo XX", "info": "1907, México" },
+        { "text": "Napoleón Bonaparte", "answer": "Siglo XVIII", "info": "1769" },
+        { "text": "Leonardo da Vinci", "answer": "Siglo XV", "info": "1452" },
+        { "text": "William Shakespeare", "answer": "Siglo XVI", "info": "1564" },
+        { "text": "Cleopatra", "answer": "Siglo I a. C.", "info": "69 a. C." },
+        { "text": "Albert Einstein", "answer": "Siglo XIX", "info": "1879" },
+        { "text": "Isaac Newton", "answer": "Siglo XVII", "info": "1643" },
+        { "text": "Juana de Arco", "answer": "Siglo XV", "info": "1412" },
+        { "text": "Simón Bolívar", "answer": "Siglo XVIII", "info": "1783" },
+        { "text": "Marie Curie", "answer": "Siglo XIX", "info": "1867" }
+      ]
+    },
+    {
+      "id": "card-012",
+      "type": "answer",
+      "category": "Gastronomía",
+      "question": "¿De qué país es originario cada uno de estos platos? (decilo en voz alta)",
+      "options": [
+        { "text": "Sushi", "answer": "Japón" },
+        { "text": "Paella", "answer": "España" },
+        { "text": "Pizza", "answer": "Italia" },
+        { "text": "Tacos", "answer": "México" },
+        { "text": "Pierogi", "answer": "Polonia" },
+        { "text": "Moussaka", "answer": "Grecia" },
+        { "text": "Ceviche", "answer": "Perú" },
+        { "text": "Pad Thai", "answer": "Tailandia" },
+        { "text": "Feijoada", "answer": "Brasil" },
+        { "text": "Poutine", "answer": "Canadá" }
+      ]
     }
   ]
 }

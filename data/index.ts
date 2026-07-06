@@ -1,4 +1,13 @@
-export type { Card, CardOption, Dataset } from "./types";
+export type {
+  Card,
+  CardOption,
+  BooleanCard,
+  BooleanCardOption,
+  AnswerCard,
+  AnswerCardOption,
+  Dataset,
+} from "./types";
+export { isAnswerCard, isAnswerCardOption } from "./types";
 import type { Card, Dataset } from "./types";
 
 import datasetJson from "./dataset.json";
