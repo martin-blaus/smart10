@@ -1,0 +1,184 @@
+{
+  "cards": [
+    {
+      "id": "asado-001",
+      "type": "answer",
+      "category": "Asado",
+      "question": "¿De qué parte de la vaca viene cada corte? (decilo en voz alta)",
+      "options": [
+        { "text": "Vacío", "answer": "La panza" },
+        { "text": "Asado (tira de asado)", "answer": "Las costillas" },
+        { "text": "Matambre", "answer": "Entre el cuero y las costillas" },
+        { "text": "Bife de chorizo", "answer": "El lomo alto (bife angosto)" },
+        { "text": "Colita de cuadril", "answer": "El cuadril" },
+        { "text": "Entraña", "answer": "El diafragma" },
+        { "text": "Chinchulines", "answer": "El intestino delgado" },
+        { "text": "Molleja", "answer": "El timo (una glándula)" },
+        { "text": "Ojo de bife", "answer": "El costillar, cerca del lomo" },
+        { "text": "Lomo", "answer": "La zona lumbar, el corte más tierno" }
+      ]
+    },
+    {
+      "id": "asado-002",
+      "type": "answer",
+      "category": "Fútbol picante",
+      "question": "¿Boca, River o Selección? ¿Con qué equipo se lo recuerda más a cada ídolo?",
+      "options": [
+        { "text": "Diego Maradona", "answer": "Selección" },
+        { "text": "Juan Román Riquelme", "answer": "Boca" },
+        { "text": "Enzo Francescoli", "answer": "River" },
+        { "text": "Martín Palermo", "answer": "Boca" },
+        { "text": "Ariel Ortega", "answer": "River" },
+        { "text": "Gabriel Batistuta", "answer": "Selección" },
+        { "text": "Carlos Tevez", "answer": "Boca" },
+        { "text": "Marcelo Gallardo", "answer": "River" },
+        { "text": "Lionel Messi", "answer": "Selección" },
+        { "text": "Fernando Cavenaghi", "answer": "River" }
+      ]
+    },
+    {
+      "id": "asado-003",
+      "type": "answer",
+      "category": "Lunfardo",
+      "question": "¿Qué significa cada palabra lunfarda? (decilo en voz alta)",
+      "options": [
+        { "text": "Laburo", "answer": "Trabajo" },
+        { "text": "Mango", "answer": "Peso (dinero)" },
+        { "text": "Quilombo", "answer": "Lío o desorden" },
+        { "text": "Bondi", "answer": "Colectivo (bus)" },
+        { "text": "Pibe", "answer": "Chico o joven" },
+        { "text": "Chamuyo", "answer": "Palabrería para conquistar o convencer" },
+        { "text": "Gil", "answer": "Tonto, ingenuo" },
+        { "text": "Bardo", "answer": "Problema o conflicto" },
+        { "text": "Fiaca", "answer": "Pereza" },
+        { "text": "Chabón", "answer": "Tipo, persona" }
+      ]
+    },
+    {
+      "id": "asado-004",
+      "type": "answer",
+      "category": "TV argentina",
+      "question": "¿Qué programa hizo famoso a cada conductor? (decilo en voz alta)",
+      "options": [
+        { "text": "Marcelo Tinelli", "answer": "ShowMatch" },
+        { "text": "Susana Giménez", "answer": "Hola Susana" },
+        { "text": "Mirtha Legrand", "answer": "La noche de Mirtha" },
+        { "text": "Guido Kaczka", "answer": "Cuánto vale el show" },
+        { "text": "Marley", "answer": "Por el mundo" },
+        { "text": "Guillermo Francella", "answer": "Casados con hijos", "info": "Como actor protagonista" },
+        { "text": "Julián Weich", "answer": "Feliz Domingo" },
+        { "text": "Jorge Rial", "answer": "Intrusos" },
+        { "text": "Andy Kusnetzoff", "answer": "PH: Podemos Hablar" },
+        { "text": "Moria Casán", "answer": "¡Fascinante!" }
+      ]
+    },
+    {
+      "id": "asado-005",
+      "type": "answer",
+      "category": "Comida",
+      "question": "¿Dulce o salado? ¿Cómo se clasifica cada comida argentina?",
+      "options": [
+        { "text": "Facturas", "answer": "Dulce" },
+        { "text": "Empanadas", "answer": "Salado" },
+        { "text": "Alfajor", "answer": "Dulce" },
+        { "text": "Choripán", "answer": "Salado" },
+        { "text": "Dulce de leche", "answer": "Dulce" },
+        { "text": "Provoleta", "answer": "Salado" },
+        { "text": "Milanesa", "answer": "Salado" },
+        { "text": "Chipá", "answer": "Salado" },
+        { "text": "Panqueque con dulce de leche", "answer": "Dulce" },
+        { "text": "Locro", "answer": "Salado" }
+      ]
+    },
+    {
+      "id": "asado-006",
+      "type": "answer",
+      "category": "Fútbol picante",
+      "question": "¿En qué año pasó cada hito futbolero argentino? (vale ±1 año)",
+      "options": [
+        { "text": "Gol de \"la Mano de Dios\" a Inglaterra", "answer": "1986" },
+        { "text": "Primer Mundial ganado por Argentina", "answer": "1978" },
+        { "text": "Segundo Mundial ganado por Argentina", "answer": "1986" },
+        { "text": "Tercer Mundial ganado por Argentina (Qatar)", "answer": "2022" },
+        { "text": "Final perdida ante Alemania en Brasil", "answer": "2014" },
+        { "text": "Debut de Messi en la Selección mayor", "answer": "2005" },
+        { "text": "Inauguración de la Bombonera", "answer": "1940" },
+        { "text": "Fundación de River Plate", "answer": "1901" },
+        { "text": "Fundación de Boca Juniors", "answer": "1905" },
+        { "text": "Primer superclásico Boca-River", "answer": "1913" }
+      ]
+    },
+    {
+      "id": "asado-007",
+      "type": "answer",
+      "category": "Lunfardo",
+      "question": "¿Qué palabra lunfarda define cada cosa? Todas empiezan con M. (decilo en voz alta)",
+      "options": [
+        { "text": "Comer", "answer": "Morfar" },
+        { "text": "Dinero", "answer": "Mango" },
+        { "text": "Mujer joven", "answer": "Mina" },
+        { "text": "Mentira o exageración", "answer": "Macana" },
+        { "text": "Pobreza extrema", "answer": "Mishiadura" },
+        { "text": "Muy grande o muy tranquilo", "answer": "Manso" },
+        { "text": "Tarea o recado", "answer": "Mandado" },
+        { "text": "Amigo cercano (\"che, ¿cómo andás?\")", "answer": "Mano" },
+        { "text": "Mala suerte", "answer": "Mufa" },
+        { "text": "De mal humor por la mala suerte", "answer": "Mufado" }
+      ]
+    },
+    {
+      "id": "asado-008",
+      "type": "answer",
+      "category": "TV argentina",
+      "question": "¿En qué año se estrenó cada programa o película argentina? (vale ±2 años)",
+      "options": [
+        { "text": "Casados con hijos", "answer": "2005" },
+        { "text": "El Marginal", "answer": "2016" },
+        { "text": "Okupas", "answer": "2000" },
+        { "text": "Los Simuladores", "answer": "2002" },
+        { "text": "Relatos Salvajes", "answer": "2014" },
+        { "text": "El secreto de sus ojos", "answer": "2009" },
+        { "text": "Nueve Reinas", "answer": "2000" },
+        { "text": "Argentina, 1985", "answer": "2022" },
+        { "text": "Casi Ángeles", "answer": "2007" },
+        { "text": "Chiquititas", "answer": "1995" }
+      ]
+    },
+    {
+      "id": "asado-009",
+      "type": "answer",
+      "category": "Comida",
+      "question": "¿Con qué se acompaña tradicionalmente cada comida? (decilo en voz alta)",
+      "options": [
+        { "text": "Asado", "answer": "Chimichurri" },
+        { "text": "Empanadas", "answer": "Salsa picante" },
+        { "text": "Choripán", "answer": "Salsa criolla" },
+        { "text": "Milanesa", "answer": "Puré" },
+        { "text": "Locro", "answer": "Salsa picante (quiquirimichi)" },
+        { "text": "Provoleta", "answer": "Pan" },
+        { "text": "Mate", "answer": "Bombilla" },
+        { "text": "Fernet", "answer": "Coca-Cola" },
+        { "text": "Pizza a la piedra", "answer": "Fainá" },
+        { "text": "Torta frita", "answer": "Mate" }
+      ]
+    },
+    {
+      "id": "asado-010",
+      "type": "answer",
+      "category": "Fútbol picante",
+      "question": "¿1978, 1986 o 2022? ¿En cuál de esos Mundiales campeones jugó cada figura?",
+      "options": [
+        { "text": "Mario Kempes", "answer": "1978" },
+        { "text": "Diego Maradona", "answer": "1986" },
+        { "text": "Lionel Messi", "answer": "2022" },
+        { "text": "Ubaldo Fillol", "answer": "1978" },
+        { "text": "Jorge Valdano", "answer": "1986" },
+        { "text": "Ángel Di María", "answer": "2022" },
+        { "text": "Daniel Passarella", "answer": "1978" },
+        { "text": "Jorge Burruchaga", "answer": "1986" },
+        { "text": "Julián Álvarez", "answer": "2022" },
+        { "text": "Emiliano \"Dibu\" Martínez", "answer": "2022" }
+      ]
+    }
+  ]
+}

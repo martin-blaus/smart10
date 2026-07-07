@@ -8,11 +8,26 @@ const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 8;
 const TARGET_OPTIONS = [10, 15, 20];
 
-const EMOJI_POOL = ["🦊", "🦉", "🐢", "🐺", "🦁", "🐸", "🦜", "🐙", "🦔", "🐴", "🦩", "🐳"];
+const EMOJI_POOL = [
+  "🦊",
+  "🦉",
+  "🐢",
+  "🐺",
+  "🦁",
+  "🐸",
+  "🦜",
+  "🐙",
+  "🦔",
+  "🐴",
+  "🦩",
+  "🐳",
+];
 
 const DATASET_LABELS: Record<DeckChoice, string> = {
   argentina: strings.datasetArgentina,
   general: strings.datasetGeneral,
+  asado: strings.datasetAsado,
+  decadas: strings.datasetDecadas,
   all: strings.datasetAll,
 };
 
@@ -46,7 +61,10 @@ export function SetupScreen({ onStart }: Props) {
   const addPlayer = () => {
     if (names.length < MAX_PLAYERS) {
       setNames((prev) => [...prev, ""]);
-      setTokens((prev) => [...prev, EMOJI_POOL[prev.length % EMOJI_POOL.length]]);
+      setTokens((prev) => [
+        ...prev,
+        EMOJI_POOL[prev.length % EMOJI_POOL.length],
+      ]);
     }
   };
 
@@ -68,7 +86,9 @@ export function SetupScreen({ onStart }: Props) {
     );
   };
 
-  const trimmed = names.map((n, i) => n.trim() || strings.setupPlayerPlaceholder(i + 1));
+  const trimmed = names.map(
+    (n, i) => n.trim() || strings.setupPlayerPlaceholder(i + 1),
+  );
   const canStart = mode === "solo" || names.length >= MIN_PLAYERS;
 
   const handleStart = () => {
@@ -89,7 +109,9 @@ export function SetupScreen({ onStart }: Props) {
         <MuteButton />
       </div>
       <div className="text-center mb-9">
-        <span className="eyebrow text-brass block mb-1">Juego de preguntas</span>
+        <span className="eyebrow text-brass block mb-1">
+          Juego de preguntas
+        </span>
         <h1 className="text-[clamp(2.25rem,11vw,3rem)] font-bold text-parchment tracking-tight leading-none">
           {strings.appTitle}
         </h1>
@@ -99,7 +121,9 @@ export function SetupScreen({ onStart }: Props) {
       </div>
 
       <div className="w-full max-w-sm">
-        <h2 className="eyebrow text-parchment-dim mb-2.5">{strings.setupMode}</h2>
+        <h2 className="eyebrow text-parchment-dim mb-2.5">
+          {strings.setupMode}
+        </h2>
         <div className="flex gap-2.5">
           {(["solo", "multi"] as Mode[]).map((m) => (
             <button

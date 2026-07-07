@@ -1,0 +1,184 @@
+{
+  "cards": [
+    {
+      "id": "dec-001",
+      "type": "answer",
+      "category": "Música",
+      "question": "¿En qué año salió cada álbum o canción? (vale ±2 años)",
+      "options": [
+        { "text": "Thriller (Michael Jackson)", "answer": "1982" },
+        { "text": "Nevermind (Nirvana)", "answer": "1991" },
+        { "text": "Like a Virgin (Madonna)", "answer": "1984" },
+        { "text": "...Baby One More Time (Britney Spears)", "answer": "1998" },
+        { "text": "Canción Animal (Soda Stereo)", "answer": "1990" },
+        { "text": "Confessions (Usher)", "answer": "2004" },
+        { "text": "Livin' la Vida Loca (Ricky Martin)", "answer": "1999" },
+        { "text": "Poker Face (Lady Gaga)", "answer": "2008" },
+        { "text": "Smells Like Teen Spirit (Nirvana)", "answer": "1991" },
+        { "text": "Sweet Child O' Mine (Guns N' Roses)", "answer": "1987" }
+      ]
+    },
+    {
+      "id": "dec-002",
+      "type": "answer",
+      "category": "Tecnología",
+      "question": "¿80s, 90s o 2000s? ¿De qué década es cada invento o gadget?",
+      "options": [
+        { "text": "Walkman", "answer": "80s" },
+        { "text": "Tamagotchi", "answer": "90s" },
+        { "text": "iPod", "answer": "2000s" },
+        { "text": "Fax de oficina", "answer": "80s" },
+        { "text": "Nintendo Game Boy", "answer": "90s" },
+        { "text": "MSN Messenger", "answer": "2000s" },
+        { "text": "Casetera de auto", "answer": "80s" },
+        { "text": "Beeper (localizador)", "answer": "90s" },
+        { "text": "Facebook", "answer": "2000s" },
+        { "text": "Disco de vinilo (auge masivo)", "answer": "80s" }
+      ]
+    },
+    {
+      "id": "dec-003",
+      "type": "answer",
+      "category": "Historia",
+      "question": "¿En qué año pasó cada hecho? (vale ±2 años)",
+      "options": [
+        { "text": "Caída del Muro de Berlín", "answer": "1989" },
+        { "text": "Lanzamiento del primer iPhone", "answer": "2007" },
+        { "text": "Estreno de Titanic", "answer": "1997" },
+        { "text": "Comienzo de MTV", "answer": "1981" },
+        { "text": "Disolución de la URSS", "answer": "1991" },
+        { "text": "El \"efecto Y2K\" (miedo del cambio de milenio)", "answer": "2000" },
+        { "text": "Estreno de Matrix", "answer": "1999" },
+        { "text": "Lanzamiento de la primera PlayStation", "answer": "1994" },
+        { "text": "Primer episodio de Friends", "answer": "1994" },
+        { "text": "Estreno de Harry Potter y la piedra filosofal", "answer": "2001" }
+      ]
+    },
+    {
+      "id": "dec-004",
+      "type": "answer",
+      "category": "Cine y TV",
+      "question": "¿80s, 90s o 2000s? ¿De qué década es cada serie o película?",
+      "options": [
+        { "text": "Volver al futuro", "answer": "80s" },
+        { "text": "Friends", "answer": "90s" },
+        { "text": "Shrek", "answer": "2000s" },
+        { "text": "E.T., el extraterrestre", "answer": "80s" },
+        { "text": "Seinfeld", "answer": "90s" },
+        { "text": "Piratas del Caribe", "answer": "2000s" },
+        { "text": "Los Cazafantasmas", "answer": "80s" },
+        { "text": "Titanic", "answer": "90s" },
+        { "text": "El Señor de los Anillos", "answer": "2000s" },
+        { "text": "Beverly Hills, 90210", "answer": "90s" }
+      ]
+    },
+    {
+      "id": "dec-005",
+      "type": "answer",
+      "category": "Música",
+      "question": "¿Quién cantaba cada éxito? (decilo en voz alta)",
+      "options": [
+        { "text": "Like a Prayer", "answer": "Madonna" },
+        { "text": "Smells Like Teen Spirit", "answer": "Nirvana" },
+        { "text": "I Want It That Way", "answer": "Backstreet Boys" },
+        { "text": "Billie Jean", "answer": "Michael Jackson" },
+        { "text": "Wannabe", "answer": "Spice Girls" },
+        { "text": "Umbrella", "answer": "Rihanna" },
+        { "text": "Livin' on a Prayer", "answer": "Bon Jovi" },
+        { "text": "Torn", "answer": "Natalie Imbruglia" },
+        { "text": "In Da Club", "answer": "50 Cent" },
+        { "text": "Take On Me", "answer": "a-ha" }
+      ]
+    },
+    {
+      "id": "dec-006",
+      "type": "answer",
+      "category": "Videojuegos",
+      "question": "¿En qué año se estrenó cada videojuego? (vale ±2 años)",
+      "options": [
+        { "text": "Super Mario Bros", "answer": "1985" },
+        { "text": "Tetris", "answer": "1984" },
+        { "text": "Pokémon Rojo y Azul", "answer": "1996" },
+        { "text": "GTA III", "answer": "2001" },
+        { "text": "The Sims", "answer": "2000" },
+        { "text": "Doom", "answer": "1993" },
+        { "text": "Crash Bandicoot", "answer": "1996" },
+        { "text": "Halo: Combat Evolved", "answer": "2001" },
+        { "text": "Pac-Man", "answer": "1980" },
+        { "text": "World of Warcraft", "answer": "2004" }
+      ]
+    },
+    {
+      "id": "dec-007",
+      "type": "answer",
+      "category": "Moda",
+      "question": "¿80s, 90s o 2000s? ¿De qué década es cada moda o estilo?",
+      "options": [
+        { "text": "Hombreras y pelo cardado", "answer": "80s" },
+        { "text": "Jeans anchos y estilo grunge", "answer": "90s" },
+        { "text": "Jeans de tiro bajo (low-rise)", "answer": "2000s" },
+        { "text": "Calzas fluorescentes", "answer": "80s" },
+        { "text": "Zapatillas Buffalo con plataforma", "answer": "90s" },
+        { "text": "Cinturones anchos sobre la remera", "answer": "2000s" },
+        { "text": "Calentadores (leg warmers)", "answer": "80s" },
+        { "text": "Jean overol (jardinero)", "answer": "90s" },
+        { "text": "Remeras con frases y brillantes", "answer": "2000s" },
+        { "text": "Peinado mullet", "answer": "80s" }
+      ]
+    },
+    {
+      "id": "dec-008",
+      "type": "answer",
+      "category": "Tecnología",
+      "question": "¿En qué año se fundó o lanzó cada empresa o sitio? (vale ±2 años)",
+      "options": [
+        { "text": "Apple", "answer": "1976" },
+        { "text": "Google", "answer": "1998" },
+        { "text": "Amazon", "answer": "1994" },
+        { "text": "Facebook", "answer": "2004" },
+        { "text": "Napster", "answer": "1999" },
+        { "text": "Wikipedia", "answer": "2001" },
+        { "text": "MySpace", "answer": "2003" },
+        { "text": "Netflix", "answer": "1997" },
+        { "text": "YouTube", "answer": "2005" },
+        { "text": "Microsoft", "answer": "1975" }
+      ]
+    },
+    {
+      "id": "dec-009",
+      "type": "answer",
+      "category": "Cine y TV",
+      "question": "¿A qué serie o dibujo animado pertenece cada personaje? (decilo en voz alta)",
+      "options": [
+        { "text": "Bart Simpson", "answer": "Los Simpson" },
+        { "text": "Ross Geller", "answer": "Friends" },
+        { "text": "Carrie Bradshaw", "answer": "Sex and the City" },
+        { "text": "Tommy Pickles", "answer": "Rugrats" },
+        { "text": "Steve Urkel", "answer": "Family Matters" },
+        { "text": "Blossom Russo", "answer": "Blossom" },
+        { "text": "Bob Esponja", "answer": "Bob Esponja" },
+        { "text": "Dexter (el científico)", "answer": "El laboratorio de Dexter" },
+        { "text": "Ash Ketchum", "answer": "Pokémon" },
+        { "text": "Kenny McCormick", "answer": "South Park" }
+      ]
+    },
+    {
+      "id": "dec-010",
+      "type": "answer",
+      "category": "Tecnología",
+      "question": "¿80s, 90s o 2000s? ¿De qué década es cada aparato?",
+      "options": [
+        { "text": "Consola Atari 2600", "answer": "80s" },
+        { "text": "Reproductor de CD portátil (Discman)", "answer": "90s" },
+        { "text": "iPod nano", "answer": "2000s" },
+        { "text": "Videocasetera (VHS)", "answer": "80s" },
+        { "text": "Reproductor MiniDisc", "answer": "90s" },
+        { "text": "Netbook", "answer": "2000s" },
+        { "text": "Radio a casete portátil (boombox)", "answer": "80s" },
+        { "text": "Módem dial-up", "answer": "90s" },
+        { "text": "Cámara digital compacta", "answer": "2000s" },
+        { "text": "Teléfono inalámbrico de casa", "answer": "90s" }
+      ]
+    }
+  ]
+}

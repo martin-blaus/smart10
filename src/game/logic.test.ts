@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { reducer, initialState } from "./logic";
+import { reducer, initialState, emptyStats } from "./logic";
 import { shuffle } from "./deck";
 import type { GameState, Player, RoundStatus } from "../types";
 
@@ -40,7 +40,15 @@ const CORRECT = 0; // Chile
 const WRONG = 2; // Bolivia
 
 function player(name: string, over: Partial<Player> = {}): Player {
-  return { name, token: "🦊", score: 0, pendingPoints: 0, roundStatus: "active", ...over };
+  return {
+    name,
+    token: "🦊",
+    score: 0,
+    pendingPoints: 0,
+    roundStatus: "active",
+    stats: emptyStats(),
+    ...over,
+  };
 }
 
 function playing(players: Player[], over: Partial<GameState> = {}): GameState {
@@ -300,6 +308,7 @@ describe("answer cards (self-judged)", () => {
     expect(s.judgingOptionIndex).toBeNull();
     expect(s.optionVerdicts).toEqual({ 3: true });
     expect(s.currentPlayerIndex).toBe(1);
+    expect(s.players[0].stats).toMatchObject({ correct: 1, currentStreak: 1, bestStreak: 1 });
   });
 
   it("JUDGE_ANSWER wrong clears pending points and fails the player", () => {
@@ -313,6 +322,7 @@ describe("answer cards (self-judged)", () => {
     expect(s.players[0].score).toBe(5); // banked score untouched
     expect(s.optionVerdicts).toEqual({ 3: false });
     expect(s.currentPlayerIndex).toBe(1);
+    expect(s.players[0].stats).toMatchObject({ wrong: 1, timeouts: 0, currentStreak: 0 });
   });
 
   it("JUDGE_ANSWER is a no-op when no verdict is pending", () => {
@@ -344,6 +354,92 @@ describe("answer cards (self-judged)", () => {
     });
     expect(s.judgingOptionIndex).toBeNull();
     expect(s.optionVerdicts).toEqual({});
+  });
+});
+
+describe("stats", () => {
+  it("accumulates a correct streak and resets it on a wrong answer", () => {
+    const start = playing([player("A"), player("B", { roundStatus: "failed" })]);
+    const s1 = reducer(start, { type: "TAP_OPTION", optionIndex: CORRECT });
+    expect(s1.players[0].stats).toMatchObject({ correct: 1, currentStreak: 1, bestStreak: 1 });
+    expect(s1.currentPlayerIndex).toBe(0); // sole survivor keeps the turn
+
+    const s2 = reducer(s1, { type: "TAP_OPTION", optionIndex: 1 }); // also correct
+    expect(s2.players[0].stats).toMatchObject({ correct: 2, currentStreak: 2, bestStreak: 2 });
+
+    const s3 = reducer(s2, { type: "TAP_OPTION", optionIndex: WRONG });
+    expect(s3.players[0].stats).toMatchObject({
+      correct: 2,
+      wrong: 1,
+      currentStreak: 0,
+      bestStreak: 2,
+    });
+  });
+
+  it("preserves streak stats across NEXT_ROUND", () => {
+    const players = [
+      player("A", { stats: { ...emptyStats(), currentStreak: 3, bestStreak: 3 } }),
+      player("B"),
+    ];
+    const start: GameState = { ...playing(players), phase: "roundEnd" };
+    const s = reducer(start, { type: "NEXT_ROUND" });
+    expect(s.players[0].stats).toMatchObject({ currentStreak: 3, bestStreak: 3 });
+  });
+
+  it("TIME_OUT counts as a timeout, not a wrong answer, and resets the streak", () => {
+    const start = playing([
+      player("A", { stats: { ...emptyStats(), currentStreak: 2, bestStreak: 2 } }),
+      player("B"),
+    ]);
+    const s = reducer(start, { type: "TIME_OUT" });
+    expect(s.players[0].stats).toMatchObject({
+      wrong: 0,
+      timeouts: 1,
+      currentStreak: 0,
+      bestStreak: 2,
+    });
+  });
+
+  it("PASS increments planted and tracks the best single-round bank", () => {
+    const first = reducer(
+      playing([player("A", { pendingPoints: 3 }), player("B")]),
+      { type: "PASS" },
+    );
+    expect(first.players[0].stats).toMatchObject({ planted: 1, bestRound: 3 });
+
+    const second = reducer(
+      playing([
+        player("A", { pendingPoints: 1, stats: { ...emptyStats(), planted: 1, bestRound: 3 } }),
+        player("B"),
+      ]),
+      { type: "PASS" },
+    );
+    // A smaller later round doesn't overwrite the best one.
+    expect(second.players[0].stats).toMatchObject({ planted: 2, bestRound: 3 });
+  });
+
+  it("a forced bank at round end updates bestRound but not planted", () => {
+    const start = playing(
+      [player("A", { pendingPoints: 4 }), player("B", { roundStatus: "failed" })],
+      { revealedOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+    );
+    const s = reducer(start, { type: "TAP_OPTION", optionIndex: 9 });
+    expect(s.phase).toBe("roundEnd");
+    expect(s.players[0].stats).toMatchObject({ bestRound: 5, planted: 0 });
+  });
+
+  it("START_GAME gives every player fresh stats", () => {
+    const s = reducer(initialState, {
+      type: "START_GAME",
+      players: [
+        { name: "Ana", token: "🦊" },
+        { name: "Beto", token: "🦉" },
+      ],
+      targetScore: 15,
+      deck: ["card-001"],
+      blitz: false,
+    });
+    expect(s.players.map((p) => p.stats)).toEqual([emptyStats(), emptyStats()]);
   });
 });
 

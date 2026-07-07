@@ -1,4 +1,4 @@
-import type { Action, GameState, Player } from "../types";
+import type { Action, GameState, Player, PlayerStats } from "../types";
 import { getCard } from "./deck";
 import { isAnswerCard } from "../../data";
 
@@ -18,8 +18,27 @@ export const initialState: GameState = {
   blitz: false,
 };
 
+export function emptyStats(): PlayerStats {
+  return {
+    correct: 0,
+    wrong: 0,
+    timeouts: 0,
+    planted: 0,
+    bestStreak: 0,
+    currentStreak: 0,
+    bestRound: 0,
+  };
+}
+
 function makePlayer(name: string, token: string): Player {
-  return { name, token, score: 0, pendingPoints: 0, roundStatus: "active" };
+  return {
+    name,
+    token,
+    score: 0,
+    pendingPoints: 0,
+    roundStatus: "active",
+    stats: emptyStats(),
+  };
 }
 
 // Next player (cyclic) whose round status is still "active". Returns the same
@@ -45,10 +64,17 @@ function allOptionsRevealed(state: GameState): boolean {
 }
 
 // Bank the pending points of every still-active player and move to roundEnd.
+// This is a forced bank (the card ran out or everyone else is out), not a
+// choice, so it updates bestRound but NOT the `planted` counter.
 function endRound(state: GameState): GameState {
   const players = state.players.map((p) =>
     p.roundStatus === "active"
-      ? { ...p, score: p.score + p.pendingPoints, roundStatus: "passed" as const }
+      ? {
+          ...p,
+          score: p.score + p.pendingPoints,
+          roundStatus: "passed" as const,
+          stats: { ...p.stats, bestRound: Math.max(p.stats.bestRound, p.pendingPoints) },
+        }
       : p,
   );
   return { ...state, players, phase: "roundEnd" };
@@ -102,14 +128,40 @@ function dealCard(state: GameState, startIndex: number): GameState {
 }
 
 // Apply the Smart10 consequence of a right/wrong answer to the current player,
-// then advance the turn or close the round. Shared by boolean taps and the
-// self-judged verdict on answer cards.
-function applyVerdict(state: GameState, correct: boolean): GameState {
+// then advance the turn or close the round. Shared by boolean taps, the
+// self-judged verdict on answer cards, and TIME_OUT. `cause` distinguishes a
+// timeout from a genuine wrong answer for stat-keeping purposes only.
+function applyVerdict(
+  state: GameState,
+  correct: boolean,
+  cause: "answer" | "timeout" = "answer",
+): GameState {
   const players = state.players.map((p, i) => {
     if (i !== state.currentPlayerIndex) return p;
-    return correct
-      ? { ...p, pendingPoints: p.pendingPoints + 1 }
-      : { ...p, pendingPoints: 0, roundStatus: "failed" as const };
+    if (correct) {
+      const currentStreak = p.stats.currentStreak + 1;
+      return {
+        ...p,
+        pendingPoints: p.pendingPoints + 1,
+        stats: {
+          ...p.stats,
+          correct: p.stats.correct + 1,
+          currentStreak,
+          bestStreak: Math.max(p.stats.bestStreak, currentStreak),
+        },
+      };
+    }
+    return {
+      ...p,
+      pendingPoints: 0,
+      roundStatus: "failed" as const,
+      stats: {
+        ...p.stats,
+        wrong: p.stats.wrong + (cause === "answer" ? 1 : 0),
+        timeouts: p.stats.timeouts + (cause === "timeout" ? 1 : 0),
+        currentStreak: 0,
+      },
+    };
   });
   return advanceOrEnd({ ...state, players });
 }
@@ -177,7 +229,16 @@ export function reducer(state: GameState, action: Action): GameState {
       if (current.roundStatus !== "active") return state;
       const players = state.players.map((p, i) =>
         i === state.currentPlayerIndex
-          ? { ...p, score: p.score + p.pendingPoints, roundStatus: "passed" as const }
+          ? {
+              ...p,
+              score: p.score + p.pendingPoints,
+              roundStatus: "passed" as const,
+              stats: {
+                ...p.stats,
+                planted: p.stats.planted + 1,
+                bestRound: Math.max(p.stats.bestRound, p.pendingPoints),
+              },
+            }
           : p,
       );
       return advanceOrEnd({ ...state, players });
@@ -189,7 +250,7 @@ export function reducer(state: GameState, action: Action): GameState {
       const current = state.players[state.currentPlayerIndex];
       if (current.roundStatus !== "active") return state;
       // Running out of time is the same consequence as a wrong answer.
-      return applyVerdict(state, false);
+      return applyVerdict(state, false, "timeout");
     }
 
     case "NEXT_ROUND": {

@@ -16,6 +16,8 @@ export const strings = {
   setupDataset: "Temática",
   datasetArgentina: "Argentina",
   datasetGeneral: "Trivia",
+  datasetAsado: "Asado",
+  datasetDecadas: "Décadas",
   datasetAll: "Todas",
   setupBlitz: "Modo Blitz",
   blitzActive: "Activo (15s)",
@@ -63,4 +65,15 @@ export const strings = {
   finalStandings: "Posiciones finales",
   playAgainSame: "Jugar de nuevo",
   playAgainNew: "Nuevos jugadores",
+
+  // Results — stats & awards
+  statsLine: (correct: number, misses: number, streak: number) =>
+    `${correct}✓ ${misses}✗ · racha ${streak}`,
+  awardStreak: "Racha de fuego",
+  awardDaring: "Se la jugó",
+  awardPlanted: "Rey de plantarse",
+  soloStatsCorrect: "Aciertos",
+  soloStatsWrong: "Errores",
+  soloStatsBestStreak: "Mejor racha",
+  soloStatsBestRound: "Mejor ronda",
 };

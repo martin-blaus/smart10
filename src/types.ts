@@ -3,12 +3,27 @@
 
 export type RoundStatus = "active" | "passed" | "failed";
 
+// Game-long counters used for the end-of-game awards and stat lines. Never
+// reset between rounds (only at START_GAME) — currentStreak is the one
+// exception that's mutated outside of resets, broken by a wrong answer or a
+// timeout, but NOT by planting or a new round.
+export interface PlayerStats {
+  correct: number;
+  wrong: number;
+  timeouts: number;
+  planted: number;
+  bestStreak: number;
+  currentStreak: number;
+  bestRound: number; // most points ever banked in a single round
+}
+
 export interface Player {
   name: string;
   token: string; // emoji
   score: number; // banked, permanent
   pendingPoints: number; // at risk during the current round
   roundStatus: RoundStatus;
+  stats: PlayerStats;
 }
 
 export type Phase = "setup" | "playing" | "roundEnd" | "gameOver";
