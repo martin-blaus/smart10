@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
-import type { GameState } from "../types";
+import type { GameState, PlayerStats } from "../types";
 import { strings } from "../i18n/strings";
 import { sounds } from "../sounds";
 import { pickAwards, type AwardKind } from "../game/awards";
+
+// Timeouts read as misses alongside wrong answers in the results display.
+const misses = (stats: PlayerStats) => stats.wrong + stats.timeouts;
 
 interface Props {
   state: GameState;
@@ -37,6 +40,7 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
   const winnerName = winner?.name ?? "";
   const winnerToken = winner?.token ?? "";
   const soloToken = state.players[0]?.token ?? "";
+  const soloStats = ranked[0].p.stats;
   const awards = isSolo ? [] : pickAwards(state.players);
 
   return (
@@ -62,13 +66,10 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
       {isSolo ? (
         <div className="w-full max-w-sm grid grid-cols-2 gap-2.5">
           {[
-            { label: strings.soloStatsCorrect, value: ranked[0].p.stats.correct },
-            {
-              label: strings.soloStatsWrong,
-              value: ranked[0].p.stats.wrong + ranked[0].p.stats.timeouts,
-            },
-            { label: strings.soloStatsBestStreak, value: ranked[0].p.stats.bestStreak },
-            { label: strings.soloStatsBestRound, value: ranked[0].p.stats.bestRound },
+            { label: strings.soloStatsCorrect, value: soloStats.correct },
+            { label: strings.soloStatsWrong, value: misses(soloStats) },
+            { label: strings.soloStatsBestStreak, value: soloStats.bestStreak },
+            { label: strings.soloStatsBestRound, value: soloStats.bestRound },
           ].map((stat) => (
             <div key={stat.label} className="panel rounded-2xl px-4 py-3 text-center">
               <span className="block font-display text-2xl font-bold text-parchment tabular-nums">
@@ -134,7 +135,7 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
                         (pos === 0 ? "text-ink-soft" : "text-parchment-dim")
                       }
                     >
-                      {strings.statsLine(p.stats.correct, p.stats.wrong + p.stats.timeouts, p.stats.bestStreak)}
+                      {strings.statsLine(p.stats.correct, misses(p.stats), p.stats.bestStreak)}
                     </span>
                   </span>
                 </span>

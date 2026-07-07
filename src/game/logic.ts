@@ -63,19 +63,27 @@ function allOptionsRevealed(state: GameState): boolean {
   return state.revealedOptions.length >= card.options.length;
 }
 
+// Bank a player's pending points into their permanent score. `plant` marks a
+// voluntary PASS (increments the `planted` stat); a forced bank at round end
+// (the card ran out, or everyone else is out) passes `plant: false` since
+// nobody chose to stop.
+function bank(p: Player, plant: boolean): Player {
+  return {
+    ...p,
+    score: p.score + p.pendingPoints,
+    roundStatus: "passed" as const,
+    stats: {
+      ...p.stats,
+      planted: p.stats.planted + (plant ? 1 : 0),
+      bestRound: Math.max(p.stats.bestRound, p.pendingPoints),
+    },
+  };
+}
+
 // Bank the pending points of every still-active player and move to roundEnd.
-// This is a forced bank (the card ran out or everyone else is out), not a
-// choice, so it updates bestRound but NOT the `planted` counter.
 function endRound(state: GameState): GameState {
   const players = state.players.map((p) =>
-    p.roundStatus === "active"
-      ? {
-          ...p,
-          score: p.score + p.pendingPoints,
-          roundStatus: "passed" as const,
-          stats: { ...p.stats, bestRound: Math.max(p.stats.bestRound, p.pendingPoints) },
-        }
-      : p,
+    p.roundStatus === "active" ? bank(p, false) : p,
   );
   return { ...state, players, phase: "roundEnd" };
 }
@@ -228,18 +236,7 @@ export function reducer(state: GameState, action: Action): GameState {
       const current = state.players[state.currentPlayerIndex];
       if (current.roundStatus !== "active") return state;
       const players = state.players.map((p, i) =>
-        i === state.currentPlayerIndex
-          ? {
-              ...p,
-              score: p.score + p.pendingPoints,
-              roundStatus: "passed" as const,
-              stats: {
-                ...p.stats,
-                planted: p.stats.planted + 1,
-                bestRound: Math.max(p.stats.bestRound, p.pendingPoints),
-              },
-            }
-          : p,
+        i === state.currentPlayerIndex ? bank(p, true) : p,
       );
       return advanceOrEnd({ ...state, players });
     }
