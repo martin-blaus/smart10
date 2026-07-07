@@ -2,367 +2,227 @@
   "cards": [
     {
       "id": "arg-001",
+      "type": "answer",
       "category": "Geografía",
-      "question": "¿Cuáles de estas provincias argentinas limitan con Chile?",
+      "question": "¿Cuál es la capital de cada provincia? (decila en voz alta)",
       "options": [
-        { "text": "Mendoza", "correct": true },
-        { "text": "San Juan", "correct": true },
-        { "text": "Neuquén", "correct": true },
-        { "text": "Chubut", "correct": true },
-        { "text": "Catamarca", "correct": true },
-        { "text": "Jujuy", "correct": true },
-        { "text": "Santa Cruz", "correct": true },
-        { "text": "La Pampa", "correct": false, "info": "La Pampa no tiene límites internacionales" },
-        { "text": "San Luis", "correct": false, "info": "San Luis está rodeada por otras provincias argentinas" },
-        { "text": "Córdoba", "correct": false, "info": "Córdoba se encuentra en el centro del país" }
+        { "text": "Entre Ríos", "answer": "Paraná" },
+        { "text": "Chubut", "answer": "Rawson" },
+        { "text": "Misiones", "answer": "Posadas" },
+        { "text": "Santa Cruz", "answer": "Río Gallegos" },
+        { "text": "Chaco", "answer": "Resistencia" },
+        { "text": "La Pampa", "answer": "Santa Rosa" },
+        { "text": "Río Negro", "answer": "Viedma" },
+        { "text": "Tierra del Fuego", "answer": "Ushuaia" },
+        { "text": "Buenos Aires", "answer": "La Plata" },
+        { "text": "Jujuy", "answer": "San Salvador de Jujuy" }
       ]
     },
     {
       "id": "arg-002",
       "type": "answer",
-      "category": "Música",
-      "question": "¿A qué banda o solista de rock nacional pertenecen estas famosas canciones? (decilo en voz alta)",
+      "category": "Geografía",
+      "question": "¿En qué provincia está cada lugar?",
       "options": [
-        { "text": "De música ligera", "answer": "Soda Stereo", "info": "Lanzada en el álbum Canción Animal (1990)" },
-        { "text": "Seminare", "answer": "Serú Girán", "info": "Compuesta por Charly García en 1978" },
-        { "text": "Irresponsables", "answer": "Babasónicos", "info": "De su aclamado disco Infame (2003)" },
-        { "text": "Flaca", "answer": "Andrés Calamaro", "info": "Del álbum Alta Suciedad (1997)" },
-        { "text": "La bifurcada", "answer": "Memphis la Blusera", "info": "Clásico del blues porteño lanzado en 1986" },
-        { "text": "Mariposa tecknicolor", "answer": "Fito Páez", "info": "Hit de Circo Beat (1994)" },
-        { "text": "Ji ji ji", "answer": "Patricio Rey y sus Redonditos de Ricota", "info": "Famosa por el 'pogo más grande del mundo'" },
-        { "text": "Spaghetti del rock", "answer": "Divididos", "info": "Lanzada en el año 2000 en Narigón del siglo" },
-        { "text": "Lamento boliviano", "answer": "Los Enanitos Verdes", "info": "Popularizada por ellos en 1994" },
-        { "text": "Seguir viviendo sin tu amor", "answer": "Luis Alberto Spinetta", "info": "Clásico de Pelusón of milk (1991)" }
+        { "text": "Cataratas del Iguazú", "answer": "Misiones" },
+        { "text": "Glaciar Perito Moreno", "answer": "Santa Cruz" },
+        { "text": "Cerro Aconcagua", "answer": "Mendoza" },
+        { "text": "Quebrada de Humahuaca", "answer": "Jujuy" },
+        { "text": "San Carlos de Bariloche", "answer": "Río Negro" },
+        { "text": "Península Valdés", "answer": "Chubut" },
+        { "text": "Talampaya", "answer": "La Rioja" },
+        { "text": "Esteros del Iberá", "answer": "Corrientes" },
+        { "text": "Ischigualasto (Valle de la Luna)", "answer": "San Juan" },
+        { "text": "Mar del Plata", "answer": "Buenos Aires" }
       ]
     },
     {
       "id": "arg-003",
-      "category": "Historia",
-      "question": "¿Cuáles de estos acontecimientos ocurrieron durante el siglo XIX (1801-1900) en Argentina?",
+      "type": "answer",
+      "category": "Fútbol",
+      "question": "¿De qué club argentino surgió cada futbolista? ",
       "options": [
-        { "text": "Revolución de Mayo", "correct": true, "info": "Ocurrió en 1810" },
-        { "text": "Declaración de la Independencia", "correct": true, "info": "Firmada en 1816" },
-        { "text": "Batalla de Caseros", "correct": true, "info": "Sucedió en 1852" },
-        { "text": "Sanción de la Constitución Nacional", "correct": true, "info": "Aprobada en 1853" },
-        { "text": "Campaña del Desierto", "correct": true, "info": "Iniciada a fines de la década de 1870" },
-        { "text": "Fundación de la UBA", "correct": true, "info": "Fundada en 1821" },
-        { "text": "Cruce de los Andes", "correct": true, "info": "Llevado a cabo en 1817" },
-        { "text": "Primera presidencia de Perón", "correct": false, "info": "Asumió en 1946 (siglo XX)" },
-        { "text": "La Semana Trágica", "correct": false, "info": "Ocurrió en 1919 (siglo XX)" },
-        { "text": "Golpe de Estado que derrocó a Yrigoyen", "correct": false, "info": "Ocurrió en 1930 (siglo XX)" }
+        { "text": "Diego Maradona", "answer": "Argentinos Juniors" },
+        { "text": "Lionel Messi", "answer": "Newell's Old Boys" },
+        { "text": "Ángel Di María", "answer": "Rosario Central" },
+        { "text": "Sergio Agüero", "answer": "Independiente" },
+        { "text": "Juan Román Riquelme", "answer": "Boca Juniors" },
+        { "text": "Alfredo Di Stéfano", "answer": "River Plate" },
+        { "text": "Mario Kempes", "answer": "Instituto (Córdoba)" },
+        { "text": "Carlos Tevez", "answer": "Boca Juniors" },
+        { "text": "Gabriel Batistuta", "answer": "Newell's Old Boys" },
+        { "text": "Javier Saviola", "answer": "River Plate" }
       ]
     },
     {
       "id": "arg-004",
       "type": "answer",
-      "category": "Presidentes",
-      "question": "¿En qué década asumió por primera vez la presidencia cada uno de estos mandatarios argentinos? (decilo en voz alta)",
+      "category": "Música",
+      "question": "¿A qué artista o banda pertenece cada canción?",
       "options": [
-        { "text": "Raúl Alfonsín", "answer": "Década de 1980", "info": "Asumió el 10 de diciembre de 1983" },
-        { "text": "Carlos Menem", "answer": "Década de 1980", "info": "Asumió en julio de 1989" },
-        { "text": "Néstor Kirchner", "answer": "Década de 2000", "info": "Asumió en mayo de 2003" },
-        { "text": "Mauricio Macri", "answer": "Década de 2010", "info": "Asumió en diciembre de 2015" },
-        { "text": "Juan Domingo Perón", "answer": "Década de 1940", "info": "Asumió su primer mandato en junio de 1946" },
-        { "text": "Arturo Illia", "answer": "Década de 1960", "info": "Asumió en octubre de 1963" },
-        { "text": "Hipólito Yrigoyen", "answer": "Década de 1910", "info": "Asumió su primer mandato en octubre de 1916" },
-        { "text": "Domingo Faustino Sarmiento", "answer": "Década de 1860", "info": "Asumió en octubre de 1868" },
-        { "text": "Fernando de la Rúa", "answer": "Década de 1990", "info": "Asumió en diciembre de 1999" },
-        { "text": "Cristina Fernández de Kirchner", "answer": "Década de 2000", "info": "Asumió su primer mandato en diciembre de 2007" }
+        { "text": "De música ligera", "answer": "Soda Stereo" },
+        { "text": "Matador", "answer": "Los Fabulosos Cadillacs" },
+        {
+          "text": "Seguir viviendo sin tu amor",
+          "answer": "Luis Alberto Spinetta"
+        },
+        { "text": "Mil horas", "answer": "Los Abuelos de la Nada" },
+        { "text": "La balsa", "answer": "Los Gatos" },
+        { "text": "Demoliendo hoteles", "answer": "Charly García" },
+        { "text": "Crimen", "answer": "Gustavo Cerati" },
+        {
+          "text": "Ji ji ji",
+          "answer": "Patricio Rey y sus Redonditos de Ricota"
+        },
+        {
+          "text": "Loco (tu forma de ser)",
+          "answer": "Los Auténticos Decadentes"
+        },
+        { "text": "Rasguña las piedras", "answer": "Sui Generis" }
       ]
     },
     {
       "id": "arg-005",
-      "category": "Literatura",
-      "question": "¿Cuáles de estos libros fueron escritos por Jorge Luis Borges?",
+      "type": "answer",
+      "category": "Historia",
+      "question": "¿En qué año ocurrió cada hecho?",
       "options": [
-        { "text": "Ficciones", "correct": true },
-        { "text": "El Aleph", "correct": true },
-        { "text": "El informe de Brodie", "correct": true },
-        { "text": "El libro de arena", "correct": true },
-        { "text": "Historia universal de la infamia", "correct": true },
-        { "text": "Inquisiciones", "correct": true },
-        { "text": "Rayuela", "correct": false, "info": "Escrito por Julio Cortázar" },
-        { "text": "Sobre héroes y tumbas", "correct": false, "info": "Escrito por Ernesto Sabato" },
-        { "text": "El túnel", "correct": false, "info": "Escrito por Ernesto Sabato" },
-        { "text": "La invención de Morel", "correct": false, "info": "Escrito por Adolfo Bioy Casares" }
+        { "text": "Revolución de Mayo", "answer": "1810" },
+        { "text": "Declaración de la Independencia", "answer": "1816" },
+        { "text": "Cruce de los Andes", "answer": "1817" },
+        { "text": "Perón asume su primera presidencia", "answer": "1946" },
+        {
+          "text": "Derrocamiento de Perón (Revolución Libertadora)",
+          "answer": "1955"
+        },
+        { "text": "Golpe que inició la última dictadura", "answer": "1976" },
+        { "text": "Guerra de Malvinas", "answer": "1982" },
+        { "text": "Vuelta a la democracia (asume Alfonsín)", "answer": "1983" },
+        { "text": "Crisis del 'que se vayan todos'", "answer": "2001" },
+        { "text": "Argentina campeona del mundo en Qatar", "answer": "2022" }
       ]
     },
     {
       "id": "arg-006",
-      "category": "Deportes",
-      "question": "¿Cuáles de estas disciplinas olímpicas le dieron medallas de oro a Argentina en su historia?",
+      "type": "answer",
+      "category": "Literatura",
+      "question": "¿Quién escribió cada obra?",
       "options": [
-        { "text": "Fútbol", "correct": true, "info": "Atenas 2004 y Pekín 2008" },
-        { "text": "Básquetbol", "correct": true, "info": "Atenas 2004 (Generación Dorada)" },
-        { "text": "Boxeo", "correct": true, "info": "Es la disciplina con más medallas de oro argentinas (7)" },
-        { "text": "Polo", "correct": true, "info": "París 1924 y Berlín 1936" },
-        { "text": "Vela (Yachting)", "correct": true, "info": "Río 2016 con Santiago Lange y Cecilia Carranza" },
-        { "text": "Hockey sobre césped", "correct": true, "info": "Río 2016 con Los Leones" },
-        { "text": "Natación", "correct": true, "info": "Ámsterdam 1928 con Alberto Zorrilla" },
-        { "text": "Atletismo", "correct": true, "info": "Juan Carlos Zabala (1932) y Delfo Cabrera (1948) en maratón" },
-        { "text": "Tenis", "correct": false, "info": "Tiene medallas de plata y bronce, pero no de oro" },
-        { "text": "Rugby", "correct": false, "info": "Obtuvo medallas de bronce en la modalidad Rugby 7" }
+        { "text": "El Aleph", "answer": "Jorge Luis Borges" },
+        { "text": "Rayuela", "answer": "Julio Cortázar" },
+        { "text": "Martín Fierro", "answer": "José Hernández" },
+        { "text": "El túnel", "answer": "Ernesto Sabato" },
+        { "text": "Facundo", "answer": "Domingo F. Sarmiento" },
+        { "text": "Don Segundo Sombra", "answer": "Ricardo Güiraldes" },
+        {
+          "text": "Cuentos de amor, de locura y de muerte",
+          "answer": "Horacio Quiroga"
+        },
+        { "text": "Adán Buenosayres", "answer": "Leopoldo Marechal" },
+        { "text": "Boquitas pintadas", "answer": "Manuel Puig" },
+        { "text": "La invención de Morel", "answer": "Adolfo Bioy Casares" }
       ]
     },
     {
       "id": "arg-007",
       "type": "answer",
-      "category": "Gastronomía",
-      "question": "¿De qué ingrediente principal está hecho cada uno de estos platos o bebidas típicos argentinos? (decilo en voz alta)",
+      "category": "Ciencia",
+      "question": "¿Por qué se destacó cada argentino? ",
       "options": [
-        { "text": "Chimichurri", "answer": "Aceite, vinagre y hierbas", "info": "Clásico aderezo para acompañar carnes asadas" },
-        { "text": "Humita", "answer": "Choclo (maíz)", "info": "Preparación andina tradicional que se sirve en chala o plato" },
-        { "text": "Fernet", "answer": "Hierbas", "info": "Licor amargo de origen italiano que se toma con gaseosa de cola" },
-        { "text": "Dulce de leche", "answer": "Leche y azúcar", "info": "Dulce tradicional rioplatense obtenido por cocción lenta" },
-        { "text": "Locro", "answer": "Maíz y porotos", "info": "Guiso patrio tradicional de origen prehispánico" },
-        { "text": "Milanesa", "answer": "Carne", "info": "Filete fino de carne vacuna o pollo rebozado y frito o al horno" },
-        { "text": "Empanada salteña", "answer": "Carne cortada a cuchillo", "info": "Suele llevar papa hervida y huevo duro" },
-        { "text": "Chipá", "answer": "Almidón de mandioca y queso", "info": "Panecillo típico del noreste argentino" },
-        { "text": "Mate", "answer": "Yerba mate", "info": "Infusión nacional que se comparte en ronda" },
-        { "text": "Revuelto Gramajo", "answer": "Huevo y papas fritas", "info": "Se suele acompañar con jamón y arvejas" }
+        { "text": "Bernardo Houssay", "answer": "Premio Nobel de Medicina" },
+        { "text": "Luis Federico Leloir", "answer": "Premio Nobel de Química" },
+        { "text": "César Milstein", "answer": "Premio Nobel de Medicina" },
+        { "text": "René Favaloro", "answer": "Creó el bypass coronario" },
+        { "text": "Adolfo Pérez Esquivel", "answer": "Premio Nobel de la Paz" },
+        { "text": "Carlos Saavedra Lamas", "answer": "Premio Nobel de la Paz" },
+        {
+          "text": "Juan Vucetich",
+          "answer": "La identificación por huellas dactilares"
+        },
+        {
+          "text": "Domingo Liotta",
+          "answer": "Desarrolló el corazón artificial"
+        },
+        { "text": "Florentino Ameghino", "answer": "Paleontología" },
+        { "text": "Luis Agote", "answer": "Transfusión de sangre conservada" }
       ]
     },
     {
       "id": "arg-008",
-      "category": "Cine",
-      "question": "¿Cuáles de estas películas argentinas estuvieron nominadas al premio Oscar a Mejor Película Internacional?",
+      "type": "answer",
+      "category": "Personajes",
+      "question": "¿En qué provincia nació cada personaje?",
       "options": [
-        { "text": "La historia oficial", "correct": true, "info": "Ganadora en 1986" },
-        { "text": "El secreto de sus ojos", "correct": true, "info": "Ganadora en 2010" },
-        { "text": "Relatos salvajes", "correct": true, "info": "Nominada en 2015" },
-        { "text": "Argentina, 1985", "correct": true, "info": "Nominada en 2023" },
-        { "text": "El hijo de la novia", "correct": true, "info": "Nominada en 2002" },
-        { "text": "Camila", "correct": true, "info": "Nominada en 1985" },
-        { "text": "La tregua", "correct": true, "info": "Nominada en 1975 (la primera de Sudamérica)" },
-        { "text": "Nueve reinas", "correct": false, "info": "A pesar de su éxito, no llegó a quedar nominada" },
-        { "text": "Gatica, el mono", "correct": false, "info": "No estuvo nominada al Oscar" },
-        { "text": "Metegol", "correct": false, "info": "Película animada que no fue nominada en esta categoría" }
+        { "text": "Lionel Messi", "answer": "Santa Fe" },
+        { "text": "Ernesto \"Che\" Guevara", "answer": "Santa Fe" },
+        { "text": "Eva Perón", "answer": "Buenos Aires" },
+        { "text": "Mercedes Sosa", "answer": "Tucumán" },
+        { "text": "Papa Francisco", "answer": "Ciudad de Buenos Aires" },
+        { "text": "Juan Manuel Fangio", "answer": "Buenos Aires" },
+        { "text": "José de San Martín", "answer": "Corrientes" },
+        { "text": "Facundo Quiroga", "answer": "La Rioja" },
+        { "text": "Manuel Belgrano", "answer": "Ciudad de Buenos Aires" },
+        { "text": "Diego Maradona", "answer": "Buenos Aires" }
       ]
     },
     {
       "id": "arg-009",
       "type": "answer",
-      "category": "Geografía",
-      "question": "¿A qué provincia argentina pertenece cada una de estas famosas ciudades no capitales? (decilo en voz alta)",
+      "category": "Deportes",
+      "question": "¿En qué deporte se destacó cada uno? ",
       "options": [
-        { "text": "Mar del Plata", "answer": "Buenos Aires", "info": "El principal destino de playa del país" },
-        { "text": "Bariloche", "answer": "Río Negro", "info": "Famosa por sus lagos, montañas y chocolates" },
-        { "text": "San Rafael", "answer": "Mendoza", "info": "Conocida por el Cañón del Atuel y su enoturismo" },
-        { "text": "Puerto Madryn", "answer": "Chubut", "info": "Punto de avistaje de la ballena franca austral" },
-        { "text": "Villa Carlos Paz", "answer": "Córdoba", "info": "Importante centro turístico a orillas del lago San Roque" },
-        { "text": "Gualeguaychú", "answer": "Entre Ríos", "info": "Conocida en todo el país por su carnaval" },
-        { "text": "Cafayate", "answer": "Salta", "info": "Famosa por sus viñedos de altura y sus bodegas de torrontés" },
-        { "text": "Merlo", "answer": "San Luis", "info": "Reconocida por su microclima y tranquilidad" },
-        { "text": "El Calafate", "answer": "Santa Cruz", "info": "Puerta de entrada al parque nacional de los glaciares" },
-        { "text": "Termas de Río Hondo", "answer": "Santiago del Estero", "info": "Principal centro de turismo termal de Argentina" }
+        { "text": "Guillermo Vilas", "answer": "Tenis" },
+        { "text": "Gabriela Sabatini", "answer": "Tenis" },
+        { "text": "Manu Ginóbili", "answer": "Básquet" },
+        { "text": "Luciana Aymar", "answer": "Hockey sobre césped" },
+        { "text": "Juan Manuel Fangio", "answer": "Automovilismo" },
+        { "text": "Carlos Monzón", "answer": "Boxeo" },
+        { "text": "Paula Pareto", "answer": "Judo" },
+        { "text": "Juan Martín del Potro", "answer": "Tenis" },
+        { "text": "José Meolans", "answer": "Natación" },
+        { "text": "Delfo Cabrera", "answer": "Atletismo (maratón)" }
       ]
     },
     {
       "id": "arg-010",
-      "category": "Historia",
-      "question": "¿Cuáles de estas personalidades históricas argentinas nacieron en el siglo XVIII (1701-1800)?",
-      "options": [
-        { "text": "José de San Martín", "correct": true, "info": "Nació en 1778 en Yapeyú" },
-        { "text": "Manuel Belgrano", "correct": true, "info": "Nació en 1770 en Buenos Aires" },
-        { "text": "Cornelio Saavedra", "correct": true, "info": "Nació en 1759 en Potosí" },
-        { "text": "Mariano Moreno", "correct": true, "info": "Nació en 1778 en Buenos Aires" },
-        { "text": "Bernardino Rivadavia", "correct": true, "info": "Nació en 1780 en Buenos Aires" },
-        { "text": "Juan Manuel de Rosas", "correct": true, "info": "Nació en 1793 en Buenos Aires" },
-        { "text": "Domingo Faustino Sarmiento", "correct": false, "info": "Nació en 1811 (siglo XIX)" },
-        { "text": "Bartolomé Mitre", "correct": false, "info": "Nació en 1821 (siglo XIX)" },
-        { "text": "Julio Argentino Roca", "correct": false, "info": "Nació en 1843 (siglo XIX)" },
-        { "text": "Justo José de Urquiza", "correct": false, "info": "Nació en 1801 (siglo XIX)" }
-      ]
-    },
-    {
-      "id": "arg-011",
-      "category": "Música / Tango",
-      "question": "¿Cuáles de estos famosos tangos tienen su música compuesta por Carlos Gardel?",
-      "options": [
-        { "text": "El día que me quieras", "correct": true, "info": "Compuesto en 1935" },
-        { "text": "Por una cabeza", "correct": true, "info": "Compuesto en 1935" },
-        { "text": "Volver", "correct": true, "info": "Compuesto en 1934" },
-        { "text": "Mi Buenos Aires querido", "correct": true, "info": "Compuesto en 1934" },
-        { "text": "Cuesta abajo", "correct": true, "info": "Compuesto en 1934" },
-        { "text": "Adiós Nonino", "correct": false, "info": "Compuesto por Astor Piazzolla en 1959" },
-        { "text": "La cumparsita", "correct": false, "info": "Compuesto por el uruguayo Gerardo Matos Rodríguez" },
-        { "text": "Caminito", "correct": false, "info": "Música compuesta por Juan de Dios Filiberto" },
-        { "text": "Balada para un loco", "correct": false, "info": "Música de Astor Piazzolla y letra de Horacio Ferrer" },
-        { "text": "El choclo", "correct": false, "info": "Compuesto por Ángel Villoldo en 1903" }
-      ]
-    },
-    {
-      "id": "arg-012",
-      "category": "Ciencia e Inventos",
-      "question": "¿Cuáles de estos inventos o descubrimientos científicos se atribuyen a creadores argentinos?",
-      "options": [
-        { "text": "El bolígrafo / birome", "correct": true, "info": "Inventado por Ladislao Biro" },
-        { "text": "El bypass coronario", "correct": true, "info": "Desarrollado por el cirujano René Favaloro en 1967" },
-        { "text": "El sistema dactiloscópico", "correct": true, "info": "Creado por Juan Vucetich para la identificación policial" },
-        { "text": "La jeringa descartable", "correct": true, "info": "Diseñada y patentada por Carlos Arcusin" },
-        { "text": "El colectivo (autobús urbano)", "correct": true, "info": "Surgió en Buenos Aires a fines de los años 1920" },
-        { "text": "El helicóptero eficaz", "correct": true, "info": "Raúl Pateras Pescara patentó uno de los primeros modelos funcionales" },
-        { "text": "El dibujo animado sonoro", "correct": true, "info": "Quirino Cristiani dirigió Peludópolis en 1931" },
-        { "text": "El marcapasos artificial", "correct": false, "info": "El primer implante exitoso fue en Suecia, no en Argentina" },
-        { "text": "El dulce de leche", "correct": false, "info": "Aunque es símbolo nacional, existen recetas previas en Asia y otros países" },
-        { "text": "La penicilina", "correct": false, "info": "Fue descubierta por Alexander Fleming en Escocia" }
-      ]
-    },
-    {
-      "id": "arg-013",
       "type": "answer",
-      "category": "Deportes",
-      "question": "¿En qué club de fútbol europeo debutó profesionalmente cada uno de estos jugadores de la Selección? (decilo en voz alta)",
+      "category": "Próceres",
+      "question": "¿Qué rol cumplió cada prócer? ",
       "options": [
-        { "text": "Lionel Messi", "answer": "Barcelona", "info": "Hizo inferiores y debutó en el primer equipo en 2004" },
-        { "text": "Ángel Di María", "answer": "Benfica", "info": "Llegó a Portugal desde Rosario Central en 2007" },
-        { "text": "Sergio Agüero", "answer": "Atlético de Madrid", "info": "Fue transferido desde Independiente en 2006" },
-        { "text": "Lautaro Martínez", "answer": "Inter de Milán", "info": "Llegó al club italiano en 2018 procedente de Racing" },
-        { "text": "Julián Álvarez", "answer": "Manchester City", "info": "Fichó por los Ciudadanos en 2022 desde River Plate" },
-        { "text": "Alexis Mac Allister", "answer": "Brighton", "info": "Desembarcó en la Premier League en 2019" },
-        { "text": "Emiliano Martínez", "answer": "Arsenal", "info": "Llegó muy joven a las inferiores de los Gunners desde Independiente" },
-        { "text": "Enzo Fernández", "answer": "Benfica", "info": "Jugó sólo seis meses en Portugal antes de pasar al Chelsea" },
-        { "text": "Rodrigo De Paul", "answer": "Valencia", "info": "Fue transferido desde Racing Club en 2014" },
-        { "text": "Paulo Dybala", "answer": "Palermo", "info": "Llegó directamente desde Instituto de Córdoba en 2012" }
-      ]
-    },
-    {
-      "id": "arg-014",
-      "type": "answer",
-      "category": "Televisión",
-      "question": "¿En qué década se estrenó originalmente cada uno de estos famosos programas y ficciones de la TV argentina? (decilo en voz alta)",
-      "options": [
-        { "text": "Almorzando con las estrellas", "answer": "Década de 1960", "info": "Comenzó a emitirse en Canal 9 en 1968" },
-        { "text": "Videomatch", "answer": "Década de 1990", "info": "Se estrenó a la medianoche de Telefe en 1990" },
-        { "text": "Casi Ángeles", "answer": "Década de 2000", "info": "La producción de Cris Morena comenzó en 2007" },
-        { "text": "Los simuladores", "answer": "Década de 2000", "info": "La aclamada serie de Damián Szifron nació en 2002" },
-        { "text": "Chiquititas", "answer": "Década de 1990", "info": "La exitosa telenovela infantil debutó en 1995" },
-        { "text": "Grande, pá!", "answer": "Década de 1990", "info": "Alcanzó picos históricos de rating tras su estreno en 1991" },
-        { "text": "Polémica en el bar", "answer": "Década de 1960", "info": "Creado por los hermanos Sofovich, comenzó en 1963" },
-        { "text": "El club del clan", "answer": "Década de 1960", "info": "Famoso show musical juvenil que comenzó en 1962" },
-        { "text": "La noticia rebelde", "answer": "Década de 1980", "info": "Legendario ciclo humorístico-periodístico de 1986" },
-        { "text": "Okupas", "answer": "Década de 2000", "info": "Ficción urbana de culto dirigida por Bruno Stagnaro en el 2000" }
-      ]
-    },
-    {
-      "id": "arg-015",
-      "category": "Geografía",
-      "question": "¿Cuáles de estas provincias argentinas tienen costa sobre el mar Argentino (océano Atlántico)?",
-      "options": [
-        { "text": "Buenos Aires", "correct": true },
-        { "text": "Río Negro", "correct": true },
-        { "text": "Chubut", "correct": true },
-        { "text": "Santa Cruz", "correct": true },
-        { "text": "Tierra del Fuego", "correct": true },
-        { "text": "La Pampa", "correct": false, "info": "Provincia completamente mediterránea" },
-        { "text": "Neuquén", "correct": false, "info": "Ubicada en la cordillera, sin salida al mar" },
-        { "text": "Entre Ríos", "correct": false, "info": "Tiene límites fluviales, pero no da al océano" },
-        { "text": "Santa Fe", "correct": false, "info": "Es mediterránea y limita con el río Paraná" },
-        { "text": "San Luis", "correct": false, "info": "Está situada en el centro-oeste de Argentina" }
-      ]
-    },
-    {
-      "id": "arg-016",
-      "category": "Fauna y Naturaleza",
-      "question": "¿Cuáles de estos animales son autóctonos de la región geográfica argentina?",
-      "options": [
-        { "text": "Yaguareté", "correct": true, "info": "Declarado Monumento Natural Nacional" },
-        { "text": "Hornero", "correct": true, "info": "Es el ave nacional argentina" },
-        { "text": "Carpincho", "correct": true, "info": "El roedor más grande del mundo" },
-        { "text": "Cóndor andino", "correct": true, "info": "Habita a lo largo de la cordillera de los Andes" },
-        { "text": "Tatú carreta", "correct": true, "info": "La especie de armadillo más grande que existe" },
-        { "text": "Pingüino de Magallanes", "correct": true, "info": "Habita en las costas de la Patagonia" },
-        { "text": "Llama", "correct": true, "info": "Mamífero artiodáctilo doméstico de los Andes" },
-        { "text": "Canguro", "correct": false, "info": "Animal marsupial nativo de Australia" },
-        { "text": "Ornitorrinco", "correct": false, "info": "Mamífero semiacuático endémico del este de Australia" },
-        { "text": "Jirafa", "correct": false, "info": "Mamífero artiodáctilo nativo de África" }
-      ]
-    },
-    {
-      "id": "arg-017",
-      "category": "Premios Nobel",
-      "question": "¿Cuáles de estas personalidades argentinas ganaron el Premio Nobel?",
-      "options": [
-        { "text": "Carlos Saavedra Lamas", "correct": true, "info": "Nobel de la Paz en 1936 por mediar en la Guerra del Chaco" },
-        { "text": "Bernardo Houssay", "correct": true, "info": "Nobel de Medicina en 1947 por investigar la hipófisis" },
-        { "text": "Luis Federico Leloir", "correct": true, "info": "Nobel de Química en 1970 por el descubrimiento de nucleótidos de azúcar" },
-        { "text": "Adolfo Pérez Esquivel", "correct": true, "info": "Nobel de la Paz en 1980 por su labor en derechos humanos" },
-        { "text": "César Milstein", "correct": true, "info": "Nobel de Medicina en 1984 por desarrollar anticuerpos monoclonales" },
-        { "text": "Jorge Luis Borges", "correct": false, "info": "El gran escritor argentino nunca recibió el galardón de Literatura" },
-        { "text": "René Favaloro", "correct": false, "info": "Creador del bypass coronario, nunca recibió el premio Nobel" },
-        { "text": "Julio Cortázar", "correct": false, "info": "El autor de Rayuela nunca fue distinguido con el Nobel" },
-        { "text": "Luis Moreno Ocampo", "correct": false, "info": "Fue fiscal del Juicio a las Juntas, pero no recibió el Nobel" },
-        { "text": "Ernesto \"Che\" Guevara", "correct": false, "info": "Líder revolucionario que no obtuvo ningún Premio Nobel" }
-      ]
-    },
-    {
-      "id": "arg-018",
-      "type": "answer",
-      "category": "Monumentos e Hitos",
-      "question": "¿En qué ciudad argentina se encuentra ubicado cada uno de estos hitos o monumentos nacionales? (decilo en voz alta)",
-      "options": [
-        { "text": "El Obelisco", "answer": "Buenos Aires", "info": "Emplazado en la Plaza de la República" },
-        { "text": "Monumento Nacional a la Bandera", "answer": "Rosario", "info": "Ubicado donde se izó la enseña nacional por primera vez" },
-        { "text": "Casa de la Independencia", "answer": "San Miguel de Tucumán", "info": "Lugar de la declaración de la independencia en 1816" },
-        { "text": "Reloj Cu-Cú", "answer": "Villa Carlos Paz", "info": "Hito construido por ingenieros alemanes en 1958" },
-        { "text": "Puente Colgante", "answer": "Santa Fe", "info": "Cruza la laguna Setúbal uniendo la costanera oeste y este" },
-        { "text": "Faro Les Éclaireurs", "answer": "Ushuaia", "info": "Faro en el Canal Beagle, a menudo llamado del fin del mundo" },
-        { "text": "Teatro Colón", "answer": "Buenos Aires", "info": "Ubicado frente a la Plaza Lavalle, inaugurado en 1908" },
-        { "text": "Monumento al Gral. Güemes", "answer": "Salta", "info": "Construido con piedras de cerros vecinos a la ciudad" },
-        { "text": "Monumento al Indio Tehuelche", "answer": "Puerto Madryn", "info": "Escultura en homenaje al habitante patagónico" },
-        { "text": "Garganta del Diablo", "answer": "Puerto Iguazú", "info": "El salto más espectacular de las Cataratas del Iguazú" }
-      ]
-    },
-    {
-      "id": "arg-019",
-      "category": "Marcas",
-      "question": "¿Cuáles de estas marcas de consumo o servicios nacieron originalmente en Argentina?",
-      "options": [
-        { "text": "Havanna", "correct": true, "info": "Nacida en la ciudad de Mar del Plata en 1947" },
-        { "text": "Mercado Libre", "correct": true, "info": "Fundada por Marcos Galperin en un garaje de Buenos Aires en 1999" },
-        { "text": "Globant", "correct": true, "info": "Fundada en La Plata por cuatro ingenieros en 2003" },
-        { "text": "Taragüi", "correct": true, "info": "Marca de yerba mate creada en Corrientes en 1924" },
-        { "text": "Manaos", "correct": true, "info": "Gaseosa argentina embotellada en La Matanza, Buenos Aires" },
-        { "text": "Quilmes", "correct": true, "info": "Fundada por Otto Bemberg en la localidad homónima en 1890" },
-        { "text": "Arcor", "correct": true, "info": "Nacida como fábrica de caramelos en Arroyito, Córdoba, en 1951" },
-        { "text": "Freddo", "correct": true, "info": "Compañía de helados fundada en la Ciudad de Buenos Aires en 1969" },
-        { "text": "Starbucks", "correct": false, "info": "Cadena de cafeterías estadounidense fundada en Seattle en 1971" },
-        { "text": "Nesquik", "correct": false, "info": "Marca de Nestlé, multinacional de origen suizo" }
-      ]
-    },
-    {
-      "id": "arg-020",
-      "type": "answer",
-      "category": "Fechas Patrias",
-      "question": "¿Qué día y mes del año se conmemora oficialmente cada una de estas efemérides nacionales argentinas? (decilo en voz alta)",
-      "options": [
-        { "text": "Revolución de Mayo", "answer": "25 de mayo", "info": "Conmemora la constitución de la Primera Junta en 1810" },
-        { "text": "Declaración de la Independencia", "answer": "9 de julio", "info": "Firma del Acta de la Independencia en Tucumán en 1816" },
-        { "text": "Día de la Bandera", "answer": "20 de junio", "info": "Paso a la inmortalidad del creador de la enseña, Manuel Belgrano" },
-        { "text": "Día del Veterano y de los Caídos en la Guerra de Malvinas", "answer": "2 de abril", "info": "Recordatorio del desembarco argentino en las islas en 1982" },
-        { "text": "Día Nacional de la Memoria por la Verdad y la Justicia", "answer": "24 de marzo", "info": "Conmemora a las víctimas del golpe militar de 1976" },
-        { "text": "Paso a la Inmortalidad del General José de San Martín", "answer": "17 de agosto", "info": "Recordatorio del fallecimiento del prócer en 1850" },
-        { "text": "Día de la Soberanía Nacional", "answer": "20 de noviembre", "info": "Batalla de la Vuelta de Obligado en 1845 contra la flota anglofrancesa" },
-        { "text": "Paso a la Inmortalidad del General Martín Miguel de Güemes", "answer": "17 de junio", "info": "En honor al héroe de la Guerra Gaucha fallecido en 1821" },
-        { "text": "Día de la Escarapela", "answer": "18 de mayo", "info": "Instituido por el Primer Triunvirato en 1812" },
-        { "text": "Día de la Tradición", "answer": "10 de noviembre", "info": "Nacimiento de José Hernández, autor del Martín Fierro" }
-      ]
-    },
-    {
-      "id": "arg-021",
-      "category": "Arte",
-      "question": "¿Cuáles de estos reconocidos pintores o artistas plásticos son de nacionalidad argentina?",
-      "options": [
-        { "text": "Antonio Berni", "correct": true, "info": "Creador de personajes memorables como Juanito Laguna" },
-        { "text": "Xul Solar", "correct": true, "info": "Pintor, escultor e inventor de lenguas utópicas, amigo de Borges" },
-        { "text": "Benito Quinquela Martín", "correct": true, "info": "Reconocido por sus pinturas de la vida portuaria en La Boca" },
-        { "text": "Marta Minujín", "correct": true, "info": "Artista plástica y conceptual de renombre internacional, famosa por sus happenings" },
-        { "text": "Julio Le Parc", "correct": true, "info": "Pionero del arte cinético y óptico, residente en Francia" },
-        { "text": "Florencio Molina Campos", "correct": true, "info": "Famoso por sus pinturas costumbristas y caricaturescas del gaucho" },
-        { "text": "Frida Kahlo", "correct": false, "info": "Pintora mexicana célebre por sus autorretratos" },
-        { "text": "Diego Rivera", "correct": false, "info": "Destacado muralista de nacionalidad mexicana" },
-        { "text": "Fernando Botero", "correct": false, "info": "Pintor y escultor colombiano conocido por sus figuras voluminosas" },
-        { "text": "Salvador Dalí", "correct": false, "info": "Gran exponente del surrealismo de nacionalidad española" }
+        { "text": "Manuel Belgrano", "answer": "Creó la bandera" },
+        {
+          "text": "José de San Martín",
+          "answer": "Libertador; cruzó los Andes"
+        },
+        {
+          "text": "Domingo F. Sarmiento",
+          "answer": "Impulsó la educación pública"
+        },
+        {
+          "text": "Bernardino Rivadavia",
+          "answer": "Primer presidente argentino"
+        },
+        {
+          "text": "Juan Manuel de Rosas",
+          "answer": "Gobernador de Buenos Aires"
+        },
+        { "text": "Bartolomé Mitre", "answer": "Presidente e historiador" },
+        {
+          "text": "Mariano Moreno",
+          "answer": "Secretario de la Primera Junta"
+        },
+        {
+          "text": "Cornelio Saavedra",
+          "answer": "Presidente de la Primera Junta"
+        },
+        {
+          "text": "Juan Bautista Alberdi",
+          "answer": "Inspiró la Constitución de 1853"
+        },
+        {
+          "text": "Justo José de Urquiza",
+          "answer": "Venció a Rosas en Caseros"
+        }
       ]
     }
   ]

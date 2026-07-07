@@ -1,0 +1,184 @@
+{
+  "cards": [
+    {
+      "id": "tg-001",
+      "type": "answer",
+      "category": "Geografía",
+      "question": "¿Cuál es la capital de cada país? (decila en voz alta)",
+      "options": [
+        { "text": "Australia", "answer": "Canberra" },
+        { "text": "Canadá", "answer": "Ottawa" },
+        { "text": "Brasil", "answer": "Brasilia" },
+        { "text": "Turquía", "answer": "Ankara" },
+        { "text": "Nueva Zelanda", "answer": "Wellington" },
+        { "text": "Suiza", "answer": "Berna" },
+        { "text": "Marruecos", "answer": "Rabat" },
+        { "text": "Vietnam", "answer": "Hanói" },
+        { "text": "Portugal", "answer": "Lisboa" },
+        { "text": "Grecia", "answer": "Atenas" }
+      ]
+    },
+    {
+      "id": "tg-002",
+      "type": "answer",
+      "category": "Geografía",
+      "question": "¿En qué país está cada monumento o lugar?",
+      "options": [
+        { "text": "Torre Eiffel", "answer": "Francia" },
+        { "text": "Coliseo", "answer": "Italia" },
+        { "text": "Machu Picchu", "answer": "Perú" },
+        { "text": "Taj Mahal", "answer": "India" },
+        { "text": "Gran Muralla", "answer": "China" },
+        { "text": "Pirámides de Giza", "answer": "Egipto" },
+        { "text": "Cristo Redentor", "answer": "Brasil" },
+        { "text": "Big Ben", "answer": "Reino Unido" },
+        { "text": "Petra", "answer": "Jordania" },
+        { "text": "Chichén Itzá", "answer": "México" }
+      ]
+    },
+    {
+      "id": "tg-003",
+      "type": "answer",
+      "category": "Ciencia",
+      "question": "¿Cuál es el símbolo químico de cada elemento?",
+      "options": [
+        { "text": "Oro", "answer": "Au" },
+        { "text": "Sodio", "answer": "Na" },
+        { "text": "Hierro", "answer": "Fe" },
+        { "text": "Potasio", "answer": "K" },
+        { "text": "Plata", "answer": "Ag" },
+        { "text": "Plomo", "answer": "Pb" },
+        { "text": "Mercurio", "answer": "Hg" },
+        { "text": "Estaño", "answer": "Sn" },
+        { "text": "Oxígeno", "answer": "O" },
+        { "text": "Wolframio (tungsteno)", "answer": "W" }
+      ]
+    },
+    {
+      "id": "tg-004",
+      "type": "answer",
+      "category": "Cine",
+      "question": "¿Quién dirigió cada película?",
+      "options": [
+        { "text": "Titanic", "answer": "James Cameron" },
+        { "text": "Pulp Fiction", "answer": "Quentin Tarantino" },
+        { "text": "El Padrino", "answer": "Francis Ford Coppola" },
+        { "text": "Jurassic Park", "answer": "Steven Spielberg" },
+        { "text": "Psicosis", "answer": "Alfred Hitchcock" },
+        { "text": "El Señor de los Anillos", "answer": "Peter Jackson" },
+        { "text": "Parásitos", "answer": "Bong Joon-ho" },
+        { "text": "Interestelar", "answer": "Christopher Nolan" },
+        { "text": "Gladiador", "answer": "Ridley Scott" },
+        { "text": "El laberinto del fauno", "answer": "Guillermo del Toro" }
+      ]
+    },
+    {
+      "id": "tg-005",
+      "type": "answer",
+      "category": "Historia",
+      "question": "¿En qué año ocurrió cada hecho?",
+      "options": [
+        { "text": "Caída del Muro de Berlín", "answer": "1989" },
+        { "text": "Llegada del hombre a la Luna", "answer": "1969" },
+        { "text": "Fin de la Segunda Guerra Mundial", "answer": "1945" },
+        { "text": "Descubrimiento de América", "answer": "1492" },
+        { "text": "Toma de la Bastilla (Revolución Francesa)", "answer": "1789" },
+        { "text": "Atentado a las Torres Gemelas", "answer": "2001" },
+        { "text": "Hundimiento del Titanic", "answer": "1912" },
+        { "text": "Comienzo de la Primera Guerra Mundial", "answer": "1914" },
+        { "text": "Independencia de Estados Unidos", "answer": "1776" },
+        { "text": "Caída del Imperio Romano de Occidente", "answer": "476" }
+      ]
+    },
+    {
+      "id": "tg-006",
+      "type": "answer",
+      "category": "Mitología",
+      "question": "¿De qué era dios o diosa cada figura griega?",
+      "options": [
+        { "text": "Zeus", "answer": "El cielo y el rayo" },
+        { "text": "Poseidón", "answer": "El mar" },
+        { "text": "Hades", "answer": "El inframundo" },
+        { "text": "Ares", "answer": "La guerra" },
+        { "text": "Afrodita", "answer": "El amor y la belleza" },
+        { "text": "Atenea", "answer": "La sabiduría" },
+        { "text": "Apolo", "answer": "El Sol y la música" },
+        { "text": "Artemisa", "answer": "La caza" },
+        { "text": "Hermes", "answer": "Los mensajeros y el comercio" },
+        { "text": "Hefesto", "answer": "El fuego y la forja" }
+      ]
+    },
+    {
+      "id": "tg-007",
+      "type": "answer",
+      "category": "Arte",
+      "question": "¿Quién pintó cada obra?",
+      "options": [
+        { "text": "La Gioconda (Mona Lisa)", "answer": "Leonardo da Vinci" },
+        { "text": "La noche estrellada", "answer": "Vincent van Gogh" },
+        { "text": "Guernica", "answer": "Pablo Picasso" },
+        { "text": "La persistencia de la memoria", "answer": "Salvador Dalí" },
+        { "text": "El grito", "answer": "Edvard Munch" },
+        { "text": "La última cena", "answer": "Leonardo da Vinci" },
+        { "text": "La joven de la perla", "answer": "Johannes Vermeer" },
+        { "text": "Las meninas", "answer": "Diego Velázquez" },
+        { "text": "El nacimiento de Venus", "answer": "Sandro Botticelli" },
+        { "text": "La creación de Adán", "answer": "Miguel Ángel" }
+      ]
+    },
+    {
+      "id": "tg-008",
+      "type": "answer",
+      "category": "Geografía",
+      "question": "¿En qué continente está cada país?",
+      "options": [
+        { "text": "Egipto", "answer": "África" },
+        { "text": "Tailandia", "answer": "Asia" },
+        { "text": "Perú", "answer": "América" },
+        { "text": "Australia", "answer": "Oceanía" },
+        { "text": "Suecia", "answer": "Europa" },
+        { "text": "Kenia", "answer": "África" },
+        { "text": "Japón", "answer": "Asia" },
+        { "text": "México", "answer": "América" },
+        { "text": "Nueva Zelanda", "answer": "Oceanía" },
+        { "text": "Grecia", "answer": "Europa" }
+      ]
+    },
+    {
+      "id": "tg-009",
+      "type": "answer",
+      "category": "Naturaleza",
+      "question": "¿Cuál es el récord en cada caso?",
+      "options": [
+        { "text": "El animal terrestre más rápido", "answer": "El guepardo" },
+        { "text": "El animal más grande del mundo", "answer": "La ballena azul" },
+        { "text": "El océano más grande", "answer": "El Pacífico" },
+        { "text": "La montaña más alta", "answer": "El Everest" },
+        { "text": "El desierto cálido más grande", "answer": "El Sahara" },
+        { "text": "El planeta más grande", "answer": "Júpiter" },
+        { "text": "El país más extenso", "answer": "Rusia" },
+        { "text": "El mamífero terrestre más grande", "answer": "El elefante africano" },
+        { "text": "El ave más grande", "answer": "El avestruz" },
+        { "text": "El país más poblado", "answer": "India" }
+      ]
+    },
+    {
+      "id": "tg-010",
+      "type": "answer",
+      "category": "Música",
+      "question": "¿De qué artista o banda es cada canción?",
+      "options": [
+        { "text": "Bohemian Rhapsody", "answer": "Queen" },
+        { "text": "Billie Jean", "answer": "Michael Jackson" },
+        { "text": "Like a Rolling Stone", "answer": "Bob Dylan" },
+        { "text": "Smells Like Teen Spirit", "answer": "Nirvana" },
+        { "text": "Imagine", "answer": "John Lennon" },
+        { "text": "Hey Jude", "answer": "The Beatles" },
+        { "text": "Rolling in the Deep", "answer": "Adele" },
+        { "text": "Wonderwall", "answer": "Oasis" },
+        { "text": "Shape of You", "answer": "Ed Sheeran" },
+        { "text": "Sweet Child o' Mine", "answer": "Guns N' Roses" }
+      ]
+    }
+  ]
+}

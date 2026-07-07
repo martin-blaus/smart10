@@ -4,8 +4,8 @@ import { ALL_CARDS, DATASETS } from "../../data";
 
 describe("buildDeck", () => {
   it("builds a deck for a specific dataset key", () => {
-    const deck = buildDeck("classic");
-    expect(deck).toHaveLength(DATASETS.classic.length);
+    const deck = buildDeck("argentina");
+    expect(deck).toHaveLength(DATASETS.argentina.length);
   });
 
   it("builds a deck with all datasets mixed when 'all' is chosen", () => {

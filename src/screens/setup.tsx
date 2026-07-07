@@ -11,9 +11,8 @@ const TARGET_OPTIONS = [10, 15, 20];
 const EMOJI_POOL = ["🦊", "🦉", "🐢", "🐺", "🦁", "🐸", "🦜", "🐙", "🦔", "🐴", "🦩", "🐳"];
 
 const DATASET_LABELS: Record<DeckChoice, string> = {
-  classic: strings.datasetGeneral,
-  movies: strings.datasetMovies,
   argentina: strings.datasetArgentina,
+  general: strings.datasetGeneral,
   all: strings.datasetAll,
 };
 
@@ -38,7 +37,7 @@ export function SetupScreen({ onStart }: Props) {
   const [names, setNames] = useState<string[]>(["", ""]);
   const [tokens, setTokens] = useState<string[]>(["🦊", "🦉"]);
   const [targetScore, setTargetScore] = useState(15);
-  const [datasetKey, setDatasetKey] = useState<DeckChoice>("classic");
+  const [datasetKey, setDatasetKey] = useState<DeckChoice>("argentina");
   const [blitz, setBlitz] = useState(false);
 
   const setName = (i: number, value: string) =>

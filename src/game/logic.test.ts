@@ -1,7 +1,39 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { reducer, initialState } from "./logic";
 import { shuffle } from "./deck";
 import type { GameState, Player, RoundStatus } from "../types";
+
+// Decouple the reducer tests from shipped datasets: getCard returns fixtures so
+// these tests stay valid no matter which cards ship. "card-011" resolves to an
+// answer card; any other id resolves to a boolean card whose correct options
+// are indexes 0,1,4,5,7,9 (matching CORRECT/WRONG and the reveal assertions).
+vi.mock("./deck", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("./deck")>();
+  const boolCard = {
+    id: "bool",
+    type: "boolean" as const,
+    category: "Test",
+    question: "?",
+    options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({
+      text: `o${i}`,
+      correct: [0, 1, 4, 5, 7, 9].includes(i),
+    })),
+  };
+  const answerCard = {
+    id: "ans",
+    type: "answer" as const,
+    category: "Test",
+    question: "?",
+    options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => ({
+      text: `s${i}`,
+      answer: `a${i}`,
+    })),
+  };
+  return {
+    ...actual,
+    getCard: (id: string | null) => (id === "card-011" ? answerCard : boolCard),
+  };
+});
 
 // card-001 (Pacific coast). Correct option indexes: 0,1,4,5,7,9.
 const CORRECT = 0; // Chile

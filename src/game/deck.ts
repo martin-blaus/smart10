@@ -17,7 +17,7 @@ export function shuffle<T>(items: readonly T[], rng: Rng = Math.random): T[] {
 
 // A shuffled list of the chosen dataset's card ids, ready for START_GAME.
 export function buildDeck(
-  deckChoice: DeckChoice = "classic",
+  deckChoice: DeckChoice = "argentina",
   rng: Rng = Math.random,
 ): string[] {
   const cards = deckChoice === "all" ? ALL_CARDS : DATASETS[deckChoice];
