@@ -102,4 +102,18 @@ export const strings = {
   onlineWaitingHostNext: "Esperando que el anfitrión pase a la siguiente carta...",
   onlineLikes: "Me gusta",
   onlineDislikes: "No me gusta",
+
+  // Auth
+  authTitle: "Acceso Online",
+  authSub: "Iniciá sesión o registrate para jugar online",
+  authEmail: "Correo electrónico",
+  authPassword: "Contraseña",
+  authSignIn: "Iniciar Sesión",
+  authSignUp: "Crear Cuenta",
+  authSignOut: "Cerrar Sesión",
+  authError: "Error al autenticar. Verificá los datos.",
+  authEmailPlaceholder: "nombre@correo.com",
+  authPasswordPlaceholder: "Mínimo 6 caracteres",
+  authGuest: "Jugar como Invitado",
+  authSignedInAs: (email: string) => `Conectado como ${email}`,
 };

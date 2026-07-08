@@ -5,6 +5,12 @@
   "database": {
     "rules": "database.rules.json"
   },
+  "auth": {
+    "providers": {
+      "anonymous": true,
+      "emailPassword": true
+    }
+  },
   "hosting": {
     "public": "dist",
     "ignore": [

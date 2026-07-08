@@ -6,13 +6,13 @@ import { getDatabase, connectDatabaseEmulator } from "firebase/database";
 // These values are public and safe to commit to version control.
 // Martin should paste his actual Firebase web app config here once created in the console.
 const firebaseConfig = {
-  apiKey: "PLACEHOLDER_API_KEY",
+  apiKey: "AIzaSyAUefsjexrTewYE7peb7aFTJf-D5_nSC5M",
   authDomain: "smart10-cb385.firebaseapp.com",
   databaseURL: "https://smart10-cb385-default-rtdb.firebaseio.com",
   projectId: "smart10-cb385",
-  storageBucket: "smart10-cb385.appspot.com",
-  messagingSenderId: "PLACEHOLDER_SENDER_ID",
-  appId: "PLACEHOLDER_APP_ID"
+  storageBucket: "smart10-cb385.firebasestorage.app",
+  messagingSenderId: "427007375730",
+  appId: "1:427007375730:web:dd2bbb86aa9667872685eb"
 };
 
 const app = initializeApp(firebaseConfig);

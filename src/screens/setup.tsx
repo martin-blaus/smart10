@@ -37,6 +37,7 @@ const segClass = (selected: boolean, size: string) =>
   (selected ? "btn-brass !px-0" : "panel text-parchment-dim");
 
 import { seedDatabase } from "../firebase/seed";
+import { useAuth } from "../hooks/useAuth";
 
 interface Props {
   onStart: (
@@ -56,6 +57,14 @@ interface Props {
 type Mode = "solo" | "multi" | "online";
 
 export function SetupScreen({ onStart, onStartOnline }: Props) {
+  const {
+    email,
+    isAnonymous,
+    signInWithEmail,
+    signUpWithEmail,
+    logout,
+  } = useAuth();
+
   const [mode, setMode] = useState<Mode>("multi");
   const [names, setNames] = useState<string[]>(["", ""]);
   const [tokens, setTokens] = useState<string[]>(["🦊", "🦉"]);
@@ -65,6 +74,34 @@ export function SetupScreen({ onStart, onStartOnline }: Props) {
   const [onlineAction, setOnlineAction] = useState<"create" | "join">("create");
   const [roomCodeInput, setRoomCodeInput] = useState("");
   const [seedingState, setSeedingState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const [authEmail, setAuthEmail] = useState("");
+  const [authPassword, setAuthPassword] = useState("");
+  const [authTab, setAuthTab] = useState<"guest" | "signIn" | "signUp">("guest");
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [authSubmitting, setAuthSubmitting] = useState(false);
+
+  const handleAuthSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!authEmail || !authPassword) return;
+    setAuthError(null);
+    setAuthSubmitting(true);
+    try {
+      if (authTab === "signIn") {
+        await signInWithEmail(authEmail, authPassword);
+      } else {
+        await signUpWithEmail(authEmail, authPassword);
+      }
+      setAuthEmail("");
+      setAuthPassword("");
+      setAuthTab("guest");
+    } catch (err: any) {
+      console.error(err);
+      setAuthError(err.message || strings.authError);
+    } finally {
+      setAuthSubmitting(false);
+    }
+  };
 
   const handleSeed = async () => {
     setSeedingState("loading");
@@ -176,64 +213,162 @@ export function SetupScreen({ onStart, onStartOnline }: Props) {
 
         {mode === "online" ? (
           <>
-            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
-              Tu nombre y avatar
-            </h2>
-            <div className="flex gap-2 items-center w-full mb-6">
-              <button
-                onClick={() => cycleToken(0)}
-                className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
-                aria-label="Cambiar avatar de emoji"
-              >
-                {tokens[0]}
-              </button>
-              <input
-                value={names[0]}
-                onChange={(e) => setName(0, e.target.value)}
-                placeholder={strings.setupPlayerPlaceholder(1)}
-                maxLength={20}
-                className="field flex-1 min-w-0"
-              />
-            </div>
-
-            <div className="flex gap-2.5 mb-6">
-              {(["create", "join"] as const).map((act) => (
+            {!isAnonymous && email && (
+              <div className="panel p-4 mb-6 flex items-center justify-between border border-brass/20">
+                <div className="flex flex-col min-w-0">
+                  <span className="eyebrow text-brass text-[10px]">
+                    {strings.authTitle}
+                  </span>
+                  <span className="text-xs text-parchment truncate">
+                    {email}
+                  </span>
+                </div>
                 <button
-                  key={act}
-                  onClick={() => setOnlineAction(act)}
-                  aria-pressed={onlineAction === act}
-                  className={`flex-grow flex-shrink basis-[calc(50%-5px)] min-h-12 rounded-xl font-display text-xs font-bold transition-transform active:scale-[0.95] ` +
-                    (onlineAction === act ? "btn-brass !px-0" : "panel text-parchment-dim")}
+                  onClick={() => logout()}
+                  className="btn-quiet !min-h-8 !py-1 !px-3 text-xs shrink-0 cursor-pointer select-none active:scale-95"
                 >
-                  {act === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
+                  {strings.authSignOut}
                 </button>
-              ))}
-            </div>
-
-            {onlineAction === "join" && (
-              <div className="flex flex-col gap-2 mb-6">
-                <label htmlFor="room-code-input" className="eyebrow text-parchment-dim text-xs">
-                  {strings.onlineRoomCode} (4 letras)
-                </label>
-                <input
-                  id="room-code-input"
-                  value={roomCodeInput}
-                  onChange={(e) => setRoomCodeInput(e.target.value.toUpperCase().slice(0, 4))}
-                  placeholder="CODE"
-                  maxLength={4}
-                  autoComplete="off"
-                  className="field w-full text-center font-mono text-xl tracking-widest"
-                />
               </div>
             )}
 
-            <button
-              onClick={handleStart}
-              disabled={!canStart}
-              className="btn-brass w-full text-lg"
-            >
-              {onlineAction === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
-            </button>
+            {isAnonymous && (
+              <div className="flex gap-1 mb-5 p-1 bg-black/20 rounded-xl">
+                {(["guest", "signIn", "signUp"] as const).map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => {
+                      setAuthTab(tab);
+                      setAuthError(null);
+                    }}
+                    className={`flex-1 py-2 text-center text-xs font-bold rounded-lg transition-all cursor-pointer select-none ${
+                      authTab === tab
+                        ? "bg-brass text-brass-ink font-bold shadow-md"
+                        : "text-parchment-dim hover:text-parchment"
+                    }`}
+                  >
+                    {tab === "guest"
+                      ? strings.authGuest
+                      : tab === "signIn"
+                      ? strings.authSignIn
+                      : strings.authSignUp}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {isAnonymous && authTab !== "guest" && (
+              <form onSubmit={handleAuthSubmit} className="flex flex-col gap-4 mb-6">
+                <div>
+                  <label className="eyebrow text-parchment-dim text-[10px] mb-1.5 block">
+                    {strings.authEmail}
+                  </label>
+                  <input
+                    type="email"
+                    value={authEmail}
+                    onChange={(e) => setAuthEmail(e.target.value)}
+                    placeholder={strings.authEmailPlaceholder}
+                    required
+                    className="field w-full text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="eyebrow text-parchment-dim text-[10px] mb-1.5 block">
+                    {strings.authPassword}
+                  </label>
+                  <input
+                    type="password"
+                    value={authPassword}
+                    onChange={(e) => setAuthPassword(e.target.value)}
+                    placeholder={strings.authPasswordPlaceholder}
+                    minLength={6}
+                    required
+                    className="field w-full text-sm"
+                  />
+                </div>
+                {authError && (
+                  <p className="text-wrong text-xs font-semibold text-center bg-wrong/10 py-2 rounded-lg border border-wrong/20">
+                    {authError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={authSubmitting}
+                  className="btn-brass w-full text-sm"
+                >
+                  {authSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-brass-ink border-t-transparent rounded-full animate-spin" />
+                  ) : authTab === "signIn" ? (
+                    strings.authSignIn
+                  ) : (
+                    strings.authSignUp
+                  )}
+                </button>
+              </form>
+            )}
+
+            {(!isAnonymous || authTab === "guest") && (
+              <>
+                <h2 className="eyebrow text-parchment-dim mt-4 mb-2.5">
+                  Tu nombre y avatar
+                </h2>
+                <div className="flex gap-2 items-center w-full mb-6">
+                  <button
+                    onClick={() => cycleToken(0)}
+                    className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+                    aria-label="Cambiar avatar de emoji"
+                  >
+                    {tokens[0]}
+                  </button>
+                  <input
+                    value={names[0]}
+                    onChange={(e) => setName(0, e.target.value)}
+                    placeholder={strings.setupPlayerPlaceholder(1)}
+                    maxLength={20}
+                    className="field flex-1 min-w-0"
+                  />
+                </div>
+
+                <div className="flex gap-2.5 mb-6">
+                  {(["create", "join"] as const).map((act) => (
+                    <button
+                      key={act}
+                      onClick={() => setOnlineAction(act)}
+                      aria-pressed={onlineAction === act}
+                      className={`flex-grow flex-shrink basis-[calc(50%-5px)] min-h-12 rounded-xl font-display text-xs font-bold transition-transform active:scale-[0.95] ` +
+                        (onlineAction === act ? "btn-brass !px-0" : "panel text-parchment-dim")}
+                    >
+                      {act === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
+                    </button>
+                  ))}
+                </div>
+
+                {onlineAction === "join" && (
+                  <div className="flex flex-col gap-2 mb-6">
+                    <label htmlFor="room-code-input" className="eyebrow text-parchment-dim text-xs">
+                      {strings.onlineRoomCode} (4 letras)
+                    </label>
+                    <input
+                      id="room-code-input"
+                      value={roomCodeInput}
+                      onChange={(e) => setRoomCodeInput(e.target.value.toUpperCase().slice(0, 4))}
+                      placeholder="CODE"
+                      maxLength={4}
+                      autoComplete="off"
+                      className="field w-full text-center font-mono text-xl tracking-widest"
+                    />
+                  </div>
+                )}
+
+                <button
+                  onClick={handleStart}
+                  disabled={!canStart}
+                  className="btn-brass w-full text-lg"
+                >
+                  {onlineAction === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
+                </button>
+              </>
+            )}
           </>
         ) : (
           <>

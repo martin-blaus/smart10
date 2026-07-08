@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { signInAnonymously, onAuthStateChanged, User } from "firebase/auth";
+import {
+  signInAnonymously,
+  onAuthStateChanged,
+  User,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../firebase/config";
 
 export function useAuth() {
@@ -14,12 +21,8 @@ export function useAuth() {
       } else {
         try {
           await signInAnonymously(auth);
-          // On success onAuthStateChanged fires again with the user, which
-          // clears `loading` above — nothing more to do here.
         } catch (error) {
           console.error("Firebase Anonymous Auth Error:", error);
-          // Auth failed (e.g. Firebase not yet configured). Stop blocking:
-          // offline solo/multiplayer must still be playable without it.
           setLoading(false);
         }
       }
@@ -28,5 +31,45 @@ export function useAuth() {
     return unsubscribe;
   }, []);
 
-  return { user, uid: user?.uid ?? null, loading };
+  const signInWithEmail = async (email: string, password: string) => {
+    setLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  const signUpWithEmail = async (email: string, password: string) => {
+    setLoading(true);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      await signOut(auth);
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  return {
+    user,
+    uid: user?.uid ?? null,
+    email: user?.email ?? null,
+    isAnonymous: user?.isAnonymous ?? false,
+    loading,
+    signInWithEmail,
+    signUpWithEmail,
+    logout,
+  };
 }
+
