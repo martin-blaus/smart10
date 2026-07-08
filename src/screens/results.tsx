@@ -12,6 +12,7 @@ interface Props {
   state: GameState;
   onPlayAgainSame: () => void;
   onPlayAgainNew: () => void;
+  isOnlineHost?: boolean;
 }
 
 const AWARD_TITLES: Record<AwardKind, string> = {
@@ -20,7 +21,12 @@ const AWARD_TITLES: Record<AwardKind, string> = {
   planted: strings.awardPlanted,
 };
 
-export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props) {
+export function ResultsScreen({
+  state,
+  onPlayAgainSame,
+  onPlayAgainNew,
+  isOnlineHost,
+}: Props) {
   useEffect(() => {
     sounds.win();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -155,12 +161,31 @@ export function ResultsScreen({ state, onPlayAgainSame, onPlayAgainNew }: Props)
       )}
 
       <div className="w-full max-w-sm flex flex-col gap-2.5">
-        <button onClick={onPlayAgainSame} className="btn-brass text-lg">
-          {strings.playAgainSame}
-        </button>
-        <button onClick={onPlayAgainNew} className="btn-quiet text-base">
-          {strings.playAgainNew}
-        </button>
+        {isOnlineHost !== undefined ? (
+          <>
+            {isOnlineHost ? (
+              <button onClick={onPlayAgainSame} className="btn-brass text-lg">
+                {strings.playAgainSame}
+              </button>
+            ) : (
+              <p className="text-sm text-parchment-dim text-center italic animate-pulse py-2">
+                Esperando que el anfitrión empiece otra partida...
+              </p>
+            )}
+            <button onClick={onPlayAgainNew} className="btn-quiet text-base">
+              {strings.onlineLeaveRoom}
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={onPlayAgainSame} className="btn-brass text-lg">
+              {strings.playAgainSame}
+            </button>
+            <button onClick={onPlayAgainNew} className="btn-quiet text-base">
+              {strings.playAgainNew}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper checks
+    function signedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Cards Collection
+    match /cards/{cardId} {
+      allow read: if true; // Publicly readable
+      allow create: if signedIn() && request.resource.data.creatorId == request.auth.uid;
+      // Allow updates only to vote counters. Real vote changes are validated.
+      allow update: if signedIn() && 
+                    request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likesCount', 'dislikesCount']);
+      allow delete: if false; // System cards can't be deleted by regular users
+    }
+
+    // Card Votes Collection
+    match /cardVotes/{voteId} {
+      // voteId must be structured as userId_cardId
+      allow read: if true;
+      allow create, update: if signedIn() 
+                            && voteId == request.auth.uid + "_" + request.resource.data.cardId
+                            && request.resource.data.userId == request.auth.uid
+                            && (request.resource.data.vote == 'like' || request.resource.data.vote == 'dislike');
+      allow delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+    
+    // Decks Collection
+    match /decks/{deckId} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.creatorId == request.auth.uid;
+      allow update: if signedIn() && 
+                    request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likesCount', 'dislikesCount']);
+    }
+
+    // Deck Votes Collection
+    match /deckVotes/{voteId} {
+      allow read: if true;
+      allow create, update: if signedIn() 
+                            && voteId == request.auth.uid + "_" + request.resource.data.deckId
+                            && request.resource.data.userId == request.auth.uid
+                            && (request.resource.data.vote == 'like' || request.resource.data.vote == 'dislike');
+      allow delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

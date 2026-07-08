@@ -18,6 +18,33 @@ export const initialState: GameState = {
   blitz: false,
 };
 
+// Firebase RTDB silently drops empty arrays, empty objects, and null values on
+// write. A GameState round-tripped through the database therefore comes back
+// with holes: `revealedOptions`/`usedCardIds`/`winnerIndexes` missing when
+// empty, `optionVerdicts` missing when empty, and `judgingOptionIndex` missing
+// when null. The reducer and UI assume these are always present (e.g.
+// `revealedOptions.includes(...)`), so rehydrate them before use. Pure, so it
+// stays safe to call inside an RTDB transaction.
+export function normalizeGameState(raw: any): GameState {
+  return {
+    ...raw,
+    players: (raw.players ?? []).map((p: any) => ({
+      ...p,
+      score: p.score ?? 0,
+      pendingPoints: p.pendingPoints ?? 0,
+      roundStatus: p.roundStatus ?? "active",
+      stats: { ...emptyStats(), ...(p.stats ?? {}) },
+    })),
+    deck: raw.deck ?? [],
+    usedCardIds: raw.usedCardIds ?? [],
+    revealedOptions: raw.revealedOptions ?? [],
+    optionVerdicts: raw.optionVerdicts ?? {},
+    winnerIndexes: raw.winnerIndexes ?? [],
+    judgingOptionIndex: raw.judgingOptionIndex ?? null,
+    currentCardId: raw.currentCardId ?? null,
+  };
+}
+
 export function emptyStats(): PlayerStats {
   return {
     correct: 0,

@@ -12,15 +12,33 @@ import { ConfirmDialog } from "../components/confirm_dialog";
 import { sounds } from "../sounds";
 import { MuteButton } from "../components/mute_button";
 import { useWakeLock } from "../hooks/useWakeLock";
+import { CardVoting } from "../components/card_voting";
 
 interface Props {
   state: GameState;
   dispatch: (action: Action) => void;
+  userId?: string | null;
+  // Online play: when `online` is true, only the active player may interact and
+  // only the host may advance rounds. Both default to permissive so the
+  // pass-and-play (single-device) flow is unaffected.
+  online?: boolean;
+  isMyTurn?: boolean;
+  isHost?: boolean;
 }
 
 type LastResult = "correct" | "wrong" | null;
 
-export function GameScreen({ state, dispatch }: Props) {
+export function GameScreen({
+  state,
+  dispatch,
+  userId = null,
+  online = false,
+  isMyTurn = true,
+  isHost = true,
+}: Props) {
+  // In pass-and-play everyone shares the device, so anyone can act. Online,
+  // input is restricted to the client whose turn it is.
+  const canInteract = !online || isMyTurn;
   useWakeLock(state.phase === "playing" || state.phase === "roundEnd");
   const card = getCard(state.currentCardId);
   const [handoffPlayer, setHandoffPlayer] = useState<number | null>(null);
@@ -122,6 +140,7 @@ export function GameScreen({ state, dispatch }: Props) {
 
   useEffect(() => {
     if (!state.blitz || state.phase !== "playing") return;
+    if (!canInteract) return;
     if (handoffPlayer !== null || confirmingPass || animatingBanking || justRevealedIndex !== null) return;
     if (state.judgingOptionIndex !== null) return;
 
@@ -146,6 +165,7 @@ export function GameScreen({ state, dispatch }: Props) {
     justRevealedIndex,
     state.judgingOptionIndex,
     state.currentPlayerIndex,
+    canInteract,
     handleTimeout,
   ]);
 
@@ -198,6 +218,7 @@ export function GameScreen({ state, dispatch }: Props) {
 
   const handleTap = (optionIndex: number) => {
     if (animatingBanking) return;
+    if (!canInteract) return;
     sounds.tap();
     setJustRevealedIndex(optionIndex);
 
@@ -241,6 +262,7 @@ export function GameScreen({ state, dispatch }: Props) {
   // The table's decision on a spoken answer. Mirrors a boolean tap's aftermath:
   // flash the result and hand off to the next player on the resulting turn.
   const handleVerdict = (correct: boolean) => {
+    if (!canInteract) return;
     setJustRevealedIndex(null);
     setLastResult(correct ? "correct" : "wrong");
     tapOccurredRef.current = true;
@@ -259,6 +281,7 @@ export function GameScreen({ state, dispatch }: Props) {
   };
 
   const handlePass = () => {
+    if (!canInteract) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (current.pendingPoints === 0) {
@@ -283,6 +306,7 @@ export function GameScreen({ state, dispatch }: Props) {
   };
 
   const handleNextCard = () => {
+    if (online && !isHost) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const activeBankers = state.players.filter((p) => p.roundStatus !== "failed" && p.pendingPoints > 0);
 
@@ -334,6 +358,11 @@ export function GameScreen({ state, dispatch }: Props) {
             verdicts={state.optionVerdicts}
           />
         </div>
+
+        {userId && state.currentCardId && (
+          <CardVoting cardId={state.currentCardId} userId={userId} />
+        )}
+
         <ul className="w-full flex flex-col gap-2">
           {state.players.map((p, i) => {
             const failed = p.roundStatus === "failed";
@@ -369,14 +398,20 @@ export function GameScreen({ state, dispatch }: Props) {
             );
           })}
         </ul>
-        <button
-          id="next-round-btn"
-          onClick={handleNextCard}
-          disabled={animatingBanking}
-          className="btn-brass text-lg px-10"
-        >
-          {strings.nextCard}
-        </button>
+        {online && !isHost ? (
+          <p className="text-sm text-parchment-dim text-center italic animate-pulse py-2">
+            {strings.onlineWaitingHostNext}
+          </p>
+        ) : (
+          <button
+            id="next-round-btn"
+            onClick={handleNextCard}
+            disabled={animatingBanking}
+            className="btn-brass text-lg px-10"
+          >
+            {strings.nextCard}
+          </button>
+        )}
 
         {flyingDots.map((dot) => (
           <span
@@ -443,21 +478,30 @@ export function GameScreen({ state, dispatch }: Props) {
         disabled={
           handoffPlayer !== null ||
           animatingBanking ||
-          state.judgingOptionIndex !== null
+          state.judgingOptionIndex !== null ||
+          !canInteract
         }
         onTap={handleTap}
         justRevealedIndex={justRevealedIndex}
         verdicts={state.optionVerdicts}
       />
 
-      <button
-        id="pass-btn"
-        onClick={handlePass}
-        disabled={animatingBanking || state.judgingOptionIndex !== null}
-        className="btn-token text-lg mt-1"
-      >
-        {strings.pass}
-      </button>
+      {online && !isMyTurn ? (
+        <div className="panel text-center py-3 mt-1 rounded-2xl border border-brass/10">
+          <p className="text-sm text-parchment-dim italic">
+            {strings.onlineWaitingTurnOf(current.name)}
+          </p>
+        </div>
+      ) : (
+        <button
+          id="pass-btn"
+          onClick={handlePass}
+          disabled={animatingBanking || state.judgingOptionIndex !== null}
+          className="btn-token text-lg mt-1"
+        >
+          {strings.pass}
+        </button>
+      )}
 
       {flyingDots.map((dot) => (
         <span
@@ -496,7 +540,7 @@ export function GameScreen({ state, dispatch }: Props) {
         />
       )}
 
-      {judgingAnswerOption !== null && (
+      {judgingAnswerOption !== null && canInteract && (
         <JudgePanel option={judgingAnswerOption} onVerdict={handleVerdict} />
       )}
 

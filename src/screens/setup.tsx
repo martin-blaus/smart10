@@ -36,6 +36,8 @@ const segClass = (selected: boolean, size: string) =>
   `flex-grow flex-shrink basis-[calc(50%-5px)] sm:flex-1 min-h-14 rounded-2xl font-display ${size} font-bold transition-transform active:scale-[0.97] ` +
   (selected ? "btn-brass !px-0" : "panel text-parchment-dim");
 
+import { seedDatabase } from "../firebase/seed";
+
 interface Props {
   onStart: (
     players: { name: string; token: string }[],
@@ -43,17 +45,37 @@ interface Props {
     deckChoice: DeckChoice,
     blitz: boolean,
   ) => void;
+  onStartOnline: (
+    action: "create" | "join",
+    playerName: string,
+    playerToken: string,
+    roomCode?: string,
+  ) => void;
 }
 
-type Mode = "solo" | "multi";
+type Mode = "solo" | "multi" | "online";
 
-export function SetupScreen({ onStart }: Props) {
+export function SetupScreen({ onStart, onStartOnline }: Props) {
   const [mode, setMode] = useState<Mode>("multi");
   const [names, setNames] = useState<string[]>(["", ""]);
   const [tokens, setTokens] = useState<string[]>(["🦊", "🦉"]);
   const [targetScore, setTargetScore] = useState(15);
   const [datasetKey, setDatasetKey] = useState<DeckChoice>("argentina");
   const [blitz, setBlitz] = useState(false);
+  const [onlineAction, setOnlineAction] = useState<"create" | "join">("create");
+  const [roomCodeInput, setRoomCodeInput] = useState("");
+  const [seedingState, setSeedingState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSeed = async () => {
+    setSeedingState("loading");
+    try {
+      await seedDatabase();
+      setSeedingState("success");
+    } catch (err) {
+      console.error(err);
+      setSeedingState("error");
+    }
+  };
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, j) => (j === i ? value : n)));
@@ -89,9 +111,23 @@ export function SetupScreen({ onStart }: Props) {
   const trimmed = names.map(
     (n, i) => n.trim() || strings.setupPlayerPlaceholder(i + 1),
   );
-  const canStart = mode === "solo" || names.length >= MIN_PLAYERS;
+  const canStart =
+    mode === "online"
+      ? (names[0].trim().length > 0 && (onlineAction === "create" || roomCodeInput.trim().length === 4))
+      : (mode === "solo" || names.length >= MIN_PLAYERS);
 
   const handleStart = () => {
+    if (mode === "online") {
+      const pName = names[0].trim() || strings.setupPlayerPlaceholder(1);
+      const pToken = tokens[0] || "🦊";
+      onStartOnline(
+        onlineAction,
+        pName,
+        pToken,
+        onlineAction === "join" ? roomCodeInput.trim().toUpperCase() : undefined
+      );
+      return;
+    }
     const playerNames =
       mode === "solo"
         ? [names[0].trim() || strings.setupPlayerPlaceholder(1)]
@@ -124,138 +160,223 @@ export function SetupScreen({ onStart }: Props) {
         <h2 className="eyebrow text-parchment-dim mb-2.5">
           {strings.setupMode}
         </h2>
-        <div className="flex gap-2.5">
-          {(["solo", "multi"] as Mode[]).map((m) => (
+        <div className="flex gap-2">
+          {(["solo", "multi", "online"] as Mode[]).map((m) => (
             <button
               key={m}
               onClick={() => setMode(m)}
               aria-pressed={mode === m}
-              className={segClass(mode === m, "text-base")}
+              className={`flex-grow flex-shrink basis-[calc(33%-5px)] min-h-14 rounded-2xl font-display text-sm font-bold transition-transform active:scale-[0.97] ` +
+                (mode === m ? "btn-brass !px-0" : "panel text-parchment-dim")}
             >
-              {m === "solo" ? strings.modeSolo : strings.modeMulti}
+              {m === "solo" ? strings.modeSolo : m === "multi" ? strings.modeMulti : strings.modeOnline}
             </button>
           ))}
         </div>
 
-        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
-          {mode === "solo" ? strings.setupSoloName : strings.setupPlayers}
-        </h2>
-        {mode === "solo" ? (
-          <div className="flex gap-2 items-center w-full">
-            <button
-              onClick={() => cycleToken(0)}
-              className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
-              aria-label="Cambiar avatar de emoji"
-            >
-              {tokens[0]}
-            </button>
-            <input
-              value={names[0]}
-              onChange={(e) => setName(0, e.target.value)}
-              placeholder={strings.setupPlayerPlaceholder(1)}
-              maxLength={20}
-              className="field flex-1 min-w-0"
-            />
-          </div>
-        ) : (
+        {mode === "online" ? (
           <>
-            <div className="flex flex-col gap-2">
-              {names.map((name, i) => (
-                <div key={i} className="flex gap-2 items-center w-full">
-                  <button
-                    onClick={() => cycleToken(i)}
-                    className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
-                    aria-label="Cambiar avatar de emoji"
-                  >
-                    {tokens[i]}
-                  </button>
-                  <input
-                    value={name}
-                    onChange={(e) => setName(i, e.target.value)}
-                    placeholder={strings.setupPlayerPlaceholder(i + 1)}
-                    maxLength={20}
-                    className="field flex-1 min-w-0"
-                  />
-                  {names.length > MIN_PLAYERS && (
-                    <button
-                      onClick={() => removePlayer(i)}
-                      className="btn-quiet w-12 h-12 !p-0 shrink-0 rounded-full flex items-center justify-center text-sm"
-                      aria-label={strings.setupRemovePlayer}
-                    >
-                      ✕
-                    </button>
-                  )}
-                </div>
+            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+              Tu nombre y avatar
+            </h2>
+            <div className="flex gap-2 items-center w-full mb-6">
+              <button
+                onClick={() => cycleToken(0)}
+                className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+                aria-label="Cambiar avatar de emoji"
+              >
+                {tokens[0]}
+              </button>
+              <input
+                value={names[0]}
+                onChange={(e) => setName(0, e.target.value)}
+                placeholder={strings.setupPlayerPlaceholder(1)}
+                maxLength={20}
+                className="field flex-1 min-w-0"
+              />
+            </div>
+
+            <div className="flex gap-2.5 mb-6">
+              {(["create", "join"] as const).map((act) => (
+                <button
+                  key={act}
+                  onClick={() => setOnlineAction(act)}
+                  aria-pressed={onlineAction === act}
+                  className={`flex-grow flex-shrink basis-[calc(50%-5px)] min-h-12 rounded-xl font-display text-xs font-bold transition-transform active:scale-[0.95] ` +
+                    (onlineAction === act ? "btn-brass !px-0" : "panel text-parchment-dim")}
+                >
+                  {act === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
+                </button>
               ))}
             </div>
 
-            {names.length < MAX_PLAYERS && (
-              <button onClick={addPlayer} className="btn-quiet w-full mt-2.5">
-                + {strings.setupAddPlayer}
-              </button>
+            {onlineAction === "join" && (
+              <div className="flex flex-col gap-2 mb-6">
+                <label htmlFor="room-code-input" className="eyebrow text-parchment-dim text-xs">
+                  {strings.onlineRoomCode} (4 letras)
+                </label>
+                <input
+                  id="room-code-input"
+                  value={roomCodeInput}
+                  onChange={(e) => setRoomCodeInput(e.target.value.toUpperCase().slice(0, 4))}
+                  placeholder="CODE"
+                  maxLength={4}
+                  autoComplete="off"
+                  className="field w-full text-center font-mono text-xl tracking-widest"
+                />
+              </div>
+            )}
+
+            <button
+              onClick={handleStart}
+              disabled={!canStart}
+              className="btn-brass w-full text-lg"
+            >
+              {onlineAction === "create" ? strings.onlineCreateRoom : strings.onlineJoinRoom}
+            </button>
+          </>
+        ) : (
+          <>
+            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+              {mode === "solo" ? strings.setupSoloName : strings.setupPlayers}
+            </h2>
+            {mode === "solo" ? (
+              <div className="flex gap-2 items-center w-full">
+                <button
+                  onClick={() => cycleToken(0)}
+                  className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+                  aria-label="Cambiar avatar de emoji"
+                >
+                  {tokens[0]}
+                </button>
+                <input
+                  value={names[0]}
+                  onChange={(e) => setName(0, e.target.value)}
+                  placeholder={strings.setupPlayerPlaceholder(1)}
+                  maxLength={20}
+                  className="field flex-1 min-w-0"
+                />
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-col gap-2">
+                  {names.map((name, i) => (
+                    <div key={i} className="flex gap-2 items-center w-full">
+                      <button
+                        onClick={() => cycleToken(i)}
+                        className="panel w-12 h-12 flex items-center justify-center text-xl shrink-0 rounded-2xl select-none cursor-pointer border border-brass/25 active:scale-95"
+                        aria-label="Cambiar avatar de emoji"
+                      >
+                        {tokens[i]}
+                      </button>
+                      <input
+                        value={name}
+                        onChange={(e) => setName(i, e.target.value)}
+                        placeholder={strings.setupPlayerPlaceholder(i + 1)}
+                        maxLength={20}
+                        className="field flex-1 min-w-0"
+                      />
+                      {names.length > MIN_PLAYERS && (
+                        <button
+                          onClick={() => removePlayer(i)}
+                          className="btn-quiet w-12 h-12 !p-0 shrink-0 rounded-full flex items-center justify-center text-sm"
+                          aria-label={strings.setupRemovePlayer}
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {names.length < MAX_PLAYERS && (
+                  <button onClick={addPlayer} className="btn-quiet w-full mt-2.5">
+                    + {strings.setupAddPlayer}
+                  </button>
+                )}
+              </>
+            )}
+
+            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+              {strings.setupTargetScore}
+            </h2>
+            <div className="flex gap-2.5">
+              {TARGET_OPTIONS.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTargetScore(t)}
+                  aria-pressed={targetScore === t}
+                  className={segClass(targetScore === t, "text-2xl")}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+              {strings.setupDataset}
+            </h2>
+            <div className="flex flex-wrap sm:flex-nowrap gap-2.5">
+              {([...Object.keys(DATASETS), "all"] as DeckChoice[]).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setDatasetKey(key)}
+                  aria-pressed={datasetKey === key}
+                  className={segClass(datasetKey === key, "text-sm sm:text-base")}
+                >
+                  {DATASET_LABELS[key]}
+                </button>
+              ))}
+            </div>
+
+            <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
+              {strings.setupBlitz}
+            </h2>
+            <div className="flex gap-2.5">
+              {[false, true].map((val) => (
+                <button
+                  key={val ? "yes" : "no"}
+                  onClick={() => setBlitz(val)}
+                  aria-pressed={blitz === val}
+                  className={segClass(blitz === val, "text-base")}
+                >
+                  {val ? strings.blitzActive : strings.blitzInactive}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={handleStart}
+              disabled={!canStart}
+              className="btn-brass w-full mt-8 text-lg"
+            >
+              {strings.setupStart}
+            </button>
+            {!canStart && (
+              <p className="text-wrong text-xs text-center mt-2.5">
+                {strings.setupMinPlayers}
+              </p>
             )}
           </>
         )}
 
-        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
-          {strings.setupTargetScore}
-        </h2>
-        <div className="flex gap-2.5">
-          {TARGET_OPTIONS.map((t) => (
+        {window.location.hostname === "localhost" && (
+          <div className="mt-8 pt-6 border-t border-brass/10 flex flex-col gap-2.5 items-center">
+            <span className="eyebrow text-brass text-xs">Administración Dev</span>
             <button
-              key={t}
-              onClick={() => setTargetScore(t)}
-              aria-pressed={targetScore === t}
-              className={segClass(targetScore === t, "text-2xl")}
+              onClick={handleSeed}
+              disabled={seedingState === "loading"}
+              className="btn-quiet text-xs font-semibold py-2 px-4 rounded-xl border border-brass/25 active:scale-95"
             >
-              {t}
+              {seedingState === "loading"
+                ? strings.onlineSeeding
+                : seedingState === "success"
+                ? strings.onlineSeedSuccess
+                : seedingState === "error"
+                ? strings.onlineSeedError
+                : strings.onlineSeedDb}
             </button>
-          ))}
-        </div>
-
-        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
-          {strings.setupDataset}
-        </h2>
-        <div className="flex flex-wrap sm:flex-nowrap gap-2.5">
-          {([...Object.keys(DATASETS), "all"] as DeckChoice[]).map((key) => (
-            <button
-              key={key}
-              onClick={() => setDatasetKey(key)}
-              aria-pressed={datasetKey === key}
-              className={segClass(datasetKey === key, "text-sm sm:text-base")}
-            >
-              {DATASET_LABELS[key]}
-            </button>
-          ))}
-        </div>
-
-        <h2 className="eyebrow text-parchment-dim mt-8 mb-2.5">
-          {strings.setupBlitz}
-        </h2>
-        <div className="flex gap-2.5">
-          {[false, true].map((val) => (
-            <button
-              key={val ? "yes" : "no"}
-              onClick={() => setBlitz(val)}
-              aria-pressed={blitz === val}
-              className={segClass(blitz === val, "text-base")}
-            >
-              {val ? strings.blitzActive : strings.blitzInactive}
-            </button>
-          ))}
-        </div>
-
-        <button
-          onClick={handleStart}
-          disabled={!canStart}
-          className="btn-brass w-full mt-8 text-lg"
-        >
-          {strings.setupStart}
-        </button>
-        {!canStart && (
-          <p className="text-wrong text-xs text-center mt-2.5">
-            {strings.setupMinPlayers}
-          </p>
+          </div>
         )}
       </div>
     </div>
